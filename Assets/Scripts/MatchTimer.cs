@@ -38,6 +38,6 @@ public class MatchTimer : MonoBehaviour
     void FixedUpdate()
     {
         if (!isPaused) currentTime+=Time.fixedDeltaTime;
-        GameHandler.instance.setMatchHUDTimer(getCurrentTimeString());
+        UIManager.instance.setMatchHUDTimer(getCurrentTimeString());
     }
 }

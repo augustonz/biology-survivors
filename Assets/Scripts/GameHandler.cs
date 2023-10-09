@@ -2,43 +2,49 @@ using UnityEngine;
 
 public class GameHandler : MonoBehaviour
 {
-    
-    [SerializeField] MatchTimer matchTimer;
-    [SerializeField] MatchHUD matchHUD;
     public static GameHandler instance;
-    public bool isDebugMode;
+
+    GameState _gameState;
     void Awake() {
         if (instance != null && instance != this) Destroy(this); 
         else instance = this;
-        StartMatch();
     }
 
-    public void setMatchHUDTimer(string text) {
-        matchHUD.setTimer(text);
-    }
+    void Update() {
+        switch(_gameState) {
+            case GameState.MENU:
+                MenuUpdate();
+                break;
 
-    public void StartMatch() {
-        matchTimer.unpauseTimer();
-    }
+            case GameState.INGAME:
+                InGameUpdate();
+                break;
 
-    public void setAmmoText(float maxAmmo,float currentAmmo,bool reloading) {
-        if (reloading) {
-            matchHUD.setAmmoReloading();
-            return;
+            case GameState.PAUSED:
+                PausedUpdate();
+                break;
+
         }
-        matchHUD.setCurrentAmmo(maxAmmo,currentAmmo);
     }
 
-    public void SetPlayerLevelText(int lvl) {
-        matchHUD.setLevelText(lvl);
+    void MenuUpdate() {
+        Time.timeScale=0;
     }
 
-    public void SetPlayerExpBarLength(float currentExp, float maxExp) {
-        matchHUD.setExpBarAmount(currentExp,maxExp);
+    void InGameUpdate() {
+        Time.timeScale=1;
     }
 
-    void FixedUpdate()
-    {
-
+    void PausedUpdate() {
+        Time.timeScale=0;
     }
+
+    public void StartGame() {
+        _gameState=GameState.INGAME;
+        UIManager.instance.StartUI();
+    }
+}
+
+public enum GameState {
+    MENU,INGAME,PAUSED
 }

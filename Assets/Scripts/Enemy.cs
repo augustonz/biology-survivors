@@ -20,7 +20,6 @@ public class Enemy : MonoBehaviour,IHittable
 
     Rigidbody2D rb;
     Vector3 moveDirection;
-    Slider healthBarFill;
     GameObject healthBar;
     Canvas canvas;
 
@@ -28,7 +27,6 @@ public class Enemy : MonoBehaviour,IHittable
 
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
-        healthBarFill = GetComponentInChildren<Slider>();
         canvas = GetComponentInChildren<Canvas>();
         sr = GetComponent<SpriteRenderer>();
         originalMaterial = sr.material;
@@ -40,14 +38,12 @@ public class Enemy : MonoBehaviour,IHittable
     {
         healthBar.SetActive(false);
         hp = maxHp;
+
+        target = FindObjectOfType<Player>().transform;
     }
 
     void Update()
     {
-        target = FindTarget();
-        
-        AdjustHealthBarLocation();
-
         if (collidingWith.Count>0) {
             if (delayBetweenAttacksTimer<=0){
                 Attack();
@@ -56,28 +52,13 @@ public class Enemy : MonoBehaviour,IHittable
         }
     }
 
-    void AdjustHealthBarLocation() {
-        canvas.transform.rotation = Quaternion.Euler(0,0,-this.transform.rotation.z);
-    }
-
     void Attack() {
         collidingWith.ForEach(collider => collider.OnHit(damage));
         delayBetweenAttacksTimer=delayBetweenAttacks;
     }
 
     void FixedUpdate() {
-        if (target!=null) {
-            Move();
-        }
-    }
-
-    public virtual Transform FindTarget() {
-        Transform target = null;
-        if (goTarget == EnemyAI.PLAYER) {
-            Player player = FindObjectOfType<Player>();
-            return player.transform;
-        }
-        return target;
+        Move();
     }
 
     public void Move() {
@@ -88,9 +69,7 @@ public class Enemy : MonoBehaviour,IHittable
     }
 
     public void TakeDamage(float damageAmount) {
-        healthBar.SetActive(true);
         hp-=damageAmount;
-        healthBarFill.value = hp/maxHp;
         if (hp<=0) {
             Die();
         }

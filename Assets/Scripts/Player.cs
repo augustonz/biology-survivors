@@ -33,9 +33,13 @@ public class Player : EnemyDamagable
 
     public override void Awake() {
         base.Awake();
-        GameHandler.instance.setAmmoText(maxAmmo,currentAmmo,false);
+    }
+
+    public void Start() {
+        UIManager.instance.setAmmoText(maxAmmo,currentAmmo,false);
         healthBarFill = GetComponentInChildren<Slider>();
         canvas = GetComponentInChildren<Canvas>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     static Vector3 GetRandomPositionOnPlane() {
@@ -82,7 +86,7 @@ public class Player : EnemyDamagable
         canShoot = false;
         Invoke("canShootAgain",shootDelay);
         currentAmmo-=1;
-        GameHandler.instance.setAmmoText(maxAmmo,currentAmmo,false);
+        UIManager.instance.setAmmoText(maxAmmo,currentAmmo,false);
         Vector3 gunPosition = transform.GetChild(0).GetChild(0).position;
         Vector3 destination = Camera.main.ScreenToWorldPoint(Input.mousePosition); 
         Vector3 bulletDirection = new Vector3(destination.x-gunPosition.x,destination.y-gunPosition.y,0).normalized;
@@ -93,14 +97,14 @@ public class Player : EnemyDamagable
         if (currentAmmo<maxAmmo && !IsInvoking("CompleteReload")) {
             isReloading=true;
             Invoke("CompleteReload",reloadTime);
-            GameHandler.instance.setAmmoText(0,0,true);
+            UIManager.instance.setAmmoText(0,0,true);
         }
     }
 
     void CompleteReload() {
         isReloading=false;
         currentAmmo=maxAmmo;
-        GameHandler.instance.setAmmoText(maxAmmo,currentAmmo,false);
+        UIManager.instance.setAmmoText(maxAmmo,currentAmmo,false);
     }
 
     void Update() {
@@ -108,8 +112,10 @@ public class Player : EnemyDamagable
         handlePlayerMovement();
         handlePlayerGunDirection();
         handlePlayerShoot();
+    }
 
-        transform.position+= moveDirection.normalized * playerSpeed * Time.deltaTime ;
+    void FixedUpdate() {
+        rb.MovePosition(transform.position + moveDirection.normalized * playerSpeed * Time.deltaTime);
     }
 
     void handlePlayerInput() {
@@ -129,12 +135,12 @@ public class Player : EnemyDamagable
         if (exp>=expCap) {
             LevelUp();
         }
-        GameHandler.instance.SetPlayerExpBarLength(exp,expCap);
+        UIManager.instance.SetPlayerExpBarLength(exp,expCap);
     }
 
     private void LevelUp() {
         level++;
-        GameHandler.instance.SetPlayerLevelText(level);
+        UIManager.instance.SetPlayerLevelText(level);
         exp-=expCap;
         expCap+=10;
     }
