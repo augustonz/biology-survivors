@@ -63,8 +63,6 @@ public class Enemy : MonoBehaviour,IHittable
 
     public void Move() {
         moveDirection = (target.position - transform.position).normalized;
-        float angle = Mathf.Atan2(moveDirection.y,moveDirection.x)*Mathf.Rad2Deg;
-        rb.rotation = angle;
         rb.MovePosition(transform.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
     }
 

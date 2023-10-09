@@ -25,11 +25,9 @@ public class Player : EnemyDamagable
     public int level = 1;
     public float expCap = 10;
     public float exp = 0;
-
     Vector3 moveDirection;
     Rigidbody2D rb;
-    Slider healthBarFill;
-    Canvas canvas;
+    [SerializeField] Slider healthBarFill;
 
     public override void Awake() {
         base.Awake();
@@ -37,8 +35,6 @@ public class Player : EnemyDamagable
 
     public void Start() {
         UIManager.instance.setAmmoText(maxAmmo,currentAmmo,false);
-        healthBarFill = GetComponentInChildren<Slider>();
-        canvas = GetComponentInChildren<Canvas>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -47,7 +43,6 @@ public class Player : EnemyDamagable
     }
 
     void handlePlayerMovement() {
-            AdjustHealthBarLocation();
             moveDirection = new Vector3();
             if (Input.GetKey(KeyCode.W)) moveDirection += new Vector3(0,1,0);
             if (Input.GetKey(KeyCode.A)) moveDirection += new Vector3(-1,0,0);
@@ -152,10 +147,6 @@ public class Player : EnemyDamagable
             Die();
         }
         flashAnimation();
-    }
-
-    void AdjustHealthBarLocation() {
-        canvas.transform.rotation = Quaternion.Euler(0,0,-this.transform.rotation.z);
     }
 
     void Die() {
