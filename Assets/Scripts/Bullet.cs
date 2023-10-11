@@ -52,6 +52,7 @@ public class Bullet : MonoBehaviour
         IHittable hitComponent = collider.gameObject.GetComponent<IHittable>();
         if (hitComponent == null) return;
         hitComponent.onHit(this);
+        DamageValue.Instantiate(transform.position,(int)damage);
         Destroy(gameObject);
     }
 }

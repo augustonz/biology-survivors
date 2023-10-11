@@ -74,8 +74,7 @@ public class Enemy : MonoBehaviour,IHittable
     }
 
     void Die() {
-        GameObject expPoint = PrefabLoader.instance.getExp();
-        Instantiate(expPoint,transform.position,Quaternion.identity);
+        ExpManager.instance.SpawnExp(transform.position);
         Destroy(gameObject);
     }
 

@@ -4,14 +4,16 @@ using UnityEngine;
 public class WaveManager : MonoBehaviour
 {
 
-    GameObject _player;
     [SerializeField] float _spawnRange;
     [SerializeField] float _spawnCooldown;
-    float _spawnCooldownTimer;
-    bool _canSpawn;
+    [SerializeField] Transform _enemiesParent;
     [SerializeField] Enemy enemy1;
     [SerializeField] Enemy enemy2;
     [SerializeField] Enemy enemy3;
+    
+    GameObject _player;
+    float _spawnCooldownTimer;
+    bool _canSpawn;
     void Start() {
         _player = GameObject.FindGameObjectWithTag("Player");
     }
@@ -35,7 +37,7 @@ public class WaveManager : MonoBehaviour
         Vector3 spawnPoint = GetRandomSpawnPoint();
         for (int i = 0; i < amount; i++)
         {
-            Instantiate(enemy,spawnPoint,Quaternion.identity);
+            Instantiate(enemy,spawnPoint,Quaternion.identity,_enemiesParent);
         }
         _canSpawn=false; 
         _spawnCooldownTimer=_spawnCooldown;

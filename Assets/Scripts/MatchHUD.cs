@@ -28,11 +28,11 @@ public class MatchHUD : MonoBehaviour
     }
 
     public void setAmmoReloading() {
-        ammoComponent.text="Ammo\nReloading...";
+        ammoComponent.text="Reloading...";
     }
 
     public void setCurrentAmmo(float maxAmmo, float currentAmmo) {
-        ammoComponent.text=$"Ammo\n{currentAmmo.ToString()}/{maxAmmo.ToString()}";
+        ammoComponent.text=$"Ammo - {currentAmmo.ToString()}/{maxAmmo.ToString()}";
     }
 
     public void setLevelText(int level) {

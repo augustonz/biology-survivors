@@ -6,7 +6,7 @@ public class PrefabLoader : MonoBehaviour
 {
     public static PrefabLoader instance;
     [SerializeField] GameObject _bullet;
-    [SerializeField] GameObject _exp;
+    [SerializeField] DamageValue _damageValue;
     void Awake() {
         instance=this;
     }
@@ -15,7 +15,7 @@ public class PrefabLoader : MonoBehaviour
         return _bullet;
     }
 
-    public GameObject getExp() {
-        return _exp;
+    public DamageValue getDamageValue() {
+        return _damageValue;
     }
 }
