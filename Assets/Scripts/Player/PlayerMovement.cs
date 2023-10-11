@@ -40,12 +40,12 @@ public class PlayerMovement : MonoBehaviour
         handlePlayerMovement();
     }
 
-    void Enable()
+    public void Enable()
     {
         canMove = true;
     }
 
-    void Disable()
+    public void Disable()
     {
         canMove = false;
     }

@@ -4,12 +4,9 @@ using UnityEngine.UI;
 public class Player : EnemyDamagable
 {
 
-    public float hp;
-    public float maxHp;
-
-    public int level = 1;
-    public float expCap = 10;
-    public float exp = 0;
+    private PlayerMovement playerMovement;
+    private PlayerStatus playerStatus;
+    private PlayerShoot playerShoot;
 
 
     [SerializeField] Slider healthBarFill;
@@ -18,6 +15,11 @@ public class Player : EnemyDamagable
     public override void Awake()
     {
         base.Awake();
+
+        playerMovement = GetComponent<PlayerMovement>();
+        playerStatus = GetComponent<PlayerStatus>();
+        playerShoot = GetComponent<PlayerShoot>();
+
     }
 
     public void Start()
@@ -39,37 +41,29 @@ public class Player : EnemyDamagable
 
     public void GetExp(int expValue)
     {
-        exp += expValue;
-        if (exp >= expCap)
-        {
-            LevelUp();
-        }
-        UIManager.instance.SetPlayerExpBarLength(exp, expCap);
+        playerStatus.AddExp(expValue);
+        UIManager.instance.SetPlayerExpBarLength(playerStatus.CurrExp, playerStatus.ExpCap);
     }
 
     private void LevelUp()
     {
-        level++;
-        UIManager.instance.SetPlayerLevelText(level);
-        exp -= expCap;
-        expCap += 10;
+        UIManager.instance.SetPlayerLevelText(playerStatus.CurrLevel);
     }
 
     public override void OnHit(int damage)
     {
-        hp -= damage;
-        healthBarFill.value = hp / maxHp;
-        if (hp <= 0)
-        {
-            Die();
-        }
+        playerStatus.GetHit(damage);
+        healthBarFill.value = playerStatus.CurrHP / playerStatus.MaxHP;
         flashAnimation();
     }
 
-
-
-    void Die()
+    public void OnEnable()
     {
-        Destroy(gameObject);
+        playerMovement.Enable();
+    }
+
+    public void OnDisable()
+    {
+        playerMovement.Disable();
     }
 }

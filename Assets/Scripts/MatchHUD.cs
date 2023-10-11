@@ -14,32 +14,38 @@ public class MatchHUD : MonoBehaviour
     public static MatchHUD instance;
 
 
-    void Awake() {
-        if (instance != null && instance != this) Destroy(this); 
-        else instance = this; 
+    void Awake()
+    {
+        if (instance != null && instance != this) Destroy(this);
+        else instance = this;
         timerComponent = GameObject.Find("Timer").GetComponent<TMP_Text>();
         ammoComponent = GameObject.Find("Ammo").GetComponent<TMP_Text>();
         LevelComponent = GameObject.Find("Lvl Text").GetComponent<TMP_Text>();
         ExpBar = GameObject.Find("Exp bar").GetComponent<Slider>();
-    } 
-
-    public void setTimer(string text) {
-        timerComponent.text=text;
     }
 
-    public void setAmmoReloading() {
-        ammoComponent.text="Ammo\nReloading...";
+    public void setTimer(string text)
+    {
+        timerComponent.text = text;
     }
 
-    public void setCurrentAmmo(float maxAmmo, float currentAmmo) {
-        ammoComponent.text=$"Ammo\n{currentAmmo.ToString()}/{maxAmmo.ToString()}";
+    public void setAmmoReloading()
+    {
+        ammoComponent.text = "Ammo\nReloading...";
     }
 
-    public void setLevelText(int level) {
-        LevelComponent.text=$"Level {level}";
+    public void setCurrentAmmo(float maxAmmo, float currentAmmo)
+    {
+        ammoComponent.text = $"Ammo\n{currentAmmo.ToString()}/{maxAmmo.ToString()}";
     }
 
-    public void setExpBarAmount(float currentExp, float maxExp) {
-        ExpBar.value = currentExp/maxExp;
+    public void setLevelText(int level)
+    {
+        LevelComponent.text = $"Level {level}";
+    }
+
+    public void setExpBarAmount(float currentExp, float maxExp)
+    {
+        ExpBar.value = currentExp / maxExp;
     }
 }
