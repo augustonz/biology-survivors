@@ -32,15 +32,6 @@ public class PlayerShoot : MonoBehaviour
     {
         if (input.GetReloadInput()) StartReload();
         handlePlayerShoot();
-        handlePlayerGunDirection();
-    }
-
-    void handlePlayerGunDirection()
-    {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 rotation = mousePos - transform.position;
-        float angle = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-        transform.GetChild(0).eulerAngles = new Vector3(0, 0, angle);
     }
 
     void canShootAgain() { canShoot = true; }

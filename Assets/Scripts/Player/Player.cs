@@ -10,10 +10,13 @@ public class Player : EnemyDamagable
     public int level = 1;
     public float expCap = 10;
     public float exp = 0;
-
-
     [SerializeField] Slider healthBarFill;
 
+    PlayerAnimation _playerAnimation;
+    PlayerMovement _playerMovement;
+    PlayerShoot _playerShoot;
+
+    public Vector3 PlayerMovement { get => _playerMovement.MoveDirection; }
 
     public override void Awake()
     {
@@ -22,6 +25,9 @@ public class Player : EnemyDamagable
 
     public void Start()
     {
+        _playerAnimation = GetComponent<PlayerAnimation>();
+        _playerMovement = GetComponent<PlayerMovement>();
+        _playerShoot = GetComponent<PlayerShoot>();
     }
 
     void Update()

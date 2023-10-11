@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool canMove = true;
 
     private Vector3 moveDirection;
+    public Vector3 MoveDirection { get=> moveDirection; }
     private Vector3 refVal = Vector3.zero;
 
     private InputManager input;
