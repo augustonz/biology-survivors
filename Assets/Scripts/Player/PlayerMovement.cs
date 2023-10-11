@@ -41,12 +41,12 @@ public class PlayerMovement : MonoBehaviour
         handlePlayerMovement();
     }
 
-    void Enable()
+    public void Enable()
     {
         canMove = true;
     }
 
-    void Disable()
+    public void Disable()
     {
         canMove = false;
     }
@@ -59,5 +59,10 @@ public class PlayerMovement : MonoBehaviour
     void handlePlayerMovement()
     {
         rb.velocity = Vector3.SmoothDamp(rb.velocity, moveDirection * playerSpeed * Time.fixedDeltaTime * 50, ref refVal, smoothTime);
+    }
+
+    public void SetSpeed(float sp)
+    {
+        playerSpeed = sp;
     }
 }

@@ -3,18 +3,13 @@ using UnityEngine.UI;
 
 public class Player : EnemyDamagable
 {
-
-    public float hp;
-    public float maxHp;
-
-    public int level = 1;
-    public float expCap = 10;
-    public float exp = 0;
     [SerializeField] Slider healthBarFill;
 
     PlayerAnimation _playerAnimation;
     PlayerMovement _playerMovement;
     PlayerShoot _playerShoot;
+    PlayerStatus _playerStatus;
+
 
     public Vector3 PlayerMovement { get => _playerMovement.MoveDirection; }
 
@@ -28,6 +23,7 @@ public class Player : EnemyDamagable
         _playerAnimation = GetComponent<PlayerAnimation>();
         _playerMovement = GetComponent<PlayerMovement>();
         _playerShoot = GetComponent<PlayerShoot>();
+        _playerStatus = GetComponent<PlayerStatus>();
     }
 
     void Update()
@@ -45,37 +41,39 @@ public class Player : EnemyDamagable
 
     public void GetExp(int expValue)
     {
-        exp += expValue;
-        if (exp >= expCap)
-        {
-            LevelUp();
-        }
-        UIManager.instance.SetPlayerExpBarLength(exp, expCap);
+        _playerStatus.AddExp(expValue);
+        OnChangeExp();
     }
 
-    private void LevelUp()
+    public void OnChangeExp()
     {
-        level++;
-        UIManager.instance.SetPlayerLevelText(level);
-        exp -= expCap;
-        expCap += 10;
+        UIManager.instance.SetPlayerExpBarLength(_playerStatus.currExp, _playerStatus.expCap);
+    }
+
+    public void LevelUp()
+    {
+        UIManager.instance.SetPlayerLevelText(_playerStatus.currLevel);
     }
 
     public override void OnHit(int damage)
     {
-        hp -= damage;
-        healthBarFill.value = hp / maxHp;
-        if (hp <= 0)
-        {
-            Die();
-        }
+        _playerStatus.GetHit(damage);
+        OnChangeCurrHealth();
         flashAnimation();
     }
 
-
-
-    void Die()
+    public void OnChangeCurrHealth()
     {
-        Destroy(gameObject);
+        healthBarFill.value = _playerStatus.currHP / _playerStatus.GetStat(TypeStats.MAX_HP);
+    }
+
+    public void OnEnable()
+    {
+        _playerMovement.Enable();
+    }
+
+    public void OnDisable()
+    {
+        _playerMovement.Disable();
     }
 }
