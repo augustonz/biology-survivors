@@ -63,7 +63,7 @@ public class PlayerAnimation : MonoBehaviour
         }
 
         if (mousePos.x < -Screen.width * _pupilDeadZonePerc) {
-            pupilPosition = pupilPosition + (Vector3) Vector2.left * ONE_PIXEL_DISTANCE;
+            pupilPosition = pupilPosition + (Vector3) Vector2.left * ONE_PIXEL_DISTANCE * 2;
         } else if (mousePos.x > Screen.width * _pupilDeadZonePerc) {
             pupilPosition = pupilPosition + (Vector3) Vector2.right * ONE_PIXEL_DISTANCE;
         }

@@ -16,14 +16,14 @@ public class Player : EnemyDamagable
     public override void Awake()
     {
         base.Awake();
-    }
-
-    public void Start()
-    {
         _playerAnimation = GetComponent<PlayerAnimation>();
         _playerMovement = GetComponent<PlayerMovement>();
         _playerShoot = GetComponent<PlayerShoot>();
         _playerStatus = GetComponent<PlayerStatus>();
+    }
+
+    public void Start()
+    {
     }
 
     void Update()
