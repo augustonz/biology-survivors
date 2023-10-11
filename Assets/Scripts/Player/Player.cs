@@ -12,7 +12,7 @@ public class Player : EnemyDamagable
     public float exp = 0;
 
 
-    Slider healthBarFill;
+    [SerializeField] Slider healthBarFill;
 
 
     public override void Awake()
@@ -22,12 +22,6 @@ public class Player : EnemyDamagable
 
     public void Start()
     {
-        healthBarFill = GetComponentInChildren<Slider>();
-    }
-
-    static Vector3 GetRandomPositionOnPlane()
-    {
-        return new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 1f);
     }
 
     void Update()

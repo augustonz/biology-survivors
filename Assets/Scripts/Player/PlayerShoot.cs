@@ -8,8 +8,6 @@ public class PlayerShoot : MonoBehaviour
     public float bulletMaxRange = 10f;
     public float bulletDamage = 10f;
 
-
-
     public float shootDelay = 0.5f;
 
     private bool canShoot = true;

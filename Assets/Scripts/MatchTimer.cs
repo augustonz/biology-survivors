@@ -2,32 +2,47 @@ using UnityEngine;
 
 public class MatchTimer : MonoBehaviour
 {
-    private bool isPaused = true;
-    private float currentTime = 0f;
-    private string timeText;
+    bool _isPaused;
+    float _currentTime;
+    
+    public float GetCurrentTIme { get => _currentTime;}
 
-    public void resetTimer() {
-        isPaused=true;
-        currentTime=0f;
+    public static MatchTimer instance;
+
+    void Awake() {
+        if (instance != null && instance != this) Destroy(this);
+        else instance = this;
+    }
+
+    void Start() {
+       ResetTimer();
+    }
+
+    void Update()
+    {
+        if (!_isPaused) _currentTime+=Time.deltaTime;
+        UIManager.instance.setMatchHUDTimer(getCurrentTimeString());
+    }
+    public void ResetTimer() {
+        _isPaused=true;
+        _currentTime=0f;
     }
 
     public void pauseTimer() {
-        isPaused=true;
+        _isPaused=true;
     }
 
     public void unpauseTimer() {
-        isPaused=false;
+        _isPaused=false;
     }
 
     public int getMinutes() {
-        return  Mathf.FloorToInt(currentTime / 60);
+        return  Mathf.FloorToInt(_currentTime / 60);
     }
 
     public int getSeconds() {
-        return  Mathf.FloorToInt(currentTime % 60);
+        return  Mathf.FloorToInt(_currentTime % 60);
     }
-
-    public float getCurrentTIme() {return currentTime;}
 
     public string getCurrentTimeString() {
         int timeInSeconds = getSeconds();
@@ -35,9 +50,4 @@ public class MatchTimer : MonoBehaviour
         return string.Format("{0:00}:{1:00}",timeInMinutes,timeInSeconds);
     }
 
-    void FixedUpdate()
-    {
-        if (!isPaused) currentTime+=Time.fixedDeltaTime;
-        UIManager.instance.setMatchHUDTimer(getCurrentTimeString());
-    }
 }

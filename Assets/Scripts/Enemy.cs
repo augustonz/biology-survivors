@@ -84,18 +84,18 @@ public class Enemy : MonoBehaviour,IHittable
         flashAnimation();
     }
 
-    public void OnCollisionEnter2D(Collision2D collision) {
-        EnemyDamagable go = collision.collider.gameObject.GetComponent<EnemyDamagable>();
+    public void OnTriggerEnter2D(Collider2D collider) {
+        EnemyDamagable go = collider.gameObject.GetComponent<EnemyDamagable>();
         if (go == null) return;
         collidingWith.Add(go);
-        if (delayBetweenAttacksTimer<=0) delayBetweenAttacksTimer=delayBetweenAttacks;
+        if (delayBetweenAttacksTimer<=0) delayBetweenAttacksTimer=delayBetweenAttacks * 0.2f;
     }
 
-    public void OnCollisionExit2D(Collision2D collision) {
-        EnemyDamagable go = collision.collider.gameObject.GetComponent<EnemyDamagable>();
+    public void OnTriggerExit2D(Collider2D collider) {
+        EnemyDamagable go = collider.gameObject.GetComponent<EnemyDamagable>();
         if (go == null) return;
         collidingWith.Remove(go);
-        if (collidingWith.Count==0) delayBetweenAttacksTimer = delayBetweenAttacks;
+        if (collidingWith.Count==0) delayBetweenAttacksTimer = delayBetweenAttacks * 0.2f;
     }
 
     public void flashAnimation() {

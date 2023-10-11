@@ -14,7 +14,6 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 refVal = Vector3.zero;
 
     private InputManager input;
-    private Canvas canvas;
     private Rigidbody2D rb;
 
 
@@ -26,7 +25,6 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         input = InputManager.instance;
-        // canvas = GetComponentInChildren<Canvas>();
     }
 
     void Update()
@@ -39,7 +37,6 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         if (!canMove) return;
-        Debug.Log("OI");
         handlePlayerMovement();
     }
 
@@ -55,17 +52,11 @@ public class PlayerMovement : MonoBehaviour
 
     void handlePlayerUpdate()
     {
-        AdjustHealthBarLocation();
         moveDirection = input.GetMovementInput();
     }
 
     void handlePlayerMovement()
     {
         rb.velocity = Vector3.SmoothDamp(rb.velocity, moveDirection * playerSpeed * Time.fixedDeltaTime * 50, ref refVal, smoothTime);
-    }
-
-    void AdjustHealthBarLocation()
-    {
-        // canvas.transform.rotation = Quaternion.Euler(0, 0, -this.transform.rotation.z);
     }
 }

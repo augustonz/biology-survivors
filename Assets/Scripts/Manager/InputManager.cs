@@ -66,5 +66,7 @@ public class InputManager : MonoBehaviour
     public void ChangeState(GameState gameState)
     {
         _gameState = gameState;
+        if (gameState==GameState.INGAME) OnEnable();
+        if (gameState!=GameState.INGAME) OnDisable();
     }
 }
