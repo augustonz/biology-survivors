@@ -59,4 +59,9 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.velocity = Vector3.SmoothDamp(rb.velocity, moveDirection * playerSpeed * Time.fixedDeltaTime * 50, ref refVal, smoothTime);
     }
+
+    public void SetSpeed(float sp)
+    {
+        playerSpeed = sp;
+    }
 }

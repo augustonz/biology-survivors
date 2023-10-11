@@ -42,19 +42,29 @@ public class Player : EnemyDamagable
     public void GetExp(int expValue)
     {
         playerStatus.AddExp(expValue);
-        UIManager.instance.SetPlayerExpBarLength(playerStatus.CurrExp, playerStatus.ExpCap);
+        OnChangeExp();
     }
 
-    private void LevelUp()
+    public void OnChangeExp()
     {
-        UIManager.instance.SetPlayerLevelText(playerStatus.CurrLevel);
+        UIManager.instance.SetPlayerExpBarLength(playerStatus.currExp, playerStatus.expCap);
+    }
+
+    public void LevelUp()
+    {
+        UIManager.instance.SetPlayerLevelText(playerStatus.currLevel);
     }
 
     public override void OnHit(int damage)
     {
         playerStatus.GetHit(damage);
-        healthBarFill.value = playerStatus.CurrHP / playerStatus.MaxHP;
+        OnChangeCurrHealth();
         flashAnimation();
+    }
+
+    public void OnChangeCurrHealth()
+    {
+        healthBarFill.value = playerStatus.currHP / playerStatus.GetStat(TypeStats.MAX_HP);
     }
 
     public void OnEnable()

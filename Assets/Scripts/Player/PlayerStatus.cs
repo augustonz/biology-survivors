@@ -4,81 +4,50 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+public class OnChangeStatEvent : UnityEvent<float> { }
 public class PlayerStatus : MonoBehaviour
 {
     [SerializeField] private Stats playerStats;
 
     [Header("Health Settings")]
-    [SerializeField] private int maxHP;
-    [SerializeField] private float currHP;
-    [SerializeField] private float regenHP;
-
-    [Header("Damage Settings")]
-    [SerializeField] private int power;
-    [SerializeField] private int fireRate;
-    [SerializeField] private int penetration;
-    [SerializeField] private int numberOfShots;
-
-    [Header("Defense Settings")]
-    [SerializeField] private float armor;
-    [SerializeField] private float speed;
+    [SerializeField] public float currHP;
 
     [Header("Level Settings")]
-    [SerializeField] private int currLevel = 1;
-    [SerializeField] private float currExp;
-    [SerializeField] private float expCap;
-    [SerializeField] private float expBonus;
-    [SerializeField] private float passiveExp;
-
-
-
-
-    public int MaxHP { get => maxHP; }
-    public float CurrHP { get => currHP; }
-
-    public int CurrLevel { get => currLevel; }
-    public float CurrExp { get => currExp; }
-    public float ExpCap { get => expCap; }
+    [SerializeField] public int currLevel = 1;
+    [SerializeField] public float currExp;
+    [SerializeField] public float expCap;
 
     private bool isDead;
+
 
     public UnityEvent OnChangeCurrExp, OnChangeCurrLevel;
 
     public UnityEvent OnChangeCurrHealth;
 
-    public UnityEvent OnChangeMaxHealth;
+    public OnChangeStatEvent OnChangeMaxHealth;
 
-    public UnityEvent OnChangeSpeed;
+    public OnChangeStatEvent OnChangeSpeed;
 
-    public Dictionary<TypeStats, float> dict = new Dictionary<TypeStats, float>();
+
+    private Dictionary<TypeStats, OnChangeStatEvent> events = new();
 
     void Awake()
     {
-        maxHP = playerStats.MaxHp;
-        regenHP = playerStats.RegenHP;
-        speed = playerStats.Speed;
-
-        currHP = maxHP;
+        playerStats.Awake();
+        InitEventDict();
         CalculateExpCap();
+    }
+
+    void Start()
+    {
+        currHP = (int)playerStats.GetStat(TypeStats.MAX_HP);
+        Debug.Log(playerStats.stats.Count);
     }
 
     void Update()
     {
-        Heal(regenHP * Time.deltaTime);
-    }
-
-    public void AddUpgrade(Upgrade upgrade)
-    {
-        var res;
-        dict.TryGetValue(upgrade.stat, res);
-        switch (upgrade.mod)
-        {
-
-            case TypeModifier.ADD:
-                break;
-            case TypeModifier.MULT:
-                break;
-        }
+        Heal(GetStat(TypeStats.REGEN_HP) * Time.deltaTime);
+        AddExp(GetStat(TypeStats.PASSIVE_DNA) * Time.deltaTime);
     }
 
     void CalculateExpCap()
@@ -89,54 +58,64 @@ public class PlayerStatus : MonoBehaviour
 
     public void AddExp(float exp)
     {
+        exp *= GetStat(TypeStats.BONUS_DNA);
         if (currExp + exp > expCap)
         {
             currExp = 0;
             currLevel++;
             CalculateExpCap();
             OnChangeCurrLevel?.Invoke();
+            OnChangeCurrExp?.Invoke();
             return;
         }
         currExp += exp;
+        OnChangeCurrExp?.Invoke();
     }
 
     public void GetHit(int damage)
     {
         if (currHP - damage <= 0)
         {
+            currHP = 0;
             isDead = true;
+            OnChangeCurrHealth?.Invoke();
             Destroy(gameObject);
             return;
         }
         currHP -= damage;
+        OnChangeCurrHealth?.Invoke();
     }
 
     public void Heal(float healing)
     {
-        if (currHP + healing > maxHP)
+        if (currHP + healing > (int)playerStats.GetStat(TypeStats.MAX_HP))
         {
-            currHP = maxHP;
+            currHP = (int)playerStats.GetStat(TypeStats.MAX_HP);
             return;
         }
         currHP += healing;
+        OnChangeCurrHealth?.Invoke();
     }
 
-    void InitDict()
+    public void SetUpgrade(Upgrade upgrade)
     {
-        dict.Add(TypeStats.MAX_HP, maxHP);
-        dict.Add(TypeStats.REGEN_HP, regenHP);
 
-        dict.Add(TypeStats.POWER, power);
-        dict.Add(TypeStats.FIRE_RATE, fireRate);
-        dict.Add(TypeStats.NUMBER_OF_SHOTS, numberOfShots);
-        dict.Add(TypeStats.PENETRATION, penetration);
+        playerStats.AddStat(upgrade);
+        if (events.TryGetValue(upgrade.stat, out OnChangeStatEvent ev))
+        {
+            ev.Invoke(playerStats.GetStat(upgrade.stat));
+        }
+    }
 
-        dict.Add(TypeStats.ARMOR, armor);
-        dict.Add(TypeStats.SPEED, speed);
+    public float GetStat(TypeStats stat)
+    {
+        return playerStats.GetStat(stat);
+    }
 
-        dict.Add(TypeStats.BONUS_DNA, expBonus);
-        dict.Add(TypeStats.PASSIVE_DNA, passiveExp);
-
+    private void InitEventDict()
+    {
+        events.Add(TypeStats.SPEED, OnChangeSpeed);
+        events.Add(TypeStats.MAX_HP, OnChangeMaxHealth);
 
     }
 
