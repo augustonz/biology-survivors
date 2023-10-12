@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerShoot : MonoBehaviour
 {
@@ -19,6 +20,11 @@ public class PlayerShoot : MonoBehaviour
     private bool isReloading = false;
     private bool isShootClicked = false;
 
+    [SerializeField] UnityEvent _onShoot;
+    [SerializeField] UnityEvent _onStartReload;
+    public UnityEvent OnStartReload { get=> _onStartReload; }
+    [SerializeField] UnityEvent _onEndReload;
+    [SerializeField] Transform _instantiateBulletPosition; 
     private InputManager input;
     // Start is called before the first frame update
     void Start()
@@ -60,20 +66,26 @@ public class PlayerShoot : MonoBehaviour
 
     void shootBullet()
     {
+        _onShoot.Invoke();
+
         canShoot = false;
         Invoke("canShootAgain", shootDelay);
         currentAmmo -= 1;
+
         UIManager.instance.setAmmoText(maxAmmo, currentAmmo, false);
-        Vector3 gunPosition = transform.GetChild(0).GetChild(0).position;
-        Vector3 destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 bulletDirection = new Vector3(destination.x - gunPosition.x, destination.y - gunPosition.y, 0).normalized;
+        
+        Vector3 gunPosition = _instantiateBulletPosition.position;
+
+        Vector3 bulletDirection = ((Vector2)gunPosition - (Vector2)transform.position).normalized;
+
         Bullet.Create(gunPosition, bulletDirection, bulletMaxRange, bulletSpeed, bulletDamage);
     }
 
-    void StartReload()
+    public void StartReload()
     {
         if (currentAmmo < maxAmmo && !IsInvoking("CompleteReload"))
         {
+            _onStartReload.Invoke();
             isReloading = true;
             Invoke("CompleteReload", reloadTime);
             UIManager.instance.setAmmoText(0, 0, true);
@@ -83,6 +95,7 @@ public class PlayerShoot : MonoBehaviour
     void CompleteReload()
     {
         isReloading = false;
+        _onEndReload.Invoke();
         currentAmmo = maxAmmo;
         UIManager.instance.setAmmoText(maxAmmo, currentAmmo, false);
     }

@@ -53,6 +53,7 @@ public class Bullet : MonoBehaviour
         if (hitComponent == null) return;
         hitComponent.onHit(this);
         DamageValue.Instantiate(transform.position,(int)damage);
+        Instantiate(PrefabLoader.instance.getBulletHit(),transform.position,Quaternion.identity);
         Destroy(gameObject);
     }
 }

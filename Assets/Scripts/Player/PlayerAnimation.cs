@@ -15,7 +15,7 @@ public class PlayerAnimation : MonoBehaviour
     const float ONE_PIXEL_DISTANCE = 0.01f;
     void Start() {
         _playerAnim = GetComponent<Animator>();
-        _gunAnim = GetComponentInChildren<Animator>();
+        _gunAnim = transform.Find("GunRotationAxis").GetComponentInChildren<Animator>();
         _player = GetComponent<Player>();
         _playerSprite = GetComponent<SpriteRenderer>();
         _gunSprite = _gunRotationPoint.GetComponentInChildren<SpriteRenderer>();
@@ -29,10 +29,22 @@ public class PlayerAnimation : MonoBehaviour
         UpdatePlayerGunDirection();
     }
 
+    public void AnimateGunShooting() {
+        _gunAnim.SetTrigger("shoot");
+    }
+
+    public void AnimateStartGunReloading() {
+        _gunAnim.SetBool("reloading",true);
+    }
+
+    public void AnimateEndGunReloading() {
+        _gunAnim.SetBool("reloading",false);
+    }
+
     void UpdatePlayerGunDirection()
     {
         Vector2 mousePos = (Vector2)Input.mousePosition - new Vector2(Screen.width/2,Screen.height/2);
-        Vector2 rotation = mousePos - (Vector2)transform.position;
+        Vector2 rotation = mousePos - (Vector2)transform.position; //Needs to be a little more exact
 
         float angle = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         

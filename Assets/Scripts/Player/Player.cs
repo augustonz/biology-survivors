@@ -76,4 +76,12 @@ public class Player : EnemyDamagable
     {
         _playerMovement.Disable();
     }
+
+    public void OnChangeState(GameState gameState)
+    {
+        if (gameState == GameState.INGAME)
+        {
+            _playerShoot.StartReload();
+        }
+    }
 }
