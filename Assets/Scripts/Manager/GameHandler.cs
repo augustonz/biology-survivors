@@ -26,7 +26,6 @@ public class GameHandler : MonoBehaviour
 
     void Start()
     {
-
         ChangeState(GameState.MENU);
     }
 
@@ -49,47 +48,14 @@ public class GameHandler : MonoBehaviour
         }
     }
 
-
-
-    void ExitState(GameState oldGameState)
-    {
-        switch (oldGameState)
-        {
-            case GameState.MENU:
-                UIManager.instance.EnlargeVision();
-                break;
-
-            case GameState.INGAME:
-                break;
-
-            case GameState.PAUSED:
-                break;
-        }
-    }
-
-    void EnterState(GameState newGameState)
-    {
-        switch (newGameState)
-        {
-            case GameState.MENU:
-                CursorConfig.instance.ShowCursor();
-                CursorConfig.instance.ChangeCursorDefault();
-                break;
-
-            case GameState.INGAME:
-                CursorConfig.instance.ShowCursor();
-                break;
-
-            case GameState.PAUSED:
-                CursorConfig.instance.ShowCursor();
-                break;
-        }
-    }
-
     public void ChangeState(GameState ev)
     {
         _gameState = ev;
         OnChange?.Invoke(ev);
+    }
+
+    public void ChangeToMenuState() {
+        ChangeState(GameState.MENU);
     }
 
     void MenuUpdate()

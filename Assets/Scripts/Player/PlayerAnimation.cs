@@ -4,10 +4,10 @@ using UnityEngine.Animations;
 public class PlayerAnimation : MonoBehaviour
 {
     [SerializeField] GameObject _pupil;
-    Vector3 _pupilOriginalPos;
     [SerializeField] Transform _gunRotationPoint;
     [SerializeField] float _pupilDeadZonePerc;
     Animator _playerAnim;
+    Vector3 _pupilOriginalPos;
     SpriteRenderer _playerSprite;
     SpriteRenderer _gunSprite;
     Animator _gunAnim;
@@ -41,6 +41,10 @@ public class PlayerAnimation : MonoBehaviour
         _gunAnim.SetBool("reloading",false);
     }
 
+    public void AnimatePlayerDeath() {
+        _playerAnim.SetTrigger("die");
+    }
+
     void UpdatePlayerGunDirection()
     {
         Vector2 mousePos = (Vector2)Input.mousePosition - new Vector2(Screen.width/2,Screen.height/2);
@@ -64,7 +68,6 @@ public class PlayerAnimation : MonoBehaviour
 
     void UpdatePlayerPupil() {
         Vector2 mousePos = (Vector2)Input.mousePosition - new Vector2(Screen.width/2,Screen.height/2);
-        Vector2 rotation = mousePos - (Vector2)transform.position;
 
         Vector3 pupilPosition = _pupilOriginalPos;
 

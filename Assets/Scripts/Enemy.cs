@@ -20,26 +20,21 @@ public class Enemy : MonoBehaviour,IHittable
 
     Rigidbody2D rb;
     Vector3 moveDirection;
-    GameObject healthBar;
-    Canvas canvas;
 
     List<EnemyDamagable> collidingWith = new List<EnemyDamagable>();
 
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
-        canvas = GetComponentInChildren<Canvas>();
         sr = GetComponent<SpriteRenderer>();
         originalMaterial = sr.material;
-        
-        healthBar = transform.Find("Canvas/HealthBar").gameObject;
     }
 
     void Start()
     {
-        healthBar.SetActive(false);
         hp = maxHp;
 
         target = FindObjectOfType<Player>().transform;
+        if (target==null) target=gameObject.transform;
     }
 
     void Update()
@@ -62,6 +57,7 @@ public class Enemy : MonoBehaviour,IHittable
     }
 
     public void Move() {
+        if (target==null) target = transform;
         moveDirection = (target.position - transform.position).normalized;
         rb.MovePosition(transform.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
     }
@@ -84,6 +80,7 @@ public class Enemy : MonoBehaviour,IHittable
     }
 
     public void OnTriggerEnter2D(Collider2D collider) {
+        if (collider.isTrigger) return;
         EnemyDamagable go = collider.gameObject.GetComponent<EnemyDamagable>();
         if (go == null) return;
         collidingWith.Add(go);
@@ -91,6 +88,7 @@ public class Enemy : MonoBehaviour,IHittable
     }
 
     public void OnTriggerExit2D(Collider2D collider) {
+        if (collider.isTrigger) return;
         EnemyDamagable go = collider.gameObject.GetComponent<EnemyDamagable>();
         if (go == null) return;
         collidingWith.Remove(go);

@@ -6,22 +6,17 @@ using TMPro;
 
 public class MatchHUD : MonoBehaviour
 {
-    private TMP_Text timerComponent;
-    private Slider ExpBar;
-    private TMP_Text LevelComponent;
-    private TMP_Text ammoComponent;
-
+    [SerializeField] TMP_Text timerComponent;
+    [SerializeField] Image ExpBar;
+    [SerializeField] TMP_Text LevelComponent;
+    [SerializeField] TMP_Text ammoComponent;
+    
     public static MatchHUD instance;
-
 
     void Awake()
     {
         if (instance != null && instance != this) Destroy(this);
         else instance = this;
-        timerComponent = GameObject.Find("Timer").GetComponent<TMP_Text>();
-        ammoComponent = GameObject.Find("Ammo").GetComponent<TMP_Text>();
-        LevelComponent = GameObject.Find("Lvl Text").GetComponent<TMP_Text>();
-        ExpBar = GameObject.Find("Exp bar").GetComponent<Slider>();
     }
 
     public void setTimer(string text)
@@ -32,22 +27,22 @@ public class MatchHUD : MonoBehaviour
 
     public void setAmmoReloading()
     {
-        ammoComponent.text = "Reloading...";
+        ammoComponent.text = "Reloading";
     }
 
     public void setCurrentAmmo(float maxAmmo, float currentAmmo)
     {
-        ammoComponent.text = $"Ammo - {currentAmmo.ToString()}/{maxAmmo.ToString()}";
+        ammoComponent.text = $"{currentAmmo} / {maxAmmo}";
     }
 
 
     public void setLevelText(int level)
     {
-        LevelComponent.text = $"Level {level}";
+        LevelComponent.text = level.ToString();
     }
 
     public void setExpBarAmount(float currentExp, float maxExp)
     {
-        ExpBar.value = currentExp / maxExp;
+        ExpBar.fillAmount = currentExp / maxExp;
     }
 }

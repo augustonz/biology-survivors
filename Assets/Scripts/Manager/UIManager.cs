@@ -5,6 +5,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] MatchTimer matchTimer;
     [SerializeField] MatchHUD matchHUD;
+    [SerializeField] PlayerHealthBar playerHealthBar;
+
     [SerializeField] GameObject inGameVision;
     [SerializeField] GameObject UIVision;
     public static UIManager instance;
@@ -27,6 +29,17 @@ public class UIManager : MonoBehaviour
     {
         inGameVision.GetComponent<Animator>().SetTrigger("enlarge");
         UIVision.GetComponent<Animator>().SetTrigger("enlarge");
+    }
+
+    public void ReduceVision()
+    {
+        inGameVision.GetComponent<Animator>().SetTrigger("reduce");
+        UIVision.GetComponent<Animator>().SetTrigger("reduce");
+    }
+
+    public void SetPlayerHealth(int currHp,int maxHp)
+    {
+        playerHealthBar.SetHealth(currHp,maxHp);
     }
 
     public void setMatchHUDTimer(string text)

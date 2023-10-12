@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-    [SerializeField] private float playerSpeed = 1f;
+    [SerializeField] private float playerSpeed;
     [SerializeField] private float smoothTime = .2f;
 
     [SerializeField] private bool canMove = true;

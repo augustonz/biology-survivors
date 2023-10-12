@@ -11,10 +11,13 @@ public class Stats : ScriptableObject
     [SerializeField] private float regenHP;
 
     [Header("Damage Settings")]
-    [SerializeField] private int power;
-    [SerializeField] private int fireRate;
+    [SerializeField] private float power;
+    [SerializeField] private float fireRate;
     [SerializeField] private int penetration;
     [SerializeField] private int numberOfShots;
+    [SerializeField] private float reloadSpeed;
+    [SerializeField] private float bulletSpeed;
+    [SerializeField] private float bulletRange;
 
     [Header("Defense Settings")]
     [SerializeField] private float armor;
@@ -24,40 +27,40 @@ public class Stats : ScriptableObject
     [SerializeField] private float expBonus;
     [SerializeField] private float passiveExp;
 
-    public Dictionary<TypeStats, float> stats = new();
+    [Header("Other Settings")]
+    [SerializeField] private float pickUpRange;
 
+    public Dictionary<TypeStats, float> _baseStats = new();
+    public Dictionary<TypeStats, float> _statMultiplier = new();
 
     public void Awake()
     {
-        InitDict();
+        InitDicts();
     }
-
-
 
     public float GetStat(TypeStats stat)
     {
-        if (stats.TryGetValue(stat, out float value))
-        {
-            return value;
+        if (_statMultiplier.TryGetValue(stat, out float mult)) {
+            if (_baseStats.TryGetValue(stat, out float value)) {
+                return value * mult;
+            }
         }
-        else
-        {
-            Debug.LogError($"No stat value found for {stat} on {this.name}");
-            return 0;
-        }
+        Debug.LogError($"No stat value found for {stat} on {name}");
+        return 0;
+        
     }
 
     public float AddStat(Upgrade upgrade)
     {
-        if (stats.TryGetValue(upgrade.stat, out float value))
+        if (_baseStats.TryGetValue(upgrade.stat, out float value) && _statMultiplier.TryGetValue(upgrade.stat, out float mult))
         {
             switch (upgrade.mod)
             {
                 case TypeModifier.ADD:
-                    stats[upgrade.stat] += upgrade.value;
+                    _baseStats[upgrade.stat] += upgrade.value;
                     break;
                 case TypeModifier.MULT:
-                    stats[upgrade.stat] *= upgrade.value;
+                    _statMultiplier[upgrade.stat] += upgrade.value;
                     break;
             }
         }
@@ -67,17 +70,36 @@ public class Stats : ScriptableObject
         }
     }
 
-    private void InitDict()
+    private void InitDicts()
     {
-        stats.Add(TypeStats.MAX_HP, maxHP);
-        stats.Add(TypeStats.REGEN_HP, regenHP);
-        stats.Add(TypeStats.POWER, power);
-        stats.Add(TypeStats.FIRE_RATE, fireRate);
-        stats.Add(TypeStats.ARMOR, armor);
-        stats.Add(TypeStats.NUMBER_OF_SHOTS, numberOfShots);
-        stats.Add(TypeStats.PENETRATION, penetration);
-        stats.Add(TypeStats.PASSIVE_DNA, passiveExp);
-        stats.Add(TypeStats.SPEED, speed);
-        stats.Add(TypeStats.BONUS_DNA, expBonus);
+        _baseStats.Add(TypeStats.MAX_HP, maxHP);
+        _baseStats.Add(TypeStats.REGEN_HP, regenHP);
+        _baseStats.Add(TypeStats.POWER, power);
+        _baseStats.Add(TypeStats.FIRE_RATE, fireRate);
+        _baseStats.Add(TypeStats.ARMOR, armor);
+        _baseStats.Add(TypeStats.NUMBER_OF_SHOTS, numberOfShots);
+        _baseStats.Add(TypeStats.PENETRATION, penetration);
+        _baseStats.Add(TypeStats.PASSIVE_DNA, passiveExp);
+        _baseStats.Add(TypeStats.SPEED, speed);
+        _baseStats.Add(TypeStats.BONUS_DNA, expBonus);
+        _baseStats.Add(TypeStats.PICK_UP_RANGE, pickUpRange);
+        _baseStats.Add(TypeStats.RELOAD_SPEED, reloadSpeed);
+        _baseStats.Add(TypeStats.BULLET_SPEED, bulletSpeed);
+        _baseStats.Add(TypeStats.BULLET_RANGE, bulletRange);
+
+        _statMultiplier.Add(TypeStats.MAX_HP, 1);
+        _statMultiplier.Add(TypeStats.REGEN_HP, 1);
+        _statMultiplier.Add(TypeStats.POWER, 1);
+        _statMultiplier.Add(TypeStats.FIRE_RATE, 1);
+        _statMultiplier.Add(TypeStats.ARMOR, 1);
+        _statMultiplier.Add(TypeStats.NUMBER_OF_SHOTS, 1);
+        _statMultiplier.Add(TypeStats.PENETRATION, 1);
+        _statMultiplier.Add(TypeStats.PASSIVE_DNA, 1);
+        _statMultiplier.Add(TypeStats.SPEED, 1);
+        _statMultiplier.Add(TypeStats.BONUS_DNA, 1);
+        _statMultiplier.Add(TypeStats.PICK_UP_RANGE, 1);
+        _statMultiplier.Add(TypeStats.RELOAD_SPEED, 1);
+        _statMultiplier.Add(TypeStats.BULLET_SPEED, 1);
+        _statMultiplier.Add(TypeStats.BULLET_RANGE, 1);
     }
 }

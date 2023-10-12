@@ -5,32 +5,27 @@ using UnityEngine.Events;
 
 public class PlayerShoot : MonoBehaviour
 {
-    public float bulletSpeed = 1f;
-    public float bulletMaxRange = 10f;
-    public float bulletDamage = 10f;
+    [SerializeField] Transform _instantiateBulletPosition; 
 
-    public float shootDelay = 0.5f;
+    bool canShoot = true;
+    float currentAmmo;
 
-    private bool canShoot = true;
+    bool isReloading = false;
+    bool isShootClicked = false;
 
-    public float maxAmmo = 6;
-    public float currentAmmo = 6;
-    public float reloadTime = 2f;
-
-    private bool isReloading = false;
-    private bool isShootClicked = false;
-
+    private InputManager input;
     [SerializeField] UnityEvent _onShoot;
     [SerializeField] UnityEvent _onStartReload;
-    public UnityEvent OnStartReload { get=> _onStartReload; }
     [SerializeField] UnityEvent _onEndReload;
-    [SerializeField] Transform _instantiateBulletPosition; 
-    private InputManager input;
-    // Start is called before the first frame update
+    Player _player;
+
     void Start()
     {
-        UIManager.instance.setAmmoText(maxAmmo, currentAmmo, false);
+        _player = GetComponent<Player>();
         input = InputManager.instance;
+        float maxAmmo = _player.PlayerStatus.GetStat(TypeStats.NUMBER_OF_SHOTS);
+        currentAmmo = maxAmmo;
+        UIManager.instance.setAmmoText(maxAmmo, currentAmmo, false);
     }
 
     // Update is called once per frame
@@ -69,24 +64,34 @@ public class PlayerShoot : MonoBehaviour
         _onShoot.Invoke();
 
         canShoot = false;
+        
+        float shootDelay = 1/_player.PlayerStatus.GetStat(TypeStats.FIRE_RATE);
+
         Invoke("canShootAgain", shootDelay);
         currentAmmo -= 1;
 
+        float maxAmmo = _player.PlayerStatus.GetStat(TypeStats.NUMBER_OF_SHOTS);
         UIManager.instance.setAmmoText(maxAmmo, currentAmmo, false);
         
         Vector3 gunPosition = _instantiateBulletPosition.position;
 
         Vector3 bulletDirection = ((Vector2)gunPosition - (Vector2)transform.position).normalized;
 
-        Bullet.Create(gunPosition, bulletDirection, bulletMaxRange, bulletSpeed, bulletDamage);
+        float bulletAirTime = _player.PlayerStatus.GetStat(TypeStats.BULLET_RANGE);
+        float bulletSpeed = _player.PlayerStatus.GetStat(TypeStats.BULLET_SPEED);
+        float bulletDamage = _player.PlayerStatus.GetStat(TypeStats.POWER);
+        int bulletPenetration = (int) _player.PlayerStatus.GetStat(TypeStats.PENETRATION);
+
+        Bullet.Create(gunPosition, bulletDirection, bulletAirTime, bulletSpeed, bulletDamage,bulletPenetration);
     }
 
     public void StartReload()
     {
-        if (currentAmmo < maxAmmo && !IsInvoking("CompleteReload"))
+        if (!IsInvoking("CompleteReload"))
         {
             _onStartReload.Invoke();
             isReloading = true;
+            float reloadTime = 1/_player.PlayerStatus.GetStat(TypeStats.RELOAD_SPEED);
             Invoke("CompleteReload", reloadTime);
             UIManager.instance.setAmmoText(0, 0, true);
         }
@@ -96,6 +101,8 @@ public class PlayerShoot : MonoBehaviour
     {
         isReloading = false;
         _onEndReload.Invoke();
+
+        float maxAmmo = _player.PlayerStatus.GetStat(TypeStats.NUMBER_OF_SHOTS);
         currentAmmo = maxAmmo;
         UIManager.instance.setAmmoText(maxAmmo, currentAmmo, false);
     }

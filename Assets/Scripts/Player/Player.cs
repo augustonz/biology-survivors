@@ -3,15 +3,13 @@ using UnityEngine.UI;
 
 public class Player : EnemyDamagable
 {
-    [SerializeField] Slider healthBarFill;
-
     PlayerAnimation _playerAnimation;
+    [SerializeField] PlayerPickUpRange _playerPickUpRange;
     PlayerMovement _playerMovement;
+    public Vector3 PlayerMovement { get => _playerMovement.MoveDirection; }
     PlayerShoot _playerShoot;
     PlayerStatus _playerStatus;
-
-
-    public Vector3 PlayerMovement { get => _playerMovement.MoveDirection; }
+    public PlayerStatus PlayerStatus { get => _playerStatus; }
 
     public override void Awake()
     {
@@ -20,6 +18,7 @@ public class Player : EnemyDamagable
         _playerMovement = GetComponent<PlayerMovement>();
         _playerShoot = GetComponent<PlayerShoot>();
         _playerStatus = GetComponent<PlayerStatus>();
+
     }
 
     public void Start()
@@ -58,13 +57,8 @@ public class Player : EnemyDamagable
     public override void OnHit(int damage)
     {
         _playerStatus.GetHit(damage);
-        OnChangeCurrHealth();
+        UIManager.instance.SetPlayerHealth((int)_playerStatus.currHP,(int)_playerStatus.GetStat(TypeStats.MAX_HP));
         flashAnimation();
-    }
-
-    public void OnChangeCurrHealth()
-    {
-        healthBarFill.value = _playerStatus.currHP / _playerStatus.GetStat(TypeStats.MAX_HP);
     }
 
     public void OnEnable()
@@ -82,6 +76,8 @@ public class Player : EnemyDamagable
         if (gameState == GameState.INGAME)
         {
             _playerShoot.StartReload();
+            _playerMovement.SetSpeed(_playerStatus.GetStat(TypeStats.SPEED));
+            _playerPickUpRange.SetPickUpRange(_playerStatus.GetStat(TypeStats.PICK_UP_RANGE));
         }
     }
 }

@@ -23,6 +23,7 @@ public class PlayerStatus : MonoBehaviour
     public UnityEvent OnChangeCurrExp, OnChangeCurrLevel;
 
     public UnityEvent OnChangeCurrHealth;
+    public UnityEvent OnDeath;
 
     public OnChangeStatEvent OnChangeMaxHealth;
 
@@ -41,7 +42,6 @@ public class PlayerStatus : MonoBehaviour
     void Start()
     {
         currHP = (int)playerStats.GetStat(TypeStats.MAX_HP);
-        Debug.Log(playerStats.stats.Count);
     }
 
     void Update()
@@ -53,7 +53,6 @@ public class PlayerStatus : MonoBehaviour
     void CalculateExpCap()
     {
         expCap += (currLevel - 1 + 100 * Mathf.Pow(2, (currLevel - 1) / 7)) / 4;
-        Debug.Log(expCap);
     }
 
     public void AddExp(float exp)
@@ -79,7 +78,7 @@ public class PlayerStatus : MonoBehaviour
             currHP = 0;
             isDead = true;
             OnChangeCurrHealth?.Invoke();
-            Destroy(gameObject);
+            OnDeath?.Invoke();
             return;
         }
         currHP -= damage;
@@ -116,7 +115,6 @@ public class PlayerStatus : MonoBehaviour
     {
         events.Add(TypeStats.SPEED, OnChangeSpeed);
         events.Add(TypeStats.MAX_HP, OnChangeMaxHealth);
-
     }
 
 }

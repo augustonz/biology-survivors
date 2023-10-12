@@ -11,10 +11,14 @@ public enum TypeStats
     FIRE_RATE,
     NUMBER_OF_SHOTS,
     PENETRATION,
+    BULLET_SPEED,
+    BULLET_RANGE,
+    RELOAD_SPEED,
     ARMOR,
     SPEED,
     BONUS_DNA,
     PASSIVE_DNA,
+    PICK_UP_RANGE
 }
 
 [System.Serializable]
