@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +9,9 @@ public class Enemy : MonoBehaviour,IHittable
 {
     [SerializeField] AudioSource _deathSource;
     [SerializeField] AudioSource _hitSource;
+
+    [Serializable] struct SpawnList { public float Chance; public GameObject toSpawn; }
+
 
     public Material flashMaterial;
     public float flashDuration;
@@ -25,6 +30,8 @@ public class Enemy : MonoBehaviour,IHittable
     Vector3 moveDirection;
 
     List<EnemyDamagable> collidingWith = new List<EnemyDamagable>();
+
+    [SerializeField] SpawnList[] _spawnList;
 
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
@@ -74,6 +81,10 @@ public class Enemy : MonoBehaviour,IHittable
     }
 
     void Die() {
+        foreach (SpawnList x in _spawnList)
+            if (UnityEngine.Random.Range(0, 100) <= x.Chance)
+                Instantiate(x.toSpawn, transform.position, transform.rotation);
+
         _deathSource.Play();
         _deathSource.transform.SetParent(null);
         Destroy(_deathSource.gameObject, 3);

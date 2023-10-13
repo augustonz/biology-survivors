@@ -6,12 +6,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] MatchTimer matchTimer;
     [SerializeField] MatchHUD matchHUD;
     [SerializeField] PlayerHealthBar playerHealthBar;
+    [SerializeField] CanvasStartingResize _canvasResize;
 
     [SerializeField] GameObject inGameVision;
     [SerializeField] GameObject UIVision;
     public static UIManager instance;
     void Awake()
     {
+        _canvasResize.gameObject.SetActive(true);
         if (instance != null && instance != this) Destroy(this);
         else instance = this;
     }
@@ -27,14 +29,16 @@ public class UIManager : MonoBehaviour
 
     public void EnlargeVision()
     {
-        inGameVision.GetComponent<Animator>().SetTrigger("enlarge");
-        UIVision.GetComponent<Animator>().SetTrigger("enlarge");
+        _canvasResize.OpenBall();
+        //inGameVision.GetComponent<Animator>().SetTrigger("enlarge");
+        //UIVision.GetComponent<Animator>().SetTrigger("enlarge");
     }
 
     public void ReduceVision()
     {
-        inGameVision.GetComponent<Animator>().SetTrigger("reduce");
-        UIVision.GetComponent<Animator>().SetTrigger("reduce");
+        _canvasResize.CloseBall();
+        //inGameVision.GetComponent<Animator>().SetTrigger("reduce");
+        //UIVision.GetComponent<Animator>().SetTrigger("reduce");
     }
 
     public void SetPlayerHealth(int currHp,int maxHp)

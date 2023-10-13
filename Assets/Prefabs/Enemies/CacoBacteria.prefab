@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 5310509977756388143}
   - component: {fileID: 233158274407280493}
   m_Layer: 0
-  m_Name: Bugger
+  m_Name: CacoBacteria
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -239,7 +239,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 1
+  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &3798988839708952623
 MonoBehaviour:
@@ -403,7 +403,7 @@ Animator:
   m_GameObject: {fileID: 5484637606897395962}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9c8dc77c58568e5488debd534a3cf490, type: 2}
+  m_Controller: {fileID: 9100000, guid: 59a2b3f64b10d4142b7b75bf23069a09, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
