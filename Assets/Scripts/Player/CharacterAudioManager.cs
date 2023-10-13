@@ -8,6 +8,10 @@ public class CharacterAudioManager : MonoBehaviour
     [SerializeField] AudioSource _deathJingle;
     [SerializeField] AudioSource _deathPop;
     [SerializeField] AudioSource _step;
+    [SerializeField] AudioSource _hurt;
+    [SerializeField] AudioSource _xpGather;
+
+    [SerializeField] AudioClip[] _xpGatherSound;
 
     public void LevelUp()
     {
@@ -29,4 +33,16 @@ public class CharacterAudioManager : MonoBehaviour
         _step.Play();
     }
 
+
+    public void Hurt()
+    {
+        _hurt.Play();
+    }
+
+    public void GatheredXP()
+    {
+        _xpGather.Stop();
+        _xpGather.clip = _xpGatherSound[Random.Range(0, _xpGatherSound.Length)];
+        _xpGather.Play();
+    }
 }

@@ -5,6 +5,7 @@ public class Player : EnemyDamagable
 {
     PlayerAnimation _playerAnimation;
     [SerializeField] PlayerPickUpRange _playerPickUpRange;
+    [SerializeField] CharacterAudioManager _characterAudioManager;
     PlayerMovement _playerMovement;
     public Vector3 PlayerMovement { get => _playerMovement.MoveDirection; }
     PlayerShoot _playerShoot;
@@ -40,6 +41,7 @@ public class Player : EnemyDamagable
 
     public void GetExp(int expValue)
     {
+        _characterAudioManager.GatheredXP();
         _playerStatus.AddExp(expValue);
         OnChangeExp();
     }

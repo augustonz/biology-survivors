@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 870cd7ba37a176642b284837964a63fe
+guid: 4e1038e26406a094394d39f2e8c0da3a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 97, w: 0}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -63,7 +63,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
-  cookieLightType: 1
+  cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -105,13 +105,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CacoBacteriaAnimIdle_0
+      name: Sprite-0003_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,20 +119,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7780028c9a996904a921b4428ec42a94
-      internalID: 1119882312
+      spriteID: 2b9960a9a5f5431438838dd5b49bdb16
+      internalID: -1640983364
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CacoBacteriaAnimIdle_2
+      name: Sprite-0003_1
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 0
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 1, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98142e8d1b99549498a89f03a7397ef7
+      internalID: -1376388701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite-0003_2
       rect:
         serializedVersion: 2
         x: 32
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,20 +161,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d53110f5a4ef97b42912934a68769a71
-      internalID: 531023879
+      spriteID: d7b635b029ef65f4187bdb8faaf173b0
+      internalID: -1262491684
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CacoBacteriaAnimIdle_1
+      name: Sprite-0003_3
       rect:
         serializedVersion: 2
-        x: 64
+        x: 48
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,29 +182,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f316912568743d48a735e6df0c7daef
-      internalID: 845553461
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CacoBacteriaAnimIdle_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 790b58c136c90fe498007e5135483097
-      internalID: 1918240894
+      spriteID: 53a5f373eb34d8c4ea24fccaf1822b8d
+      internalID: 1064456982
       vertices: []
       indices: 
       edges: []
@@ -192,17 +192,17 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      CacoBacteriaAnimIdle_1: 845553461
-      CacoBacteriaAnimIdle_3: 1918240894
-      CacoBacteriaAnimIdle_2: 531023879
-      CacoBacteriaAnimIdle_0: 1119882312
+      Sprite-0003_2: -1262491684
+      Sprite-0003_3: 1064456982
+      Sprite-0003_0: -1640983364
+      Sprite-0003_1: -1376388701
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

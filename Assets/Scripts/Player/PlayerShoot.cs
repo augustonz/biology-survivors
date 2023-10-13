@@ -5,7 +5,8 @@ using UnityEngine.Events;
 
 public class PlayerShoot : MonoBehaviour
 {
-    [SerializeField] Transform _instantiateBulletPosition; 
+    [SerializeField] Transform _instantiateBulletPosition;
+
 
     bool canShoot = true;
     float currentAmmo;
@@ -81,6 +82,7 @@ public class PlayerShoot : MonoBehaviour
         float bulletSpeed = _player.PlayerStatus.GetStat(TypeStats.BULLET_SPEED);
         float bulletDamage = _player.PlayerStatus.GetStat(TypeStats.POWER);
         int bulletPenetration = (int) _player.PlayerStatus.GetStat(TypeStats.PENETRATION);
+
 
         Bullet.Create(gunPosition, bulletDirection, bulletAirTime, bulletSpeed, bulletDamage,bulletPenetration);
     }

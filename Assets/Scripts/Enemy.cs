@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour,IHittable
 {
+    [SerializeField] AudioSource _deathSource;
+    [SerializeField] AudioSource _hitSource;
+
     public Material flashMaterial;
     public float flashDuration;
     private Material originalMaterial;
@@ -63,6 +66,7 @@ public class Enemy : MonoBehaviour,IHittable
     }
 
     public void TakeDamage(float damageAmount) {
+        _hitSource.Play();
         hp-=damageAmount;
         if (hp<=0) {
             Die();
@@ -70,6 +74,9 @@ public class Enemy : MonoBehaviour,IHittable
     }
 
     void Die() {
+        _deathSource.Play();
+        _deathSource.transform.SetParent(null);
+        Destroy(_deathSource.gameObject, 3);
         ExpManager.instance.SpawnExp(transform.position);
         Destroy(gameObject);
     }
