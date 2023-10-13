@@ -19,7 +19,6 @@ public class PlayerStatus : MonoBehaviour
 
     private bool isDead;
 
-
     public UnityEvent OnChangeCurrExp, OnChangeCurrLevel;
 
     public UnityEvent OnChangeCurrHealth;

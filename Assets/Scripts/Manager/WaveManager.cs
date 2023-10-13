@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 public class WaveManager : MonoBehaviour
 {
 
@@ -10,10 +11,20 @@ public class WaveManager : MonoBehaviour
     [SerializeField] Enemy enemy1;
     [SerializeField] Enemy enemy2;
     [SerializeField] Enemy enemy3;
+
+    public static WaveManager instance;
+    public UnityEvent OnEnemyKilled;
+    int _enemiesKilledCount;
+    public int EnemiesKilledCount { get => _enemiesKilledCount; }
     
     GameObject _player;
     float _spawnCooldownTimer;
     bool _canSpawn;
+    void Awake()
+    {
+        if (instance != null && instance != this) Destroy(this);
+        else instance = this;
+    }
     void Start() {
         _player = GameObject.FindGameObjectWithTag("Player");
     }
@@ -22,6 +33,10 @@ public class WaveManager : MonoBehaviour
         float currentTime = MatchTimer.instance.GetCurrentTIme;
 
         CheckSpawnEnemies(currentTime);
+    }
+
+    public void AddEnemiesKilledStat() {
+        _enemiesKilledCount++;
     }
 
     void CheckSpawnEnemies(float currentTime) {

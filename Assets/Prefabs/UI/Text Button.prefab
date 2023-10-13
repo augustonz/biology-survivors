@@ -100,7 +100,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 32
   m_VerticalAlignment: 4096
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 6489919161188938700}
   - component: {fileID: 2889518277570906017}
   - component: {fileID: 1487871214926134355}
+  - component: {fileID: 82003653806983129}
   m_Layer: 5
   m_Name: Text Button
   m_TagString: Untagged
@@ -268,5 +269,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17b8d0a85135ca44ebfd304184ef09ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &82003653806983129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8621763576598301801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f65c8bb672cb274f891d376439137ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

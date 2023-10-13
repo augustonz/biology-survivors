@@ -78,6 +78,7 @@ public class Enemy : MonoBehaviour,IHittable
         _deathSource.transform.SetParent(null);
         Destroy(_deathSource.gameObject, 3);
         ExpManager.instance.SpawnExp(transform.position);
+        WaveManager.instance.OnEnemyKilled.Invoke();
         Destroy(gameObject);
     }
 
