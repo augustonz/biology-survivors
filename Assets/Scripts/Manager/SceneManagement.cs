@@ -10,4 +10,8 @@ public class SceneManagement : MonoBehaviour
     public void LoadMenuScene() {
         SceneManager.LoadScene("SampleScene");
     }
+
+    public void ExitGame() {
+        Application.Quit();
+    }
 }

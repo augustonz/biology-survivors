@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,11 +7,14 @@ public class WaveManager : MonoBehaviour
 {
 
     [SerializeField] float _spawnRange;
-    [SerializeField] float _spawnCooldown;
     [SerializeField] Transform _enemiesParent;
+    [SerializeField] float _spawnCooldown;
     [SerializeField] Enemy enemy1;
     [SerializeField] Enemy enemy2;
     [SerializeField] Enemy enemy3;
+    [SerializeField] Wave[] _waves;
+
+    Wave _currentWave;
 
     public static WaveManager instance;
     public UnityEvent OnEnemyKilled;
@@ -27,39 +31,61 @@ public class WaveManager : MonoBehaviour
     }
     void Start() {
         _player = GameObject.FindGameObjectWithTag("Player");
+        _canSpawn=false;
     }
 
     void Update() {
+        if (!_canSpawn) return;
+        _currentWave = GetCurrentWave();
+
+        SpawningWave(_currentWave);
+    }
+
+    void SpawningWave(Wave wave) {
+        if (wave==null) return;
+        foreach (EnemySpawnOption enemySpawnOption in wave.EnemySpawnOptions)
+        {
+            enemySpawnOption.UpdateTimer(Time.deltaTime);
+            if (enemySpawnOption.ShouldSpawn()) {
+                SpawnEnemy(enemySpawnOption);
+            }
+        }
+        
+    }
+
+    Wave GetCurrentWave() {
         float currentTime = MatchTimer.instance.GetCurrentTIme;
 
-        CheckSpawnEnemies(currentTime);
+        foreach (Wave wave in _waves)
+        {
+            if (currentTime>=wave.StartWaveTime && currentTime<wave.EndWaveTime) {
+                return wave;
+            }
+        }
+        return null;
     }
 
     public void AddEnemiesKilledStat() {
         _enemiesKilledCount++;
     }
 
-    void CheckSpawnEnemies(float currentTime) {
-        if (!_canSpawn) {
-            _spawnCooldownTimer-=Time.deltaTime;
-            if (_spawnCooldownTimer>0) return;
-            _canSpawn=true;
-        }
-        if (currentTime>10) SpawnEnemy(enemy1,1);
+    public void ChangeState(GameState gameState)
+    {
+        if (gameState==GameState.INGAME) _canSpawn = true;
+        if (gameState!=GameState.INGAME) _canSpawn = false;
     }
 
-    void SpawnEnemy(Enemy enemy,int amount) {
+    void SpawnEnemy(EnemySpawnOption enemySpawnOption) {
         Vector3 spawnPoint = GetRandomSpawnPoint();
-        for (int i = 0; i < amount; i++)
+        for (int i = 0; i < enemySpawnOption.SpawnAmount; i++)
         {
-            Instantiate(enemy,spawnPoint,Quaternion.identity,_enemiesParent);
+            Instantiate(enemySpawnOption.EnemyToSpawn,spawnPoint,Quaternion.identity,_enemiesParent);
         }
-        _canSpawn=false; 
-        _spawnCooldownTimer=_spawnCooldown;
+        enemySpawnOption.SetSpawnTimer(enemySpawnOption.SpawnCooldown);
     }
 
     Vector3 GetRandomSpawnPoint() {
-        Vector2 randomCirclePoint = Random.insideUnitCircle.normalized * _spawnRange;
+        Vector2 randomCirclePoint = UnityEngine.Random.insideUnitCircle.normalized * _spawnRange;
         return _player.transform.position +  (Vector3) randomCirclePoint;
     }
 
@@ -70,3 +96,30 @@ public class WaveManager : MonoBehaviour
     }
 }
 
+[Serializable]
+public class Wave {
+    public float StartWaveTime;
+    public float EndWaveTime;
+    public EnemySpawnOption[] EnemySpawnOptions;
+}
+
+[Serializable]
+public class EnemySpawnOption {
+    public Enemy EnemyToSpawn;
+    public int SpawnAmount;
+    public float SpawnCooldown;
+    float _spawnTimer;
+
+    public void SetSpawnTimer(float newTimer) {
+        _spawnTimer=newTimer;
+    }
+
+    public bool ShouldSpawn() {
+        return _spawnTimer<=0;
+    }
+
+    public void UpdateTimer(float deltaTime) {
+        _spawnTimer-=deltaTime;
+    }
+
+}

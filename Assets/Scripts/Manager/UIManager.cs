@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
     {
         if (gameState == GameState.INGAME)
         {
-            EnlargeVision();
+            //EnlargeVision();
             StartUI();
         }
     }

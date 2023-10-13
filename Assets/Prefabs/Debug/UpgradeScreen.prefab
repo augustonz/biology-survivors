@@ -2077,6 +2077,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1623229824372698988}
   - component: {fileID: 9114595600272088226}
+  - component: {fileID: 2650959124367053304}
   m_Layer: 5
   m_Name: UpgradeScreen
   m_TagString: Untagged
@@ -2125,6 +2126,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2650959124367053304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623229824372698989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15d9afb3c3587994fb3efed8a6377ff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1623229824418442171
 GameObject:
   m_ObjectHideFlags: 0
@@ -2171,7 +2184,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1623229824418442171}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
   m_Name: 

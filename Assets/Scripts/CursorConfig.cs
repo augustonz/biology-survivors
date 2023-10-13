@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class CursorConfig : MonoBehaviour
@@ -37,9 +38,12 @@ public class CursorConfig : MonoBehaviour
         Cursor.SetCursor(_aimCursor,new Vector2(15,15),CursorMode.Auto);
     }
 
-    public void ChangeState(GameState gameState)
+    public async void ChangeState(GameState gameState)
     {
-        if (gameState==GameState.INGAME) ChangeCursorAim();
+        if (gameState==GameState.INGAME) {
+            await Task.Delay(200);
+            ChangeCursorAim();
+        }
         if (gameState!=GameState.INGAME) ChangeCursorDefault();
     }
 }

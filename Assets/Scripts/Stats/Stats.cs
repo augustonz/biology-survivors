@@ -72,6 +72,7 @@ public class Stats : ScriptableObject
 
     private void InitDicts()
     {
+        if (_baseStats.Count!=0) return;
         _baseStats.Add(TypeStats.MAX_HP, maxHP);
         _baseStats.Add(TypeStats.REGEN_HP, regenHP);
         _baseStats.Add(TypeStats.POWER, power);
