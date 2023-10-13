@@ -25,6 +25,7 @@ public class PlayerStatus : MonoBehaviour
     public UnityEvent OnChangeCurrHealth;
     public UnityEvent OnDeath;
 
+
     public OnChangeStatEvent OnChangeMaxHealth;
 
     public OnChangeStatEvent OnChangeSpeed;
