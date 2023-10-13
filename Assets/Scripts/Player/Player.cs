@@ -75,7 +75,6 @@ public class Player : EnemyDamagable
     {
         if (gameState == GameState.INGAME)
         {
-            _playerShoot.StartReload();
             _playerMovement.SetSpeed(_playerStatus.GetStat(TypeStats.SPEED));
             _playerPickUpRange.SetPickUpRange(_playerStatus.GetStat(TypeStats.PICK_UP_RANGE));
         }

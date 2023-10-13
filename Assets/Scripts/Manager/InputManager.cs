@@ -19,6 +19,7 @@ public class InputManager : MonoBehaviour
     public InputAction clickAction;
 
     public InputAction reloadAction;
+    public InputAction pauseAction;
 
     GameState _gameState;
 
@@ -39,6 +40,7 @@ public class InputManager : MonoBehaviour
         moveAction.Enable();
         clickAction.Enable();
         reloadAction.Enable();
+        pauseAction.Enable();
     }
 
     public void OnDisable()
@@ -61,6 +63,11 @@ public class InputManager : MonoBehaviour
     public bool GetReloadInput()
     {
         return Mathf.Approximately(reloadAction.ReadValue<float>(), 1f);
+    }
+
+    public bool GetPauseInput()
+    {
+        return pauseAction.triggered;
     }
 
     public void ChangeState(GameState gameState)
