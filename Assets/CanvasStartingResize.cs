@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 public class CanvasStartingResize : MonoBehaviour
 {
     [SerializeField] RectTransform rect;
-    Vector2 _startingScale;
+    Vector3 _startingScale;
     [SerializeField] AnimationCurve _openingCurve;
     [SerializeField] AnimationCurve _closingCurve;
     [SerializeField] AnimationCurve _hiddenCurve;
@@ -20,7 +20,7 @@ public class CanvasStartingResize : MonoBehaviour
 
     private void Start()
     {
-        _startingScale = rect.sizeDelta;
+        _startingScale = rect.localScale;
     }
 
     // Update is called once per frame
@@ -28,7 +28,7 @@ public class CanvasStartingResize : MonoBehaviour
     {
         if (open)
         {
-            rect.sizeDelta = Vector2.Lerp(_startingScale, _startingScale * _endScaleMultiply, _openingCurve.Evaluate(_currentDuration / _duration));
+            rect.localScale = Vector3.Lerp(_startingScale, _startingScale * _endScaleMultiply, _openingCurve.Evaluate(_currentDuration / _duration));
             if (_currentDuration >= _duration)
             {
                 open = false;
@@ -41,7 +41,7 @@ public class CanvasStartingResize : MonoBehaviour
 
         else if (close)
         {
-            rect.sizeDelta = Vector2.Lerp(_startingScale * _endScaleMultiply, _startingScale, _closingCurve.Evaluate(_currentDuration / _duration));
+            rect.localScale = Vector3.Lerp(_startingScale * _endScaleMultiply, _startingScale, _closingCurve.Evaluate(_currentDuration / _duration));
             if (_currentDuration >= _duration)
             {
                 close = false;
@@ -55,7 +55,7 @@ public class CanvasStartingResize : MonoBehaviour
         
         else if (hidden)
         {
-            rect.sizeDelta = Vector2.Lerp(_startingScale, _startingScale * 0, _hiddenCurve.Evaluate(_currentDuration / _duration));
+            rect.localScale = Vector3.Lerp(_startingScale, _startingScale * 0.01f, _hiddenCurve.Evaluate(_currentDuration / _duration));
             if (_currentDuration >= _duration)
             {
                 hidden = false;
