@@ -13,8 +13,8 @@ public class ExpManager : MonoBehaviour
         else instance = this;
     }
 
-    public void SpawnExp(Vector3 position) {
-        Instantiate(_exp,position,Quaternion.identity,_expsParent);
+    public void SpawnExp(Vector3 position, int expValue) {
+        Instantiate(_exp,position,Quaternion.identity,_expsParent).value = expValue;
     }
 }
 

@@ -32,6 +32,7 @@ public class Enemy : MonoBehaviour,IHittable
     List<EnemyDamagable> collidingWith = new List<EnemyDamagable>();
 
     [SerializeField] SpawnList[] _spawnList;
+    [SerializeField] int _xp;
 
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
@@ -88,7 +89,7 @@ public class Enemy : MonoBehaviour,IHittable
         _deathSource.Play();
         _deathSource.transform.SetParent(null);
         Destroy(_deathSource.gameObject, 3);
-        ExpManager.instance.SpawnExp(transform.position);
+        ExpManager.instance.SpawnExp(transform.position, _xp);
         WaveManager.instance.OnEnemyKilled.Invoke();
         Destroy(gameObject);
     }

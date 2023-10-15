@@ -262,6 +262,8 @@ MonoBehaviour:
   damage: 1
   delayBetweenAttacks: 0.5
   goTarget: 0
+  _spawnList: []
+  _xp: 5
 --- !u!61 &7378132463857387618
 BoxCollider2D:
   m_ObjectHideFlags: 0

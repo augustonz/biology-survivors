@@ -269,6 +269,7 @@ MonoBehaviour:
     toSpawn: {fileID: 5484637606897395962, guid: 4040660534686414986da3c12446e026, type: 3}
   - Chance: 10
     toSpawn: {fileID: 5484637606897395962, guid: 4040660534686414986da3c12446e026, type: 3}
+  _xp: 7
 --- !u!61 &7378132463857387618
 BoxCollider2D:
   m_ObjectHideFlags: 0

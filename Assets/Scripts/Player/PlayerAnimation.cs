@@ -47,12 +47,12 @@ public class PlayerAnimation : MonoBehaviour
 
     void UpdatePlayerGunDirection()
     {
-        Vector2 mousePos = (Vector2)Input.mousePosition - new Vector2(Screen.width/2,Screen.height/2);
-        Vector2 rotation = mousePos - (Vector2)transform.position; //Needs to be a little more exact
+        Vector2 mousePos = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)_gunRotationPoint.position;
+        //Vector2 rotation = mousePos - (Vector2)transform.position; //Needs to be a little more exact
 
-        float angle = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
         
-        _gunSprite.flipY = rotation.x<0;
+        _gunSprite.flipY = mousePos.x<0;
         
         _gunRotationPoint.eulerAngles = new Vector3(0, 0, angle);
     }
