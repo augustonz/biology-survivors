@@ -19,15 +19,21 @@ public class Player : EnemyDamagable
         _playerMovement = GetComponent<PlayerMovement>();
         _playerShoot = GetComponent<PlayerShoot>();
         _playerStatus = GetComponent<PlayerStatus>();
-
     }
 
     public void Start()
     {
+        OnChangeMaxHealth();
+        _playerStatus.OnChangeMaxHealth.AddListener(delegate { OnChangeMaxHealth(); });
     }
 
     void Update()
     {
+    }
+
+    public void AddUpgrade(Upgrade upgrade)
+    {
+        _playerStatus.AddUpgrade(upgrade);
     }
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -59,8 +65,13 @@ public class Player : EnemyDamagable
     public override void OnHit(int damage)
     {
         _playerStatus.GetHit(damage);
-        UIManager.instance.SetPlayerHealth((int)_playerStatus.currHP,(int)_playerStatus.GetStat(TypeStats.MAX_HP));
+        UIManager.instance.SetPlayerHealth((int)_playerStatus.currHP, (int)_playerStatus.GetStat(TypeStats.MAX_HP));
         flashAnimation();
+    }
+
+    public void OnChangeMaxHealth()
+    {
+        UIManager.instance.SetPlayerHealth((int)_playerStatus.currHP, (int)_playerStatus.GetStat(TypeStats.MAX_HP));
     }
 
     public void OnEnable()

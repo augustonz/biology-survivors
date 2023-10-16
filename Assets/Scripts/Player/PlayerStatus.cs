@@ -25,7 +25,7 @@ public class PlayerStatus : MonoBehaviour
     public UnityEvent OnDeath;
 
 
-    public OnChangeStatEvent OnChangeMaxHealth;
+    public OnChangeStatEvent OnChangeMaxHealth = new();
 
     public OnChangeStatEvent OnChangeSpeed;
 
@@ -96,13 +96,13 @@ public class PlayerStatus : MonoBehaviour
         OnChangeCurrHealth?.Invoke();
     }
 
-    public void SetUpgrade(Upgrade upgrade)
+    public void AddUpgrade(Upgrade upgrade)
     {
 
         playerStats.AddStat(upgrade);
         if (events.TryGetValue(upgrade.stat, out OnChangeStatEvent ev))
         {
-            ev.Invoke(playerStats.GetStat(upgrade.stat));
+            ev?.Invoke(playerStats.GetStat(upgrade.stat));
         }
     }
 
@@ -116,5 +116,4 @@ public class PlayerStatus : MonoBehaviour
         events.Add(TypeStats.SPEED, OnChangeSpeed);
         events.Add(TypeStats.MAX_HP, OnChangeMaxHealth);
     }
-
 }

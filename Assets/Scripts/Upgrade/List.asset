@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d8721efee5c7e54abffb7659074d3d2, type: 3}
-  m_Name: FireRate++
+  m_Script: {fileID: 11500000, guid: 03cd0426f50594548b8b1e34794a7fe4, type: 3}
+  m_Name: List
   m_EditorClassIdentifier: 
-  stat: 3
-  mod: 1
-  value: 1.1
+  upgrades: []

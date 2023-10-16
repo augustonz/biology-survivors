@@ -8,19 +8,31 @@ public class PrefabLoader : MonoBehaviour
     [SerializeField] GameObject _bullet;
     [SerializeField] DamageValue _damageValue;
     [SerializeField] GameObject _bulletHit;
-    void Awake() {
-        instance=this;
+
+    [SerializeField] GameObject _upgradeOption;
+
+    void Awake()
+    {
+        instance = this;
     }
 
-    public GameObject getBullet() {
+    public GameObject getBullet()
+    {
         return _bullet;
     }
 
-    public GameObject getBulletHit() {
+    public GameObject getBulletHit()
+    {
         return _bulletHit;
     }
 
-    public DamageValue getDamageValue() {
+    public DamageValue getDamageValue()
+    {
         return _damageValue;
+    }
+
+    public GameObject getUpgradeOption()
+    {
+        return _upgradeOption;
     }
 }

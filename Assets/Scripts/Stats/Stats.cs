@@ -40,17 +40,19 @@ public class Stats : ScriptableObject
 
     public float GetStat(TypeStats stat)
     {
-        if (_statMultiplier.TryGetValue(stat, out float mult)) {
-            if (_baseStats.TryGetValue(stat, out float value)) {
+        if (_statMultiplier.TryGetValue(stat, out float mult))
+        {
+            if (_baseStats.TryGetValue(stat, out float value))
+            {
                 return value * mult;
             }
         }
         Debug.LogError($"No stat value found for {stat} on {name}");
         return 0;
-        
+
     }
 
-    public float AddStat(Upgrade upgrade)
+    public void AddStat(Upgrade upgrade)
     {
         if (_baseStats.TryGetValue(upgrade.stat, out float value) && _statMultiplier.TryGetValue(upgrade.stat, out float mult))
         {
@@ -63,16 +65,14 @@ public class Stats : ScriptableObject
                     _statMultiplier[upgrade.stat] += upgrade.value;
                     break;
             }
+            return;
         }
-        {
-            Debug.LogError($"No stat value found for {upgrade.stat} on {this.name}");
-            return 0;
-        }
+        Debug.LogError($"No stat value found for {upgrade.stat} on {this.name}");
     }
 
     private void InitDicts()
     {
-        if (_baseStats.Count!=0) return;
+        if (_baseStats.Count != 0) return;
         _baseStats.Add(TypeStats.MAX_HP, maxHP);
         _baseStats.Add(TypeStats.REGEN_HP, regenHP);
         _baseStats.Add(TypeStats.POWER, power);
