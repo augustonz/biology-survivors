@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Mitosis
   m_EditorClassIdentifier: 
   Id: 1ed947cb-66f2-4509-93f2-31d7eb70e5d0
-  stat: 3
+  stat: 4
   mod: 0
-  value: 0
-  description: 
+  value: 1
   icon: {fileID: 21300000, guid: fc3d4f1e1e74014419c9b17897f74ed1, type: 3}
   tier: 0
   isUnlocked: 0
+  description: "Dispara 2 proj\xE9teis em vez de 1."
