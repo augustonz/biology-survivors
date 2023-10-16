@@ -15,8 +15,8 @@ MonoBehaviour:
   Id: 06692b48-9e71-4df3-a6d2-56d89f3e4327
   stat: 3
   mod: 1
-  value: 1.1
+  value: 0.2
   icon: {fileID: 0}
-  tier: 1
+  tier: 0
   isUnlocked: 0
-  description: 
+  description: +20% de firespeed

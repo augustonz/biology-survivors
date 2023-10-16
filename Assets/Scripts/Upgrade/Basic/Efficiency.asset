@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Efficiency
   m_EditorClassIdentifier: 
   Id: 8d2dff76-560d-421a-aa54-bda938dedabe
-  stat: 3
-  mod: 0
-  value: 1.1
+  stat: 2
+  mod: 1
+  value: 0.1
   icon: {fileID: 0}
-  tier: 2
+  tier: 0
   isUnlocked: 0
   description: 

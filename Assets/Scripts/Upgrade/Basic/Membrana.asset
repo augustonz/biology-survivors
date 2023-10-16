@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Membrana
   m_EditorClassIdentifier: 
   Id: 1964ec1a-4fcc-4419-8254-94577304146e
-  stat: 3
+  stat: 0
   mod: 0
-  value: 0
+  value: 10
   icon: {fileID: 0}
-  tier: 1
+  tier: 0
   isUnlocked: 0
   description: 
