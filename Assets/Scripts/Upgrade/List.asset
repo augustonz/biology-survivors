@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03cd0426f50594548b8b1e34794a7fe4, type: 3}
   m_Name: List
   m_EditorClassIdentifier: 
-  upgrades: []
+  upgrades:
+  - {fileID: 11400000, guid: ac47104ae46d1ce4dbd30ce620fb8b22, type: 2}
+  - {fileID: 11400000, guid: fb4f7217f00bb70468999fdb4a64aef9, type: 2}
+  - {fileID: 11400000, guid: 4e4eda766f2a04d429fc3ea86bc087c2, type: 2}
+  - {fileID: 11400000, guid: 4bf0f3a2cdd6a4b479ce2dcb4b531fdc, type: 2}
+  - {fileID: 11400000, guid: aee64749e9319d34594d8a6dd7b5dbc8, type: 2}

@@ -33,10 +33,13 @@ public class UpgradeScreen : MonoBehaviour
         if (instance != null && instance != this) Destroy(this);
         else instance = this;
 
-        options.Add(Instantiate(PrefabLoader.instance.getUpgradeOption(), child).GetComponent<UpgradeOption>());
-        options.Add(Instantiate(PrefabLoader.instance.getUpgradeOption(), child).GetComponent<UpgradeOption>());
-        options.Add(Instantiate(PrefabLoader.instance.getUpgradeOption(), child).GetComponent<UpgradeOption>());
-        options.Add(Instantiate(PrefabLoader.instance.getUpgradeOption(), child).GetComponent<UpgradeOption>());
+        options = new ()
+        {
+            Instantiate(PrefabLoader.instance.getUpgradeOption(), child).GetComponent<UpgradeOption>(),
+            Instantiate(PrefabLoader.instance.getUpgradeOption(), child).GetComponent<UpgradeOption>(),
+            Instantiate(PrefabLoader.instance.getUpgradeOption(), child).GetComponent<UpgradeOption>(),
+            Instantiate(PrefabLoader.instance.getUpgradeOption(), child).GetComponent<UpgradeOption>()
+        };
 
     }
 

@@ -734,6 +734,7 @@ MonoBehaviour:
   _bullet: {fileID: 4913640287785365117, guid: 59ccb2f133012ed4aa92890caeaa3486, type: 3}
   _damageValue: {fileID: 2894172310451913941, guid: 1744b2b696987ff47bad661f19a744c3, type: 3}
   _bulletHit: {fileID: 3402707330589286857, guid: ae022d81945eb16498edbed0fe4af11a, type: 3}
+  _upgradeOption: {fileID: 5749645132154050736, guid: 62f503c4b359ed7428607563b0f521cf, type: 3}
 --- !u!114 &334530308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4536,6 +4537,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2650959124367053304, guid: b24bd222e395c8c418c07997f14d8c4d, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 546957142}
     - target: {fileID: 2700833993173339895, guid: b24bd222e395c8c418c07997f14d8c4d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1

@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class Player : EnemyDamagable
 {
+    public static Player instance;
+
     PlayerAnimation _playerAnimation;
     [SerializeField] PlayerPickUpRange _playerPickUpRange;
     [SerializeField] CharacterAudioManager _characterAudioManager;
@@ -15,6 +17,7 @@ public class Player : EnemyDamagable
     public override void Awake()
     {
         base.Awake();
+        instance = this;
         _playerAnimation = GetComponent<PlayerAnimation>();
         _playerMovement = GetComponent<PlayerMovement>();
         _playerShoot = GetComponent<PlayerShoot>();

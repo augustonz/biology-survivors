@@ -45,7 +45,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 5739e3513187ad345b448580ce198b15, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.5
-  m_Pitch: 0.94
+  m_Pitch: 0.8
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 5310509977756388143}
   - component: {fileID: 233158274407280493}
   m_Layer: 0
-  m_Name: CacoBacteria
+  m_Name: CancerCell
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -160,8 +160,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5484637606897395962}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalScale: {x: 1.548252, y: 1.548252, z: 1.548252}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7996732559950191366}
@@ -230,12 +230,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1098590695, guid: 9d585fbed39590e4bab61d394f481be5, type: 3}
+  m_Sprite: {fileID: -366585547, guid: 4c3eaed38b5ab7f41bb2e2696f73af8d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.24, y: 0.21}
+  m_Size: {x: 0.48, y: 0.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -257,13 +257,13 @@ MonoBehaviour:
   _hitSource: {fileID: 233158274407280493}
   flashMaterial: {fileID: 2100000, guid: b0e8ea4896387d14fa6562e9fe90800b, type: 2}
   flashDuration: 0.1
-  moveSpeed: 0.5
-  maxHp: 30
-  damage: 1
+  moveSpeed: 0
+  maxHp: 120
+  damage: 2
   delayBetweenAttacks: 0.5
   goTarget: 0
   _spawnList: []
-  _xp: 5
+  _xp: 14
 --- !u!61 &7378132463857387618
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -281,14 +281,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.24, y: 0.21}
-    newSize: {x: 0.24, y: 0.21}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 0.48, y: 0.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.22056043, y: 0.19222318}
+  m_Size: {x: 0.3, y: 0.3}
   m_EdgeRadius: 0
 --- !u!114 &8780931907304266244
 MonoBehaviour:
@@ -386,14 +386,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.24, y: 0.21}
-    newSize: {x: 0.24, y: 0.21}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 0.48, y: 0.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.26424432, y: 0.2307809}
+  m_Size: {x: 0.31, y: 0.31}
   m_EdgeRadius: 0
 --- !u!95 &5310509977756388143
 Animator:
@@ -405,7 +405,7 @@ Animator:
   m_GameObject: {fileID: 5484637606897395962}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 59a2b3f64b10d4142b7b75bf23069a09, type: 2}
+  m_Controller: {fileID: 9100000, guid: ceecbef2af612c044946d85dbda2ceb4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -428,7 +428,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 456733a6ce92e384a8cf1bdb527ac800, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.25
-  m_Pitch: 0.94
+  m_Pitch: 0.8
   Loop: 0
   Mute: 0
   Spatialize: 0
