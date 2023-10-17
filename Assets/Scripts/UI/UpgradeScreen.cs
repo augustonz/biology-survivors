@@ -89,7 +89,7 @@ public class UpgradeScreen : MonoBehaviour
         {
             SetSelected(_selected);
         }
-        else
+        else if (pool.Count() > 0)
         {
             SetSelected(0);
         }
