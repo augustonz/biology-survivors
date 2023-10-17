@@ -70,6 +70,11 @@ public class UpgradeScreen : MonoBehaviour
 
         ResetText();
 
+        RerollChoices();
+    }
+
+    public void RerollChoices()
+    {
         Upgrade[] pool = upgrade.GetFromPool();
         for (int i = 0; i < pool.Count(); i++)
         {
@@ -80,7 +85,11 @@ public class UpgradeScreen : MonoBehaviour
             options[i].gameObject.SetActive(false);
         }
 
-        if (pool.Count() > 0)
+        if (pool.Count() > _selected)
+        {
+            SetSelected(_selected);
+        }
+        else
         {
             SetSelected(0);
         }

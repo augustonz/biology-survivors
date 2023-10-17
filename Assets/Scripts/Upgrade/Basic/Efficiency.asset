@@ -19,4 +19,5 @@ MonoBehaviour:
   icon: {fileID: 0}
   tier: 0
   isUnlocked: 0
-  description: 
+  unlocks: []
+  description: +10% de dano.
