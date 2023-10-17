@@ -22,6 +22,8 @@ public class Upgrade : BaseScriptableObject
 
     [SerializeField] public TypeTier tier;
     [SerializeField] public bool isUnlocked;
+    [SerializeField] public List<Upgrade> unlocks;
+
 
     [SerializeField][TextArea] public string description;
 }

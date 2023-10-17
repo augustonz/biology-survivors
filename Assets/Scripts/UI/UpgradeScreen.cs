@@ -33,14 +33,14 @@ public class UpgradeScreen : MonoBehaviour
         if (instance != null && instance != this) Destroy(this);
         else instance = this;
 
-        options = new ()
+        options = new()
         {
             Instantiate(PrefabLoader.instance.getUpgradeOption(), child).GetComponent<UpgradeOption>(),
             Instantiate(PrefabLoader.instance.getUpgradeOption(), child).GetComponent<UpgradeOption>(),
             Instantiate(PrefabLoader.instance.getUpgradeOption(), child).GetComponent<UpgradeOption>(),
             Instantiate(PrefabLoader.instance.getUpgradeOption(), child).GetComponent<UpgradeOption>()
         };
-
+        upgrade.Init();
     }
 
     void Start()
@@ -68,16 +68,28 @@ public class UpgradeScreen : MonoBehaviour
         _isVisible = true;
         GameHandler.instance.ChangeState(GameState.MENU);
 
-        foreach (var op in options)
+        ResetText();
+
+        Upgrade[] pool = upgrade.GetFromPool();
+        for (int i = 0; i < pool.Count(); i++)
         {
-            op.SetUpgrade(upgrade.upgrades[Random.Range(0, 4)]);
+            options[i].SetUpgrade(pool[i]);
         }
-        SetSelected(0);
+        for (int i = pool.Count(); i < options.Count; i++)
+        {
+            options[i].gameObject.SetActive(false);
+        }
+
+        if (pool.Count() > 0)
+        {
+            SetSelected(0);
+        }
     }
 
     public void ChooseUpgrade()
     {
         player.AddUpgrade(options[_selected].GetUpgrade());
+        upgrade.ChooseUpgrade(options[_selected].GetUpgrade().Id);
         DisappearUpgradeScreen();
     }
 
@@ -90,9 +102,20 @@ public class UpgradeScreen : MonoBehaviour
 
     public void SetSelected(int id)
     {
+        if (_selected != id)
+        {
+            options[_selected].OnUnfocus();
+        }
         _selected = id;
+        options[id].OnFocus();
         upgradeNameText.text = options[_selected].GetName();
         upgradeDescriptionText.text = options[_selected].GetDescription();
+    }
+
+    public void ResetText()
+    {
+        upgradeNameText.text = "";
+        upgradeDescriptionText.text = "";
     }
 
 }

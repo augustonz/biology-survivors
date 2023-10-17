@@ -42,6 +42,7 @@ public class PlayerStatus : MonoBehaviour
     void Start()
     {
         currHP = (int)playerStats.GetStat(TypeStats.MAX_HP);
+        OnChangeMaxHealth.AddListener((maxHp) => Heal(maxHp));
     }
 
     void Update()

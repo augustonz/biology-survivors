@@ -14,7 +14,7 @@ public class UpgradeOption : MonoBehaviour
     private Upgrade _upgrade;
 
     private int _id;
-
+    private bool isSelected = false;
 
 
     public void SetUpgrade(Upgrade upgrade)
@@ -24,6 +24,18 @@ public class UpgradeOption : MonoBehaviour
         {
             upgradeIcon.sprite = _upgrade.icon;
         }
+    }
+
+    public void OnFocus()
+    {
+        upgradeBorder.color = Color.cyan;
+        isSelected = true;
+    }
+
+    public void OnUnfocus()
+    {
+        upgradeBorder.color = Color.white;
+        isSelected = false;
     }
 
     public void SetId(int id)
