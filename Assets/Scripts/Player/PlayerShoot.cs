@@ -65,15 +65,15 @@ public class PlayerShoot : MonoBehaviour
         _onShoot.Invoke();
 
         canShoot = false;
-        
-        float shootDelay = 1/_player.PlayerStatus.GetStat(TypeStats.FIRE_RATE);
+
+        float shootDelay = 1 / _player.PlayerStatus.GetStat(TypeStats.FIRE_RATE);
 
         Invoke("canShootAgain", shootDelay);
         currentAmmo -= 1;
 
         float maxAmmo = _player.PlayerStatus.GetStat(TypeStats.NUMBER_OF_SHOTS);
         UIManager.instance.setAmmoText(maxAmmo, currentAmmo, false);
-        
+
         Vector3 gunPosition = _instantiateBulletPosition.position;
 
         Vector3 bulletDirection = ((Vector2)gunPosition - (Vector2)transform.position).normalized;
@@ -81,10 +81,13 @@ public class PlayerShoot : MonoBehaviour
         float bulletAirTime = _player.PlayerStatus.GetStat(TypeStats.BULLET_RANGE);
         float bulletSpeed = _player.PlayerStatus.GetStat(TypeStats.BULLET_SPEED);
         float bulletDamage = _player.PlayerStatus.GetStat(TypeStats.POWER);
-        int bulletPenetration = (int) _player.PlayerStatus.GetStat(TypeStats.PENETRATION);
+        int bulletPenetration = (int)_player.PlayerStatus.GetStat(TypeStats.PENETRATION);
+        int numberOfShots = (int)_player.PlayerStatus.GetStat(TypeStats.NUMBER_OF_SHOTS);
 
-
-        Bullet.Create(gunPosition, bulletDirection, bulletAirTime, bulletSpeed, bulletDamage,bulletPenetration);
+        for (int i = 0; i < numberOfShots; i++)
+        {
+            Bullet.Create(gunPosition, bulletDirection, bulletAirTime, bulletSpeed, bulletDamage, bulletPenetration);
+        }
     }
 
     public void StartReload()
@@ -93,7 +96,7 @@ public class PlayerShoot : MonoBehaviour
         {
             _onStartReload.Invoke();
             isReloading = true;
-            float reloadTime = 1/_player.PlayerStatus.GetStat(TypeStats.RELOAD_SPEED);
+            float reloadTime = 1 / _player.PlayerStatus.GetStat(TypeStats.RELOAD_SPEED);
             Invoke("CompleteReload", reloadTime);
             UIManager.instance.setAmmoText(0, 0, true);
         }
