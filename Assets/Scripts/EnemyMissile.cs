@@ -24,6 +24,12 @@ public class EnemyMissile : MonoBehaviour,IHittable
     public int damage;
     public EnemyAI goTarget;
 
+    [SerializeField] Sprite _spriteUp;
+    [SerializeField] Sprite _spriteUpLeft;
+    [SerializeField] Sprite _spriteLeft;
+    [SerializeField] Sprite _spriteDownLeft;
+    [SerializeField] Sprite _spriteDown;
+
     Rigidbody2D rb;
     Vector3 moveDirection;
     Vector3 lastMoveDirection;
@@ -53,7 +59,7 @@ public class EnemyMissile : MonoBehaviour,IHittable
     {
         if (collidingWith.Count>0) {
             Attack();
-        }
+        } 
     }
 
     void Attack() {
@@ -69,9 +75,12 @@ public class EnemyMissile : MonoBehaviour,IHittable
         if (target != null)
             moveDirection = Vector3.RotateTowards(lastMoveDirection, (target.position - transform.position).normalized, rotationSpeed * Time.fixedDeltaTime, 1);
 
-        transform.up = moveDirection;
+        //transform.up = moveDirection;
 
         lastMoveDirection = moveDirection;
+
+        ChangeSprite(Vector3.Angle(moveDirection, Vector3.up), moveDirection.x > 0);
+
 
         rb.MovePosition(transform.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
     }
@@ -82,6 +91,24 @@ public class EnemyMissile : MonoBehaviour,IHittable
         if (hp<=0) {
             Die();
         }
+    }
+
+    void ChangeSprite(float angle, bool right)
+    {
+        Debug.Log(angle);
+
+        if (angle < 25) //up
+            sr.sprite = _spriteUp;
+        else if (angle < 65)
+            sr.sprite = _spriteUpLeft;
+        else if (angle < 115)
+            sr.sprite = _spriteLeft;
+        else if (angle < 155)
+            sr.sprite = _spriteDownLeft;
+        else
+            sr.sprite = _spriteDown;
+
+        sr.flipX = right;
     }
 
     void Die() {
