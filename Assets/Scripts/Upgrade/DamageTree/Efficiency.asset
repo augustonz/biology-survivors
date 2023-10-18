@@ -10,13 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d8721efee5c7e54abffb7659074d3d2, type: 3}
-  m_Name: Big Enzime
+  m_Name: Efficiency
   m_EditorClassIdentifier: 
-  Id: 981a4a00-4c0c-4d61-b0be-3b7d615c2452
-  stat: 5
-  mod: 0
-  value: 1
-  icon: {fileID: 0}
+  Id: 8d2dff76-560d-421a-aa54-bda938dedabe
+  stat: 2
+  mod: 1
+  value: 0.1
+  icon: {fileID: 1521250949, guid: 191a56b5acb7d764e81d678f19994880, type: 3}
   tier: 0
-  isUnlocked: 0
-  description: Penetra os inimigos.
+  unlockedBy: {fileID: 0}
+  unlocks: []
+  skillTree:
+    Head: {fileID: 11400000}
+    Right: []
+    Left: []
+  description: +10% de dano.

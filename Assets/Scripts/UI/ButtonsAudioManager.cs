@@ -8,7 +8,7 @@ public class ButtonsAudioManager : MonoBehaviour
     [SerializeField] AudioClip[] _audioClip;
     AudioSource _audioSource;
 
-    private void Start()
+    private void Awake()
     {
         instance = this;
         _audioSource = GetComponent<AudioSource>();

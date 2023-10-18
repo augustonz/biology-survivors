@@ -1,10 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UpgradeOption : MonoBehaviour
+public class SkillTreeOption : MonoBehaviour
 {
     [SerializeField] private Button upgradeButton;
     [SerializeField] private Image upgradeIcon;
@@ -29,7 +28,7 @@ public class UpgradeOption : MonoBehaviour
     public void OnFocus()
     {
         upgradeBorder.color = Color.cyan;
-        ButtonsAudioManager.instance.CallAudio(0);
+        // ButtonsAudioManager.instance.CallAudio(0);
         isSelected = true;
     }
 
@@ -42,7 +41,7 @@ public class UpgradeOption : MonoBehaviour
     public void SetId(int id)
     {
         _id = id;
-        upgradeButton.onClick.AddListener(delegate { UpgradeScreen.instance.SetSelected(_id); });
+        upgradeButton.onClick.AddListener(delegate { UpgradeScreen.instance.SetSkillSelected(_id); });
     }
 
     public string GetName()
