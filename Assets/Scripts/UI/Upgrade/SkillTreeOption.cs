@@ -15,6 +15,7 @@ public class SkillTreeOption : MonoBehaviour
     private int _id;
     private bool isSelected = false;
 
+    private Sprite defaultIcon;
 
     public void SetUpgrade(Upgrade upgrade)
     {
@@ -23,6 +24,12 @@ public class SkillTreeOption : MonoBehaviour
         {
             upgradeIcon.sprite = _upgrade.icon;
         }
+    }
+
+    public void Reset()
+    {
+        _upgrade = null;
+        upgradeIcon.sprite = defaultIcon;
     }
 
     public void OnFocus()
@@ -41,16 +48,25 @@ public class SkillTreeOption : MonoBehaviour
     public void SetId(int id)
     {
         _id = id;
+        defaultIcon = upgradeIcon.sprite;
         upgradeButton.onClick.AddListener(delegate { UpgradeScreen.instance.SetSkillSelected(_id); });
     }
 
     public string GetName()
     {
+        if (_upgrade == null)
+        {
+            return "[WIP] Placeholder";
+        }
         return _upgrade.name;
     }
 
     public string GetDescription()
     {
+        if (_upgrade == null)
+        {
+            return "In Development";
+        }
         return _upgrade.description;
     }
 

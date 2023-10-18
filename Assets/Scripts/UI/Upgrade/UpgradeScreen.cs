@@ -126,10 +126,13 @@ public class UpgradeScreen : MonoBehaviour
         if (_selectedUpgrade != id)
         {
             options[_selectedUpgrade].OnUnfocus();
+            if (_selectedSkillTree >= 0)
+            {
+                skillTreeOptions[_selectedSkillTree].OnUnfocus();
+            }
         }
         _selectedUpgrade = id;
         options[id].OnFocus();
-        // Debug.Log(options[id].GetUpgrade().skillTree.GetSkillTree().Count);
         SetSkillTree(options[id].GetUpgrade().skillTree);
         SetText(options[id].GetName(), options[id].GetDescription());
     }
@@ -139,8 +142,14 @@ public class UpgradeScreen : MonoBehaviour
         if (id == -1)
         {
             skillTreeOptions[_selectedSkillTree].OnUnfocus();
-            ResetText();
             _selectedSkillTree = id;
+            return;
+        }
+        if (_selectedSkillTree == id)
+        {
+            skillTreeOptions[_selectedSkillTree].OnUnfocus();
+            SetText(options[_selectedUpgrade].GetName(), options[_selectedUpgrade].GetDescription());
+            _selectedSkillTree = -1;
             return;
         }
         if ((_selectedSkillTree != id || id > skillTreeOptions.Count) && _selectedSkillTree != -1)
@@ -155,9 +164,16 @@ public class UpgradeScreen : MonoBehaviour
     private void SetSkillTree(SkillTree skillTree)
     {
         List<Upgrade> temp = skillTree.GetSkillTree();
-        for (int i = 0; i < temp.Count; i++)
+        for (int i = 0; i < skillTreeOptions.Count; i++)
         {
-            skillTreeOptions[i].SetUpgrade(temp[i]);
+            if (i > temp.Count - 1)
+            {
+                skillTreeOptions[i].Reset();
+            }
+            else
+            {
+                skillTreeOptions[i].SetUpgrade(temp[i]);
+            }
         };
     }
 
