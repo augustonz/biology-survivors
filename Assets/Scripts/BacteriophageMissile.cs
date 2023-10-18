@@ -58,7 +58,7 @@ public class BacteriophageMissile : MonoBehaviour
 
     public void Move() {
         if (target!=null) 
-            moveDirection = Vector3.RotateTowards(lastMoveDirection,(target.position - transform.position).normalized, rotationSpeed, 1);
+            moveDirection = Vector3.RotateTowards(lastMoveDirection,(target.position - transform.position).normalized, rotationSpeed * Time.fixedDeltaTime, 1);
 
         transform.up = moveDirection;
 
