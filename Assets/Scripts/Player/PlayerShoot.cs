@@ -11,6 +11,9 @@ public class PlayerShoot : MonoBehaviour
     bool canShoot = true;
     float currentAmmo;
 
+    bool canMissile = true;
+
+
     bool isReloading = false;
     bool isShootClicked = false;
 
@@ -24,7 +27,7 @@ public class PlayerShoot : MonoBehaviour
     {
         _player = GetComponent<Player>();
         input = InputManager.instance;
-        float maxAmmo = _player.PlayerStatus.GetStat(TypeStats.NUMBER_OF_SHOTS);
+        float maxAmmo = _player.PlayerStatus.GetStat(TypeStats.MAX_AMMO);
         currentAmmo = maxAmmo;
         UIManager.instance.setAmmoText(maxAmmo, currentAmmo, false);
     }
@@ -37,6 +40,7 @@ public class PlayerShoot : MonoBehaviour
     }
 
     void canShootAgain() { canShoot = true; }
+    void canMissileAgain() { canMissile = true; }
 
     bool hasNoAmmo() { return currentAmmo <= 0; }
 
@@ -57,6 +61,10 @@ public class PlayerShoot : MonoBehaviour
         if (input.clickAction.IsPressed() && !hasNoAmmo() && !isReloading && canShoot)
         {
             shootBullet();
+            if (canMissile)
+            {
+                ShootMissile();
+            }
         }
     }
 
@@ -71,7 +79,7 @@ public class PlayerShoot : MonoBehaviour
         Invoke("canShootAgain", shootDelay);
         currentAmmo -= 1;
 
-        float maxAmmo = _player.PlayerStatus.GetStat(TypeStats.NUMBER_OF_SHOTS);
+        float maxAmmo = _player.PlayerStatus.GetStat(TypeStats.MAX_AMMO);
         UIManager.instance.setAmmoText(maxAmmo, currentAmmo, false);
 
         Vector3 gunPosition = _instantiateBulletPosition.position;
@@ -88,6 +96,25 @@ public class PlayerShoot : MonoBehaviour
         {
             Bullet.Create(gunPosition, bulletDirection, bulletAirTime, bulletSpeed, bulletDamage, bulletPenetration);
         }
+
+
+    }
+
+    void ShootMissile()
+    {
+        Vector3 gunPosition = _instantiateBulletPosition.position;
+
+        float missileDamage = (float)(_player.PlayerStatus.GetStat(TypeStats.POWER) * 0.85);
+
+
+        if (_player.PlayerStatus.GetStat(TypeStats.MISSILE_UNLOCKED) > 0)
+        {
+            canMissile = false;
+            float missileDelay = 1 / _player.PlayerStatus.GetStat(TypeStats.MISSILE_COOLDOWN);
+            Invoke("canMissileAgain", missileDelay);
+            BacteriophageMissile.Create(gunPosition, WaveManager.instance.GetEnemy(), missileDamage);
+        }
+
     }
 
     public void StartReload()
@@ -107,7 +134,7 @@ public class PlayerShoot : MonoBehaviour
         isReloading = false;
         _onEndReload.Invoke();
 
-        float maxAmmo = _player.PlayerStatus.GetStat(TypeStats.NUMBER_OF_SHOTS);
+        float maxAmmo = _player.PlayerStatus.GetStat(TypeStats.MAX_AMMO);
         currentAmmo = maxAmmo;
         UIManager.instance.setAmmoText(maxAmmo, currentAmmo, false);
     }

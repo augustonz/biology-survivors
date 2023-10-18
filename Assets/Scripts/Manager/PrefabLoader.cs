@@ -6,6 +6,8 @@ public class PrefabLoader : MonoBehaviour
 {
     public static PrefabLoader instance;
     [SerializeField] GameObject _bullet;
+    [SerializeField] GameObject _friendlyMissile;
+
     [SerializeField] DamageValue _damageValue;
     [SerializeField] GameObject _bulletHit;
 
@@ -19,6 +21,11 @@ public class PrefabLoader : MonoBehaviour
     public GameObject getBullet()
     {
         return _bullet;
+    }
+
+    public GameObject GetFriendlyMissile()
+    {
+        return _friendlyMissile;
     }
 
     public GameObject getBulletHit()

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d8721efee5c7e54abffb7659074d3d2, type: 3}
+  m_Name: Rapid Syntesis
+  m_EditorClassIdentifier: 
+  Id: ee6a4b0d-7234-43eb-940d-3550535f3c77
+  statInfo: []
+  icon: {fileID: 0}
+  tier: 0
+  unlockedBy: {fileID: 0}
+  unlocks: []
+  skillTree:
+    Head: {fileID: 0}
+    Left: []
+    Right: []
+  description: 

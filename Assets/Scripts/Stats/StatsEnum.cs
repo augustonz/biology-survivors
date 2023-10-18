@@ -10,6 +10,7 @@ public enum TypeStats
     POWER,
     FIRE_RATE,
     NUMBER_OF_SHOTS,
+    MAX_AMMO,
     PENETRATION,
     BULLET_SPEED,
     BULLET_RANGE,
@@ -18,7 +19,10 @@ public enum TypeStats
     SPEED,
     BONUS_DNA,
     PASSIVE_DNA,
-    PICK_UP_RANGE
+    PICK_UP_RANGE,
+    MISSILE_UNLOCKED,
+    MISSILE_COOLDOWN,
+
 }
 
 [System.Serializable]

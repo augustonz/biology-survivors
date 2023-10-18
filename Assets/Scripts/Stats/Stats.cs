@@ -16,9 +16,17 @@ public class Stats : ScriptableObject
     [SerializeField] private float fireRate;
     [SerializeField] private int penetration;
     [SerializeField] private int numberOfShots;
+    [SerializeField] private int maxAmmo;
+
     [SerializeField] private float reloadSpeed;
     [SerializeField] private float bulletSpeed;
     [SerializeField] private float bulletRange;
+
+    [Header("Missile Settings")]
+    [SerializeField] private bool missileUnlocked;
+    [SerializeField] private float missileCooldown;
+
+
 
     [Header("Defense Settings")]
     [SerializeField] private float armor;
@@ -65,7 +73,6 @@ public class Stats : ScriptableObject
                         _baseStats[upgrade.GetInfo(i).stat] += upgrade.GetInfo(i).value;
                         break;
                     case TypeModifier.MULT:
-                        Debug.Log(_statMultiplier[upgrade.GetInfo(i).stat]);
                         _statMultiplier[upgrade.GetInfo(i).stat] += upgrade.GetInfo(i).value;
                         break;
                 }
@@ -87,6 +94,7 @@ public class Stats : ScriptableObject
         _baseStats.Add(TypeStats.FIRE_RATE, fireRate);
         _baseStats.Add(TypeStats.ARMOR, armor);
         _baseStats.Add(TypeStats.NUMBER_OF_SHOTS, numberOfShots);
+        _baseStats.Add(TypeStats.MAX_AMMO, maxAmmo);
         _baseStats.Add(TypeStats.PENETRATION, penetration);
         _baseStats.Add(TypeStats.PASSIVE_DNA, passiveExp);
         _baseStats.Add(TypeStats.SPEED, speed);
@@ -95,6 +103,9 @@ public class Stats : ScriptableObject
         _baseStats.Add(TypeStats.RELOAD_SPEED, reloadSpeed);
         _baseStats.Add(TypeStats.BULLET_SPEED, bulletSpeed);
         _baseStats.Add(TypeStats.BULLET_RANGE, bulletRange);
+        _baseStats.Add(TypeStats.MISSILE_UNLOCKED, missileUnlocked ? 1 : 0);
+        _baseStats.Add(TypeStats.MISSILE_COOLDOWN, missileCooldown);
+
 
         _statMultiplier.Add(TypeStats.MAX_HP, 1);
         _statMultiplier.Add(TypeStats.REGEN_HP, 1);
@@ -110,5 +121,10 @@ public class Stats : ScriptableObject
         _statMultiplier.Add(TypeStats.RELOAD_SPEED, 1);
         _statMultiplier.Add(TypeStats.BULLET_SPEED, 1);
         _statMultiplier.Add(TypeStats.BULLET_RANGE, 1);
+        _statMultiplier.Add(TypeStats.MISSILE_UNLOCKED, 1);
+        _statMultiplier.Add(TypeStats.MISSILE_COOLDOWN, 1);
+        _statMultiplier.Add(TypeStats.MAX_AMMO, 1);
+
+
     }
 }

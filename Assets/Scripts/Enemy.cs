@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Enemy : MonoBehaviour,IHittable
+public class Enemy : MonoBehaviour, IHittable
 {
     [SerializeField] AudioSource _deathSource;
     [SerializeField] AudioSource _hitSource;
@@ -33,7 +33,8 @@ public class Enemy : MonoBehaviour,IHittable
     [SerializeField] SpawnList[] _spawnList;
     [SerializeField] int _xp;
 
-    void Awake() {
+    void Awake()
+    {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         originalMaterial = sr.material;
@@ -44,43 +45,51 @@ public class Enemy : MonoBehaviour,IHittable
         hp = maxHp;
 
         target = FindObjectOfType<Player>().transform;
-        if (target==null) target=gameObject.transform;
+        if (target == null) target = gameObject.transform;
     }
 
     void Update()
     {
-        if (collidingWith.Count>0) {
-            if (delayBetweenAttacksTimer<=0){
+        if (collidingWith.Count > 0)
+        {
+            if (delayBetweenAttacksTimer <= 0)
+            {
                 Attack();
             }
-            delayBetweenAttacksTimer-=Time.deltaTime;
+            delayBetweenAttacksTimer -= Time.deltaTime;
         }
     }
 
-    void Attack() {
+    void Attack()
+    {
         collidingWith.ForEach(collider => collider.OnHit(damage));
-        delayBetweenAttacksTimer=delayBetweenAttacks;
+        delayBetweenAttacksTimer = delayBetweenAttacks;
     }
 
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
         Move();
     }
 
-    public void Move() {
-        if (target==null) target = transform;
+    public void Move()
+    {
+        if (target == null) target = transform;
         moveDirection = (target.position - transform.position).normalized;
         rb.MovePosition(transform.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
     }
 
-    public void TakeDamage(float damageAmount) {
+    public void TakeDamage(float damageAmount)
+    {
         _hitSource.Play();
-        hp-=damageAmount;
-        if (hp<=0) {
+        hp -= damageAmount;
+        if (hp <= 0)
+        {
             Die();
         }
     }
 
-    void Die() {
+    void Die()
+    {
         foreach (SpawnList x in _spawnList)
             if (UnityEngine.Random.Range(0, 100) <= x.Chance)
                 Instantiate(x.toSpawn, transform.position, transform.rotation);
@@ -90,10 +99,12 @@ public class Enemy : MonoBehaviour,IHittable
         Destroy(_deathSource.gameObject, 3);
         ExpManager.instance.SpawnExp(transform.position, _xp);
         WaveManager.instance.OnEnemyKilled.Invoke();
+        WaveManager.instance.OnEnemyDeath(this);
         Destroy(gameObject);
     }
 
-    public void onHit(Bullet bullet) {
+    public void onHit(Bullet bullet)
+    {
         TakeDamage(bullet.getDamage());
         flashAnimation();
     }
@@ -103,28 +114,32 @@ public class Enemy : MonoBehaviour,IHittable
         flashAnimation();
     }
 
-    public void OnTriggerEnter2D(Collider2D collider) {
+    public void OnTriggerEnter2D(Collider2D collider)
+    {
         if (collider.isTrigger) return;
         EnemyDamagable go = collider.gameObject.GetComponent<EnemyDamagable>();
         if (go == null) return;
         collidingWith.Add(go);
-        if (delayBetweenAttacksTimer<=0) delayBetweenAttacksTimer=delayBetweenAttacks * 0.2f;
+        if (delayBetweenAttacksTimer <= 0) delayBetweenAttacksTimer = delayBetweenAttacks * 0.2f;
     }
 
-    public void OnTriggerExit2D(Collider2D collider) {
+    public void OnTriggerExit2D(Collider2D collider)
+    {
         if (collider.isTrigger) return;
         EnemyDamagable go = collider.gameObject.GetComponent<EnemyDamagable>();
         if (go == null) return;
         collidingWith.Remove(go);
-        if (collidingWith.Count==0) delayBetweenAttacksTimer = delayBetweenAttacks * 0.2f;
+        if (collidingWith.Count == 0) delayBetweenAttacksTimer = delayBetweenAttacks * 0.2f;
     }
 
-    public void flashAnimation() {
+    public void flashAnimation()
+    {
         sr.material = flashMaterial;
-        Invoke("resetSpriteMaterial",flashDuration);
+        Invoke("resetSpriteMaterial", flashDuration);
     }
 
-    public void resetSpriteMaterial() {
+    public void resetSpriteMaterial()
+    {
         sr.material = originalMaterial;
     }
 }
