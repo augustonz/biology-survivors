@@ -16,6 +16,8 @@ public class UpgradeOption : MonoBehaviour
     private int _id;
     private bool isSelected = false;
 
+    private Sprite defaultIcon;
+
 
     public void SetUpgrade(Upgrade upgrade)
     {
@@ -24,6 +26,11 @@ public class UpgradeOption : MonoBehaviour
         {
             upgradeIcon.sprite = _upgrade.icon;
         }
+    }
+
+    public void Reset()
+    {
+        _upgrade = null;
     }
 
     public void OnFocus()

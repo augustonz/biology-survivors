@@ -65,12 +65,16 @@ public class Stats : ScriptableObject
                         _baseStats[upgrade.GetInfo(i).stat] += upgrade.GetInfo(i).value;
                         break;
                     case TypeModifier.MULT:
+                        Debug.Log(_statMultiplier[upgrade.GetInfo(i).stat]);
                         _statMultiplier[upgrade.GetInfo(i).stat] += upgrade.GetInfo(i).value;
                         break;
                 }
+            }
+            else
+            {
+                Debug.LogError($"No stat value found for {upgrade.GetInfo(i).stat} on {this.name}");
                 return;
             }
-            Debug.LogError($"No stat value found for {upgrade.GetInfo(i).stat} on {this.name}");
         }
     }
 

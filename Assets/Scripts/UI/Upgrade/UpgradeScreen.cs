@@ -118,6 +118,14 @@ public class UpgradeScreen : MonoBehaviour
     {
         _anim.SetTrigger("disappear");
         _isVisible = false;
+        for (int i = 0; i < options.Count; i++)
+        {
+            options[i].Reset();
+        }
+        for (int i = 0; i < skillTreeOptions.Count; i++)
+        {
+            skillTreeOptions[i].Reset();
+        }
         GameHandler.instance.ChangeState(GameState.INGAME);
     }
 
@@ -141,10 +149,15 @@ public class UpgradeScreen : MonoBehaviour
     {
         if (id == -1)
         {
+            if (_selectedSkillTree == -1)
+            {
+                return;
+            }
             skillTreeOptions[_selectedSkillTree].OnUnfocus();
             _selectedSkillTree = id;
             return;
         }
+
         if (_selectedSkillTree == id)
         {
             skillTreeOptions[_selectedSkillTree].OnUnfocus();
@@ -152,10 +165,12 @@ public class UpgradeScreen : MonoBehaviour
             _selectedSkillTree = -1;
             return;
         }
+
         if ((_selectedSkillTree != id || id > skillTreeOptions.Count) && _selectedSkillTree != -1)
         {
             skillTreeOptions[_selectedSkillTree].OnUnfocus();
         }
+
         _selectedSkillTree = id;
         skillTreeOptions[_selectedSkillTree].OnFocus();
         SetText(skillTreeOptions[id].GetName(), skillTreeOptions[id].GetDescription());

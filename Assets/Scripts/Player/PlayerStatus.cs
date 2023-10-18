@@ -100,7 +100,6 @@ public class PlayerStatus : MonoBehaviour
 
     public void AddUpgrade(Upgrade upgrade)
     {
-
         playerStats.AddStat(upgrade);
         for (int i = 0; i < upgrade.statInfo.Count(); i++)
         {
