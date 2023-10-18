@@ -8,7 +8,8 @@ public class BacteriophageMissile : MonoBehaviour
 {
 
     [Serializable] struct SpawnList { public float Chance; public GameObject toSpawn; }
-
+    [SerializeField] AudioSource _deathSource;
+    [SerializeField] ParticleSystem _deathParticles;
 
     private SpriteRenderer sr;
     [SerializeField] Transform target;
@@ -71,6 +72,11 @@ public class BacteriophageMissile : MonoBehaviour
         foreach (SpawnList x in _spawnList)
             if (UnityEngine.Random.Range(0, 100) <= x.Chance)
                 Instantiate(x.toSpawn, transform.position, transform.rotation);
+
+        _deathSource.Play();
+        _deathParticles.Play();
+        _deathSource.transform.SetParent(null);
+        Destroy(_deathSource.gameObject, 3);
 
         Destroy(gameObject);
     }
