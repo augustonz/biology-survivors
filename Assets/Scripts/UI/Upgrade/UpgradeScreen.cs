@@ -126,7 +126,10 @@ public class UpgradeScreen : MonoBehaviour
         if (_selectedUpgrade != id)
         {
             options[_selectedUpgrade].OnUnfocus();
-            skillTreeOptions[_selectedSkillTree].OnUnfocus();
+            if (_selectedSkillTree >= 0)
+            {
+                skillTreeOptions[_selectedSkillTree].OnUnfocus();
+            }
         }
         _selectedUpgrade = id;
         options[id].OnFocus();

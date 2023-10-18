@@ -35,7 +35,7 @@ public class SkillTreeOption : MonoBehaviour
     public void OnFocus()
     {
         upgradeBorder.color = Color.cyan;
-        ButtonsAudioManager.instance.CallAudio(0);
+        // ButtonsAudioManager.instance.CallAudio(0);
         isSelected = true;
     }
 
