@@ -138,6 +138,11 @@ MonoBehaviour:
   maxHp: 20
   damage: 2
   goTarget: 0
+  _spriteUp: {fileID: -1658021216, guid: 87afc5b3ad33d9647ac4b93fd3e3d690, type: 3}
+  _spriteUpLeft: {fileID: 1986756614, guid: 87afc5b3ad33d9647ac4b93fd3e3d690, type: 3}
+  _spriteLeft: {fileID: -43441103, guid: 87afc5b3ad33d9647ac4b93fd3e3d690, type: 3}
+  _spriteDownLeft: {fileID: 1240890689, guid: 87afc5b3ad33d9647ac4b93fd3e3d690, type: 3}
+  _spriteDown: {fileID: 1565920665, guid: 87afc5b3ad33d9647ac4b93fd3e3d690, type: 3}
   _spawnList: []
   _xp: 10
 --- !u!114 &8344534790125570324
