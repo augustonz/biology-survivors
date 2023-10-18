@@ -97,6 +97,11 @@ public class Enemy : MonoBehaviour,IHittable
         TakeDamage(bullet.getDamage());
         flashAnimation();
     }
+    public void onHit(float damage)
+    {
+        TakeDamage(damage);
+        flashAnimation();
+    }
 
     public void OnTriggerEnter2D(Collider2D collider) {
         if (collider.isTrigger) return;
@@ -122,8 +127,4 @@ public class Enemy : MonoBehaviour,IHittable
     public void resetSpriteMaterial() {
         sr.material = originalMaterial;
     }
-}
-
-public enum EnemyAI {
-    PLAYER
 }
