@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -54,20 +55,23 @@ public class Stats : ScriptableObject
 
     public void AddStat(Upgrade upgrade)
     {
-        if (_baseStats.TryGetValue(upgrade.stat, out float value) && _statMultiplier.TryGetValue(upgrade.stat, out float mult))
+        for (int i = 0; i < upgrade.statInfo.Count(); i++)
         {
-            switch (upgrade.mod)
+            if (_baseStats.TryGetValue(upgrade.GetInfo(i).stat, out float value) && _statMultiplier.TryGetValue(upgrade.GetInfo(i).stat, out float mult))
             {
-                case TypeModifier.ADD:
-                    _baseStats[upgrade.stat] += upgrade.value;
-                    break;
-                case TypeModifier.MULT:
-                    _statMultiplier[upgrade.stat] += upgrade.value;
-                    break;
+                switch (upgrade.GetInfo(i).mod)
+                {
+                    case TypeModifier.ADD:
+                        _baseStats[upgrade.GetInfo(i).stat] += upgrade.GetInfo(i).value;
+                        break;
+                    case TypeModifier.MULT:
+                        _statMultiplier[upgrade.GetInfo(i).stat] += upgrade.GetInfo(i).value;
+                        break;
+                }
+                return;
             }
-            return;
+            Debug.LogError($"No stat value found for {upgrade.GetInfo(i).stat} on {this.name}");
         }
-        Debug.LogError($"No stat value found for {upgrade.stat} on {this.name}");
     }
 
     private void InitDicts()

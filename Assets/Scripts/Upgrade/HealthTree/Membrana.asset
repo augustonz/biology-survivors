@@ -10,13 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d8721efee5c7e54abffb7659074d3d2, type: 3}
-  m_Name: Lisossomo
+  m_Name: Membrana
   m_EditorClassIdentifier: 
-  Id: 06692b48-9e71-4df3-a6d2-56d89f3e4327
-  stat: 3
-  mod: 1
-  value: 0.2
-  icon: {fileID: 0}
+  Id: 1964ec1a-4fcc-4419-8254-94577304146e
+  stat: 0
+  mod: 0
+  value: 10
+  icon: {fileID: -1084740509, guid: 191a56b5acb7d764e81d678f19994880, type: 3}
   tier: 0
-  isUnlocked: 0
-  description: +20% de firespeed
+  unlockedBy: {fileID: 0}
+  unlocks: []
+  skillTree:
+    Head: {fileID: 11400000}
+    Right: []
+    Left: []
+  description: 

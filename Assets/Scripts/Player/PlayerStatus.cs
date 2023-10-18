@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -101,9 +102,12 @@ public class PlayerStatus : MonoBehaviour
     {
 
         playerStats.AddStat(upgrade);
-        if (events.TryGetValue(upgrade.stat, out OnChangeStatEvent ev))
+        for (int i = 0; i < upgrade.statInfo.Count(); i++)
         {
-            ev?.Invoke(playerStats.GetStat(upgrade.stat));
+            if (events.TryGetValue(upgrade.GetInfo(i).stat, out OnChangeStatEvent ev))
+            {
+                ev?.Invoke(playerStats.GetStat(upgrade.GetInfo(i).stat));
+            }
         }
     }
 
