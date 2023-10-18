@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Lisossomo
   m_EditorClassIdentifier: 
   Id: 06692b48-9e71-4df3-a6d2-56d89f3e4327
-  stat: 3
-  mod: 1
-  value: 0.2
-  icon: {fileID: 0}
+  statInfo: []
+  icon: {fileID: 1521250949, guid: 191a56b5acb7d764e81d678f19994880, type: 3}
   tier: 0
-  isUnlocked: 0
+  unlockedBy: {fileID: 0}
+  unlocks: []
+  skillTree:
+    Head: {fileID: 11400000}
+    Right: []
+    Left: []
   description: +20% de firespeed

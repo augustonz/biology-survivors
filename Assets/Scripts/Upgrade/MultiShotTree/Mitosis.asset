@@ -13,19 +13,13 @@ MonoBehaviour:
   m_Name: Mitosis
   m_EditorClassIdentifier: 
   Id: 1ed947cb-66f2-4509-93f2-31d7eb70e5d0
-  stat: 4
-  mod: 0
-  value: 1
+  statInfo: []
   icon: {fileID: 1719171309, guid: 191a56b5acb7d764e81d678f19994880, type: 3}
   tier: 0
   unlockedBy: {fileID: 0}
   unlocks: []
   skillTree:
     Head: {fileID: 11400000}
-    Right:
-    - {fileID: 0}
-    - {fileID: 0}
-    Left:
-    - {fileID: 0}
-    - {fileID: 0}
+    Right: []
+    Left: []
   description: "Dispara 2 proj\xE9teis em vez de 1."

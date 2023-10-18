@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Efficiency
   m_EditorClassIdentifier: 
   Id: 8d2dff76-560d-421a-aa54-bda938dedabe
-  stat: 2
-  mod: 1
-  value: 0.1
+  statInfo: []
   icon: {fileID: 1521250949, guid: 191a56b5acb7d764e81d678f19994880, type: 3}
   tier: 0
   unlockedBy: {fileID: 0}
