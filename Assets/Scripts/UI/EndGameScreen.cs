@@ -16,7 +16,6 @@ public class EndGameScreen : MonoBehaviour
     [SerializeField] int _delay;
     void Start() {
         _anim = GetComponent<Animator>();
-        _playerStatus = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatus>();
     }
 
     void Update() {
@@ -31,6 +30,7 @@ public class EndGameScreen : MonoBehaviour
     void CalculateScore() {
         float time = MatchTimer.instance.GetCurrentTIme;
         int enemiesKilled = WaveManager.instance.EnemiesKilledCount;
+        _playerStatus = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatus>();
         int level = _playerStatus.currLevel;
         int finalScore = (int) (level * 1000 + enemiesKilled * 100 + time * 100);
 
