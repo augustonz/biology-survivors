@@ -346,6 +346,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -488794861542590470, guid: 29e5146659bb7bb45a91696582d43d1e, type: 2}
     - target: {fileID: 2353900591158291543, guid: fbafbd5db12951d4a9852c3e94372717, type: 3}
+      propertyPath: OnChangeCurrHealth.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353900591158291543, guid: fbafbd5db12951d4a9852c3e94372717, type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 334530310}
@@ -370,9 +374,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 334530314}
     - target: {fileID: 2353900591158291543, guid: fbafbd5db12951d4a9852c3e94372717, type: 3}
+      propertyPath: OnChangeCurrHealth.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353900591158291543, guid: fbafbd5db12951d4a9852c3e94372717, type: 3}
       propertyPath: OnChangeCurrLevel.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 1623229824279726202}
+    - target: {fileID: 2353900591158291543, guid: fbafbd5db12951d4a9852c3e94372717, type: 3}
+      propertyPath: OnChangeCurrHealth.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 519420028}
+    - target: {fileID: 2353900591158291543, guid: fbafbd5db12951d4a9852c3e94372717, type: 3}
+      propertyPath: OnChangeCurrHealth.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353900591158291543, guid: fbafbd5db12951d4a9852c3e94372717, type: 3}
+      propertyPath: OnChangeCurrHealth.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Hurt
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353900591158291543, guid: fbafbd5db12951d4a9852c3e94372717, type: 3}
+      propertyPath: OnChangeCurrHealth.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: CharacterAudioManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353900591158291543, guid: fbafbd5db12951d4a9852c3e94372717, type: 3}
+      propertyPath: OnChangeCurrHealth.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7028327626098156243, guid: fbafbd5db12951d4a9852c3e94372717, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -512,6 +540,7 @@ GameObject:
   - component: {fileID: 334530313}
   - component: {fileID: 334530314}
   - component: {fileID: 334530315}
+  - component: {fileID: 334530316}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -623,6 +652,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bullet: {fileID: 4913640287785365117, guid: 59ccb2f133012ed4aa92890caeaa3486, type: 3}
+  _friendlyMissile: {fileID: 7120167178905515040, guid: be9c4e1306b4e2e4ea6765db87ba8cf0, type: 3}
   _damageValue: {fileID: 2894172310451913941, guid: 1744b2b696987ff47bad661f19a744c3, type: 3}
   _bulletHit: {fileID: 3402707330589286857, guid: ae022d81945eb16498edbed0fe4af11a, type: 3}
   _upgradeOption: {fileID: 5749645132154050736, guid: 62f503c4b359ed7428607563b0f521cf, type: 3}
@@ -786,6 +816,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnRange: 5
   _enemiesParent: {fileID: 745143462}
+  enemies: []
   _spawnCooldown: 1
   enemy1: {fileID: 3798988839708952623, guid: 4040660534686414986da3c12446e026, type: 3}
   enemy2: {fileID: 3798988839708952623, guid: 3ec19cf7b3f64aa43b8d4ff8546de2d0, type: 3}
@@ -1054,6 +1085,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &334530316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334530303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69afe4888c386d84c8b28d14abbe7f55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &368280177
 GameObject:
   m_ObjectHideFlags: 0
@@ -1145,6 +1188,7 @@ GameObject:
   - component: {fileID: 390105901}
   - component: {fileID: 390105902}
   - component: {fileID: 390105903}
+  - component: {fileID: 390105904}
   m_Layer: 0
   m_Name: VCam1
   m_TagString: Untagged
@@ -1161,7 +1205,7 @@ Transform:
   m_GameObject: {fileID: 390105899}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.00000013411045, y: -0.000000074505806, z: -10}
+  m_LocalPosition: {x: 0.00000014901161, y: -0.000000074505806, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1217,6 +1261,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a8a05de0ac134f4f9d01bef6b9da077, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &390105904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390105899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69afe4888c386d84c8b28d14abbe7f55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &435402013
@@ -1702,7 +1758,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.00000013411045, y: -0.000000074505806, z: -10}
+  m_LocalPosition: {x: 0.00000014901161, y: -0.000000074505806, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -2776,6 +2832,7 @@ GameObject:
   - component: {fileID: 962613526}
   - component: {fileID: 962613527}
   - component: {fileID: 962613528}
+  - component: {fileID: 962613529}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -2853,6 +2910,23 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
+--- !u!114 &962613529
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962613525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 3
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1069924395
 GameObject:
   m_ObjectHideFlags: 0

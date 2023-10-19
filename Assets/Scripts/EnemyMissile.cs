@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyMissile : MonoBehaviour,IHittable
+public class EnemyMissile : MonoBehaviour, IHittable
 {
     [SerializeField] AudioSource _deathSource;
     [SerializeField] AudioSource _hitSource;
@@ -39,7 +39,8 @@ public class EnemyMissile : MonoBehaviour,IHittable
     [SerializeField] SpawnList[] _spawnList;
     [SerializeField] int _xp;
 
-    void Awake() {
+    void Awake()
+    {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         originalMaterial = sr.material;
@@ -50,28 +51,32 @@ public class EnemyMissile : MonoBehaviour,IHittable
         hp = maxHp;
 
         target = FindObjectOfType<Player>().transform;
-        if (target==null) target=gameObject.transform;
+        if (target == null) target = gameObject.transform;
 
         lastMoveDirection = Quaternion.AngleAxis(90, Vector3.forward) * (target.position - transform.position).normalized;
     }
 
     void Update()
     {
-        if (collidingWith.Count>0) {
+        if (collidingWith.Count > 0)
+        {
             Attack();
-        } 
+        }
     }
 
-    void Attack() {
+    void Attack()
+    {
         collidingWith.ForEach(collider => collider.OnHit(damage));
         Die();
     }
 
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
         Move();
     }
 
-    public void Move() {
+    public void Move()
+    {
         if (target != null)
             moveDirection = Vector3.RotateTowards(lastMoveDirection, (target.position - transform.position).normalized, rotationSpeed * Time.fixedDeltaTime, 1);
 
@@ -85,17 +90,18 @@ public class EnemyMissile : MonoBehaviour,IHittable
         rb.MovePosition(transform.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
     }
 
-    public void TakeDamage(float damageAmount) {
+    public void TakeDamage(float damageAmount)
+    {
         _hitSource.Play();
-        hp-=damageAmount;
-        if (hp<=0) {
+        hp -= damageAmount;
+        if (hp <= 0)
+        {
             Die();
         }
     }
 
     void ChangeSprite(float angle, bool right)
     {
-        Debug.Log(angle);
 
         if (angle < 25) //up
             sr.sprite = _spriteUp;
@@ -111,7 +117,8 @@ public class EnemyMissile : MonoBehaviour,IHittable
         sr.flipX = right;
     }
 
-    void Die() {
+    void Die()
+    {
         foreach (SpawnList x in _spawnList)
             if (UnityEngine.Random.Range(0, 100) <= x.Chance)
                 Instantiate(x.toSpawn, transform.position, transform.rotation);
@@ -124,7 +131,8 @@ public class EnemyMissile : MonoBehaviour,IHittable
         Destroy(gameObject);
     }
 
-    public void onHit(Bullet bullet) {
+    public void onHit(Bullet bullet)
+    {
         TakeDamage(bullet.getDamage());
         flashAnimation();
     }
@@ -134,26 +142,30 @@ public class EnemyMissile : MonoBehaviour,IHittable
         flashAnimation();
     }
 
-    public void OnTriggerEnter2D(Collider2D collider) {
+    public void OnTriggerEnter2D(Collider2D collider)
+    {
         if (collider.isTrigger) return;
         EnemyDamagable go = collider.gameObject.GetComponent<EnemyDamagable>();
         if (go == null) return;
         collidingWith.Add(go);
     }
 
-    public void OnTriggerExit2D(Collider2D collider) {
+    public void OnTriggerExit2D(Collider2D collider)
+    {
         if (collider.isTrigger) return;
         EnemyDamagable go = collider.gameObject.GetComponent<EnemyDamagable>();
         if (go == null) return;
         collidingWith.Remove(go);
     }
 
-    public void flashAnimation() {
+    public void flashAnimation()
+    {
         sr.material = flashMaterial;
-        Invoke("resetSpriteMaterial",flashDuration);
+        Invoke("resetSpriteMaterial", flashDuration);
     }
 
-    public void resetSpriteMaterial() {
+    public void resetSpriteMaterial()
+    {
         sr.material = originalMaterial;
     }
 }

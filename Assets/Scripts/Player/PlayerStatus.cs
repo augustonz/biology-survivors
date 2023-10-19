@@ -85,6 +85,7 @@ public class PlayerStatus : MonoBehaviour
         }
         currHP -= damage;
         OnChangeCurrHealth?.Invoke();
+        CameraShake.ShakeOnce(0.25f, 0.4f);
     }
 
     public void Heal(float healing)

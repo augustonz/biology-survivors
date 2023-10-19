@@ -13,15 +13,16 @@ MonoBehaviour:
   m_Name: Membrana
   m_EditorClassIdentifier: 
   Id: 1964ec1a-4fcc-4419-8254-94577304146e
-  stat: 0
-  mod: 0
-  value: 10
+  statInfo:
+  - stat: 0
+    mod: 0
+    value: 10
   icon: {fileID: -1084740509, guid: 191a56b5acb7d764e81d678f19994880, type: 3}
   tier: 0
   unlockedBy: {fileID: 0}
   unlocks: []
   skillTree:
     Head: {fileID: 11400000}
-    Right: []
     Left: []
+    Right: []
   description: 
