@@ -127,7 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _deathSource: {fileID: 6341767752359901823}
   _hitSource: {fileID: 5295892660855222274}
-  flashMaterial: {fileID: 2100000, guid: b0e8ea4896387d14fa6562e9fe90800b, type: 2}
+  flashMaterial: {fileID: 2100000, guid: 88c7a5e1a60aae24ab7c8893010fb7b2, type: 2}
   flashDuration: 0.1
   moveSpeed: 2
   rotationSpeed: 1.5

@@ -1,4 +1,4 @@
-using System;
+using System.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,11 +18,15 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField] public float currExp;
     [SerializeField] public float expCap;
 
-    private bool isDead;
+    [Header("Invincibility")]
+    [SerializeField] bool  _isInvincible;
+    [SerializeField] int  _invincibilityTimeMillis;
+    public int  InvincibilityTimeMillis { get => _invincibilityTimeMillis; }
 
     public UnityEvent OnChangeCurrExp, OnChangeCurrLevel;
-
-    public UnityEvent OnChangeCurrHealth;
+    
+    public UnityEvent OnHeal;
+    public UnityEvent OnGetDamaged;
     public UnityEvent OnDeath;
 
 
@@ -75,16 +79,25 @@ public class PlayerStatus : MonoBehaviour
 
     public void GetHit(int damage)
     {
+        if (_isInvincible) return;
+
+        _isInvincible = true;
+
+        StopInvincibility();
+        
         if (currHP - damage <= 0)
         {
             currHP = 0;
-            isDead = true;
-            OnChangeCurrHealth?.Invoke();
             OnDeath?.Invoke();
             return;
         }
         currHP -= damage;
-        OnChangeCurrHealth?.Invoke();
+        OnGetDamaged?.Invoke();
+    }
+
+    async void StopInvincibility() {
+        await Task.Delay(_invincibilityTimeMillis);
+        _isInvincible=false;
     }
 
     public void Heal(float healing)
@@ -95,7 +108,7 @@ public class PlayerStatus : MonoBehaviour
             return;
         }
         currHP += healing;
-        OnChangeCurrHealth?.Invoke();
+        OnHeal?.Invoke();
     }
 
     public void AddUpgrade(Upgrade upgrade)

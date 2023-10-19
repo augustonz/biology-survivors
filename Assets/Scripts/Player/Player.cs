@@ -14,9 +14,8 @@ public class Player : EnemyDamagable
     PlayerStatus _playerStatus;
     public PlayerStatus PlayerStatus { get => _playerStatus; }
 
-    public override void Awake()
+    public void Awake()
     {
-        base.Awake();
         instance = this;
         _playerAnimation = GetComponent<PlayerAnimation>();
         _playerMovement = GetComponent<PlayerMovement>();
@@ -51,8 +50,8 @@ public class Player : EnemyDamagable
     public void GetExp(int expValue)
     {
         _characterAudioManager.GatheredXP();
-        _playerStatus.AddExp(expValue);
         OnChangeExp();
+        _playerStatus.AddExp(expValue);
     }
 
     public void OnChangeExp()
@@ -69,7 +68,6 @@ public class Player : EnemyDamagable
     {
         _playerStatus.GetHit(damage);
         UIManager.instance.SetPlayerHealth((int)_playerStatus.currHP, (int)_playerStatus.GetStat(TypeStats.MAX_HP));
-        flashAnimation();
     }
 
     public void OnChangeMaxHealth()
