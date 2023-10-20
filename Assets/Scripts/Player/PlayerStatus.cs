@@ -1,4 +1,4 @@
-using System;
+using System.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,17 +12,23 @@ public class PlayerStatus : MonoBehaviour
 
     [Header("Health Settings")]
     [SerializeField] public float currHP;
+    private float _missingHP;
+
 
     [Header("Level Settings")]
     [SerializeField] public int currLevel = 1;
     [SerializeField] public float currExp;
     [SerializeField] public float expCap;
 
-    private bool isDead;
+    [Header("Invincibility")]
+    [SerializeField] bool _isInvincible;
+    [SerializeField] int _invincibilityTimeMillis;
+    public int InvincibilityTimeMillis { get => _invincibilityTimeMillis; }
 
     public UnityEvent OnChangeCurrExp, OnChangeCurrLevel;
 
-    public UnityEvent OnChangeCurrHealth;
+    public UnityEvent OnHeal;
+    public UnityEvent OnGetDamaged;
     public UnityEvent OnDeath;
 
 
@@ -43,7 +49,9 @@ public class PlayerStatus : MonoBehaviour
     void Start()
     {
         currHP = (int)playerStats.GetStat(TypeStats.MAX_HP);
-        OnChangeMaxHealth.AddListener((maxHp) => Heal(maxHp));
+        OnChangeMaxHealth.AddListener((maxHp) => Heal(maxHp - _missingHP - currHP));
+        OnGetDamaged.AddListener(() => _missingHP = -(currHP - GetStat(TypeStats.MAX_HP)));
+        OnHeal.AddListener(() => _missingHP = -(currHP - GetStat(TypeStats.MAX_HP)));
     }
 
     void Update()
@@ -75,17 +83,27 @@ public class PlayerStatus : MonoBehaviour
 
     public void GetHit(int damage)
     {
+        if (_isInvincible) return;
+
+        _isInvincible = true;
+
+        StopInvincibility();
+
         if (currHP - damage <= 0)
         {
             currHP = 0;
-            isDead = true;
-            OnChangeCurrHealth?.Invoke();
             OnDeath?.Invoke();
             return;
         }
         currHP -= damage;
-        OnChangeCurrHealth?.Invoke();
         CameraShake.ShakeOnce(0.25f, 0.4f);
+        OnGetDamaged?.Invoke();
+    }
+
+    async void StopInvincibility()
+    {
+        await Task.Delay(_invincibilityTimeMillis);
+        _isInvincible = false;
     }
 
     public void Heal(float healing)
@@ -96,7 +114,12 @@ public class PlayerStatus : MonoBehaviour
             return;
         }
         currHP += healing;
-        OnChangeCurrHealth?.Invoke();
+        OnHeal?.Invoke();
+    }
+
+    private void OnMaxHealthChange(int maxHP)
+    {
+
     }
 
     public void AddUpgrade(Upgrade upgrade)

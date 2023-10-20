@@ -17,15 +17,15 @@ MonoBehaviour:
   power: 10
   fireRate: 2
   penetration: 0
-  numberOfShots: 1
+  numberOfShots: 2
   maxAmmo: 6
   reloadSpeed: 1
   bulletSpeed: 5
   bulletRange: 1
-  missileUnlocked: 1
-  missileCooldown: 5
+  missileUnlocked: 0
+  missileCooldown: 0
   armor: 0
   speed: 1.5
   expBonus: 1
-  passiveExp: 15
+  passiveExp: 0
   pickUpRange: 0.4
