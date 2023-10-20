@@ -44,7 +44,7 @@ public class UpgradeScreen : MonoBehaviour
             Instantiate(PrefabLoader.instance.getUpgradeOption(), upgradeOptionsParent).GetComponent<UpgradeOption>(),
             Instantiate(PrefabLoader.instance.getUpgradeOption(), upgradeOptionsParent).GetComponent<UpgradeOption>()
         };
-        GetComponentsInChildren(skillTreeOptions);
+        GetComponentsInChildren(true, skillTreeOptions);
         upgrade.Init();
 
         _anim = GetComponent<Animator>();
