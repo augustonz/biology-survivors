@@ -9,7 +9,7 @@ public class ExpPoint : PickUp
     public int value { set => expValue= value; }
 
     override public void onPick(Player player) {
-        player.GetExp(expValue);
         Destroy(gameObject);
+        player.GetExp(expValue);
     }
 }

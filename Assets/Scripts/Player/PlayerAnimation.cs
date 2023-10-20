@@ -1,17 +1,23 @@
 using UnityEngine;
-using UnityEngine.Animations;
+using System.Threading.Tasks;
 
 public class PlayerAnimation : MonoBehaviour
 {
     [SerializeField] GameObject _pupil;
     [SerializeField] Transform _gunRotationPoint;
     [SerializeField] float _pupilDeadZonePerc;
+    [SerializeField] int _getHitFlashDurationMillis;
+    [SerializeField] Material _getHitMaterial;
+    [SerializeField] Material _invincibleMaterial;
+    [SerializeField] int _invincibilityBlinkInterval;
     Animator _playerAnim;
     Vector3 _pupilOriginalPos;
     SpriteRenderer _playerSprite;
     SpriteRenderer _gunSprite;
     Animator _gunAnim;
     Player _player;
+    Material _defaultMaterial;
+    SpriteRenderer[] _allSprites;
     const float ONE_PIXEL_DISTANCE = 0.01f;
     void Start() {
         _playerAnim = GetComponent<Animator>();
@@ -19,14 +25,50 @@ public class PlayerAnimation : MonoBehaviour
         _player = GetComponent<Player>();
         _playerSprite = GetComponent<SpriteRenderer>();
         _gunSprite = _gunRotationPoint.GetComponentInChildren<SpriteRenderer>();
-
+        _allSprites = GetComponentsInChildren<SpriteRenderer>();
         _pupilOriginalPos = _pupil.transform.localPosition;
+        _defaultMaterial = _playerSprite.material;
     }
 
     void Update() {
         UpdatePlayerBody();
         UpdatePlayerPupil();
         UpdatePlayerGunDirection();
+    }
+
+    public async void FlashRed() {
+        UpdateAllSprites(_getHitMaterial);
+
+        await Task.Delay(_getHitFlashDurationMillis);
+
+        UpdateAllSprites(_defaultMaterial);
+
+        int invincibilityDuration = _player.PlayerStatus.InvincibilityTimeMillis;
+
+        FlashInvincibility(invincibilityDuration-_getHitFlashDurationMillis,_invincibilityBlinkInterval);
+    }
+
+    void UpdateAllSprites(Material mat) {
+        foreach (SpriteRenderer sr in _allSprites)
+        {   
+            sr.material = mat;
+        }
+    }
+
+    async void FlashInvincibility(int invicibilityDuration,int invicibilityBlinkInterval) {
+        bool isInvincible = true;
+
+        Task.Run(async ()=>{
+            await Task.Delay(invicibilityDuration);
+            isInvincible = false;
+        });
+
+        while (isInvincible) {
+            UpdateAllSprites(_invincibleMaterial);
+            await Task.Delay(invicibilityBlinkInterval);
+            UpdateAllSprites(_defaultMaterial);
+            await Task.Delay(invicibilityBlinkInterval);
+        }
     }
 
     public void AnimateGunShooting() {
@@ -48,7 +90,6 @@ public class PlayerAnimation : MonoBehaviour
     void UpdatePlayerGunDirection()
     {
         Vector2 mousePos = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)_gunRotationPoint.position;
-        //Vector2 rotation = mousePos - (Vector2)transform.position; //Needs to be a little more exact
 
         float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
         
