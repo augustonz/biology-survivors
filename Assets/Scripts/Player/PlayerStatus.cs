@@ -96,7 +96,6 @@ public class PlayerStatus : MonoBehaviour
             return;
         }
         currHP -= damage;
-        CameraShake.ShakeOnce(0.25f, 0.4f);
         OnGetDamaged?.Invoke();
     }
 
@@ -115,11 +114,6 @@ public class PlayerStatus : MonoBehaviour
         }
         currHP += healing;
         OnHeal?.Invoke();
-    }
-
-    private void OnMaxHealthChange(int maxHP)
-    {
-
     }
 
     public void AddUpgrade(Upgrade upgrade)
