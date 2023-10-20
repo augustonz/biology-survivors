@@ -20,7 +20,7 @@ MonoBehaviour:
   - stat: 7
     mod: 1
     value: 0.5
-  icon: {fileID: 1521250949, guid: 191a56b5acb7d764e81d678f19994880, type: 3}
+  icon: {fileID: 2105715705, guid: 191a56b5acb7d764e81d678f19994880, type: 3}
   tier: 0
   unlockedBy: {fileID: 11400000, guid: ac47104ae46d1ce4dbd30ce620fb8b22, type: 2}
   unlocks:

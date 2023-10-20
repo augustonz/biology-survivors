@@ -10,21 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d8721efee5c7e54abffb7659074d3d2, type: 3}
-  m_Name: Mitosis
+  m_Name: Meiosis
   m_EditorClassIdentifier: 
   Id: 1ed947cb-66f2-4509-93f2-31d7eb70e5d0
-  statInfo:
-  - stat: 4
-    mod: 0
-    value: 1
-  - stat: 2
-    mod: 1
-    value: -0.2
-  icon: {fileID: 1719171309, guid: 191a56b5acb7d764e81d678f19994880, type: 3}
+  statInfo: []
+  icon: {fileID: -1285175104, guid: 191a56b5acb7d764e81d678f19994880, type: 3}
   tier: 0
-  unlockedBy: {fileID: 0}
+  unlockedBy: {fileID: 11400000, guid: aee64749e9319d34594d8a6dd7b5dbc8, type: 2}
   unlocks:
-  - {fileID: 11400000, guid: c81153e2b23975546b235269af877643, type: 2}
-  - {fileID: 11400000, guid: 4ad74e55d58dc9549bc8f002cd75ea45, type: 2}
+  - {fileID: 11400000, guid: 3fca6f06e7e08a246968d58585a6ebdb, type: 2}
   skillTree: {fileID: 11400000, guid: 711384988a77dbb40a0f05a5df30dcaa, type: 2}
-  description: Your shots divide in half.
+  description: Divide your cell and gain a little company.
