@@ -14,11 +14,12 @@ public class Stats : ScriptableObject
     [Header("Damage Settings")]
     [SerializeField] private float power;
     [SerializeField] private float fireRate;
+    [SerializeField] private float reloadSpeed;
+
+    [SerializeField] private int maxAmmo;
     [SerializeField] private int penetration;
     [SerializeField] private int numberOfShots;
-    [SerializeField] private int maxAmmo;
-
-    [SerializeField] private float reloadSpeed;
+    [SerializeField] private float bulletSize;
     [SerializeField] private float bulletSpeed;
     [SerializeField] private float bulletRange;
 
@@ -95,6 +96,7 @@ public class Stats : ScriptableObject
         _baseStats.Add(TypeStats.ARMOR, armor);
         _baseStats.Add(TypeStats.NUMBER_OF_SHOTS, numberOfShots);
         _baseStats.Add(TypeStats.MAX_AMMO, maxAmmo);
+        _baseStats.Add(TypeStats.BULLET_SIZE, bulletSize);
         _baseStats.Add(TypeStats.PENETRATION, penetration);
         _baseStats.Add(TypeStats.PASSIVE_DNA, passiveExp);
         _baseStats.Add(TypeStats.SPEED, speed);
@@ -119,6 +121,7 @@ public class Stats : ScriptableObject
         _statMultiplier.Add(TypeStats.BONUS_DNA, 1);
         _statMultiplier.Add(TypeStats.PICK_UP_RANGE, 1);
         _statMultiplier.Add(TypeStats.RELOAD_SPEED, 1);
+        _statMultiplier.Add(TypeStats.BULLET_SIZE, 1);
         _statMultiplier.Add(TypeStats.BULLET_SPEED, 1);
         _statMultiplier.Add(TypeStats.BULLET_RANGE, 1);
         _statMultiplier.Add(TypeStats.MISSILE_UNLOCKED, 1);

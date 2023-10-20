@@ -3,7 +3,10 @@ guid: 7d8721efee5c7e54abffb7659074d3d2
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - icon: {fileID: 1521250949, guid: 191a56b5acb7d764e81d678f19994880, type: 3}
+  - unlockedBy: {instanceID: 0}
+  - skillTree: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

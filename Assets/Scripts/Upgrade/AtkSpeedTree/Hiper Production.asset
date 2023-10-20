@@ -10,18 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d8721efee5c7e54abffb7659074d3d2, type: 3}
-  m_Name: Lisossomo
+  m_Name: Hiper Production
   m_EditorClassIdentifier: 
-  Id: 06692b48-9e71-4df3-a6d2-56d89f3e4327
+  Id: 26e4ba0a-0a66-41b3-8213-85eb62874e78
   statInfo:
   - stat: 3
     mod: 1
-    value: 0.2
-  icon: {fileID: 1521250949, guid: 191a56b5acb7d764e81d678f19994880, type: 3}
+    value: 0.25
+  icon: {fileID: -1657101490, guid: 191a56b5acb7d764e81d678f19994880, type: 3}
   tier: 0
-  unlockedBy: {fileID: 0}
+  unlockedBy: {fileID: 11400000, guid: 4e4eda766f2a04d429fc3ea86bc087c2, type: 2}
   unlocks:
-  - {fileID: 11400000, guid: c073d5494d90fd146bb03f61fcac0acb, type: 2}
-  - {fileID: 11400000, guid: 680d7bbd9c6f4bc4eb075066e5406537, type: 2}
+  - {fileID: 11400000, guid: 2e8534d88040b3546abb816debd47def, type: 2}
   skillTree: {fileID: 11400000, guid: fd518849c6ab7d944a020f97fb7a0b2d, type: 2}
-  description: +20% de firespeed
+  description: Greater Rate of Fire

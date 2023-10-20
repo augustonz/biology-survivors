@@ -89,12 +89,14 @@ public class PlayerShoot : MonoBehaviour
         float bulletAirTime = _player.PlayerStatus.GetStat(TypeStats.BULLET_RANGE);
         float bulletSpeed = _player.PlayerStatus.GetStat(TypeStats.BULLET_SPEED);
         float bulletDamage = _player.PlayerStatus.GetStat(TypeStats.POWER);
+        float bulletSize = _player.PlayerStatus.GetStat(TypeStats.BULLET_SIZE);
+
         int bulletPenetration = (int)_player.PlayerStatus.GetStat(TypeStats.PENETRATION);
         int numberOfShots = (int)_player.PlayerStatus.GetStat(TypeStats.NUMBER_OF_SHOTS);
 
         for (int i = 0; i < numberOfShots; i++)
         {
-            Bullet.Create(gunPosition, bulletDirection, bulletAirTime, bulletSpeed, bulletDamage, bulletPenetration);
+            Bullet.Create(gunPosition, bulletDirection, bulletSize, bulletAirTime, bulletSpeed, bulletDamage, bulletPenetration);
         }
 
 

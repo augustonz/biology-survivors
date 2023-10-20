@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
     private float airTime;
     private int bulletPenetration;
     private float damage;
+    private float size;
     private Vector3 targetDir;
 
     private Rigidbody2D rb;
@@ -16,12 +17,14 @@ public class Bullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    public static void Create(Vector3 origin, Vector3 direction, float airTime = 1, float speed = 1, float damage = 10, int penetration = 0)
+    public static void Create(Vector3 origin, Vector3 direction, float size = 1, float airTime = 1, float speed = 1, float damage = 10, int penetration = 0)
     {
         GameObject prefab = PrefabLoader.instance.getBullet();
         GameObject bulletObject = Instantiate(prefab, origin, new Quaternion());
         Bullet bulletScript = bulletObject.GetComponent<Bullet>();
+        bulletObject.transform.localScale *= size;
 
+        bulletScript.size = size;
         bulletScript.damage = damage;
         bulletScript.airTime = airTime;
         bulletScript.targetDir = direction * speed;

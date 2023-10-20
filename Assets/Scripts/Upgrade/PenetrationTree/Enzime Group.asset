@@ -10,21 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d8721efee5c7e54abffb7659074d3d2, type: 3}
-  m_Name: Big Enzime
+  m_Name: Enzime Group
   m_EditorClassIdentifier: 
-  Id: 981a4a00-4c0c-4d61-b0be-3b7d615c2452
-  statInfo:
-  - stat: 6
-    mod: 0
-    value: 1
-  - stat: 7
-    mod: 1
-    value: 0.25
-  icon: {fileID: -1075909271, guid: 191a56b5acb7d764e81d678f19994880, type: 3}
+  Id: be0a5067-20f0-425a-83ee-6690468431f8
+  statInfo: []
+  icon: {fileID: 0}
   tier: 0
-  unlockedBy: {fileID: 0}
+  unlockedBy: {fileID: 11400000, guid: ac47104ae46d1ce4dbd30ce620fb8b22, type: 2}
   unlocks:
-  - {fileID: 11400000, guid: 9c66d75d1d7682b4ca421229926e1600, type: 2}
-  - {fileID: 11400000, guid: 06d9112f90e4b9a4f8958a6de014ac27, type: 2}
+  - {fileID: 11400000, guid: a8c85531ebd012a4bbc646fdcf18f2fc, type: 2}
   skillTree: {fileID: 11400000, guid: 9df8ff2dd2899034e895ed87c5e9ef74, type: 2}
-  description: Slight bigger bullet and your shots pass through +1 enemies.
+  description: 

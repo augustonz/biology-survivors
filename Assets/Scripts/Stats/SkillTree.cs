@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class SkillTree
+[CreateAssetMenu(fileName = "SkillTree", menuName = "ScriptableObjects/SkillTree")]
+public class SkillTree : ScriptableObject
 {
     public Upgrade Head;
     public List<Upgrade> Left = new();

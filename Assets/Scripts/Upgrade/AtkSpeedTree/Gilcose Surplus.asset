@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d8721efee5c7e54abffb7659074d3d2, type: 3}
-  m_Name: Rapid Syntesis
+  m_Name: Gilcose Surplus
   m_EditorClassIdentifier: 
-  Id: ee6a4b0d-7234-43eb-940d-3550535f3c77
+  Id: f511f1cb-8e72-4afb-ad82-e89c6beaa3c2
   statInfo:
-  - stat: 8
+  - stat: 3
     mod: 1
-    value: 0.25
-  icon: {fileID: 1521250949, guid: 191a56b5acb7d764e81d678f19994880, type: 3}
-  tier: 0
-  unlockedBy: {fileID: 0}
+    value: 0.3
+  icon: {fileID: -99566558, guid: 191a56b5acb7d764e81d678f19994880, type: 3}
+  tier: 2
+  unlockedBy: {fileID: 11400000, guid: c073d5494d90fd146bb03f61fcac0acb, type: 2}
   unlocks: []
-  skillTree: {fileID: 11400000, guid: e2f91e94f947aec41bb4d99bed7180fb, type: 2}
+  skillTree: {fileID: 11400000, guid: fd518849c6ab7d944a020f97fb7a0b2d, type: 2}
   description: 

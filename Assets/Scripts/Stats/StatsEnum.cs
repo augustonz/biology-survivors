@@ -12,6 +12,7 @@ public enum TypeStats
     NUMBER_OF_SHOTS,
     MAX_AMMO,
     PENETRATION,
+    BULLET_SIZE,
     BULLET_SPEED,
     BULLET_RANGE,
     RELOAD_SPEED,

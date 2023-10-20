@@ -20,9 +20,8 @@ MonoBehaviour:
   icon: {fileID: 1521250949, guid: 191a56b5acb7d764e81d678f19994880, type: 3}
   tier: 0
   unlockedBy: {fileID: 0}
-  unlocks: []
-  skillTree:
-    Head: {fileID: 11400000}
-    Left: []
-    Right: []
+  unlocks:
+  - {fileID: 11400000, guid: e336a66febc463c4c951152c69ecdc65, type: 2}
+  - {fileID: 11400000, guid: 1f8d39c0cf34331498ad18479e57e719, type: 2}
+  skillTree: {fileID: 11400000, guid: 6f545d48eccabbb478a5bdded4a0af8a, type: 2}
   description: +10% de dano.

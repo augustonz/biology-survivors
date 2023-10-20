@@ -24,8 +24,5 @@ MonoBehaviour:
   tier: 0
   unlockedBy: {fileID: 0}
   unlocks: []
-  skillTree:
-    Head: {fileID: 11400000}
-    Left: []
-    Right: []
+  skillTree: {fileID: 11400000, guid: 711384988a77dbb40a0f05a5df30dcaa, type: 2}
   description: "Dispara 2 proj\xE9teis em vez de 1."

@@ -21,8 +21,5 @@ MonoBehaviour:
   tier: 0
   unlockedBy: {fileID: 0}
   unlocks: []
-  skillTree:
-    Head: {fileID: 11400000}
-    Left: []
-    Right: []
+  skillTree: {fileID: 11400000, guid: 53e0a2e58653ba64892fa788817fdddb, type: 2}
   description: 

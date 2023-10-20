@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d8e9d899909c2f4c84757d242706094, type: 3}
+  m_Name: _Penetration
+  m_EditorClassIdentifier: 
+  Head: {fileID: 11400000, guid: ac47104ae46d1ce4dbd30ce620fb8b22, type: 2}
+  Left:
+  - {fileID: 11400000, guid: 9c66d75d1d7682b4ca421229926e1600, type: 2}
+  - {fileID: 11400000, guid: 0762c2c87f18c4a49a829ce6c0faa17b, type: 2}
+  Right:
+  - {fileID: 11400000, guid: 06d9112f90e4b9a4f8958a6de014ac27, type: 2}
+  - {fileID: 11400000, guid: a8c85531ebd012a4bbc646fdcf18f2fc, type: 2}

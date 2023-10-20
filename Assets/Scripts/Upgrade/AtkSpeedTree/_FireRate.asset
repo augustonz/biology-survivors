@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d8e9d899909c2f4c84757d242706094, type: 3}
+  m_Name: _FireRate
+  m_EditorClassIdentifier: 
+  Head: {fileID: 11400000, guid: 4e4eda766f2a04d429fc3ea86bc087c2, type: 2}
+  Left:
+  - {fileID: 11400000, guid: 680d7bbd9c6f4bc4eb075066e5406537, type: 2}
+  - {fileID: 11400000, guid: 1404a9c58d428fa4ba524bff20340beb, type: 2}
+  Right:
+  - {fileID: 11400000, guid: c073d5494d90fd146bb03f61fcac0acb, type: 2}
+  - {fileID: 11400000, guid: 2e8534d88040b3546abb816debd47def, type: 2}

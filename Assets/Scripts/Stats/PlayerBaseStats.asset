@@ -16,10 +16,11 @@ MonoBehaviour:
   regenHP: 0
   power: 10
   fireRate: 2
+  reloadSpeed: 1
+  maxAmmo: 6
   penetration: 0
   numberOfShots: 2
-  maxAmmo: 6
-  reloadSpeed: 1
+  bulletSize: 1
   bulletSpeed: 5
   bulletRange: 1
   missileUnlocked: 0
