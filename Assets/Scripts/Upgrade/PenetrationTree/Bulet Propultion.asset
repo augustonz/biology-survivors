@@ -10,10 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d8721efee5c7e54abffb7659074d3d2, type: 3}
-  m_Name: Enzime Population
+  m_Name: Bulet Propultion
   m_EditorClassIdentifier: 
   Id: 0955b889-309c-4ab1-9e99-3e167c672507
-  statInfo: []
+  statInfo:
+  - stat: 6
+    mod: 0
+    value: 1
+  - stat: 8
+    mod: 1
+    value: 0.25
+  - stat: 13
+    mod: 1
+    value: 0.15
   icon: {fileID: 106302209, guid: 191a56b5acb7d764e81d678f19994880, type: 3}
   tier: 0
   unlockedBy: {fileID: 11400000, guid: 06d9112f90e4b9a4f8958a6de014ac27, type: 2}

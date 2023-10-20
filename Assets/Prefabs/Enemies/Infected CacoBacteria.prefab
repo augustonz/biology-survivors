@@ -45,7 +45,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 5739e3513187ad345b448580ce198b15, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.5
-  m_Pitch: 0.8
+  m_Pitch: 0.94
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 5310509977756388143}
   - component: {fileID: 233158274407280493}
   m_Layer: 8
-  m_Name: TriCacoteria
+  m_Name: Infected CacoBacteria
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,7 +162,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0795, y: 1.0795, z: 1.0795}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7996732559950191366}
@@ -236,12 +236,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -386612009, guid: 8cb94d6f67448aa479d7b2678c6eb0b7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 1098590695, guid: 9d585fbed39590e4bab61d394f481be5, type: 3}
+  m_Color: {r: 0.5849056, g: 0.1462264, b: 0.18063252, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.48, y: 0.48}
+  m_Size: {x: 0.24, y: 0.21}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -264,18 +264,14 @@ MonoBehaviour:
   flashMaterial: {fileID: 2100000, guid: 88c7a5e1a60aae24ab7c8893010fb7b2, type: 2}
   flashDuration: 0.1
   moveSpeed: 0.5
-  maxHp: 100
+  maxHp: 50
   damage: 2
   delayBetweenAttacks: 0.5
   goTarget: 0
   _spawnList:
   - Chance: 10
-    toSpawn: {fileID: 5484637606897395962, guid: 4040660534686414986da3c12446e026, type: 3}
-  - Chance: 10
-    toSpawn: {fileID: 5484637606897395962, guid: 4040660534686414986da3c12446e026, type: 3}
-  - Chance: 10
-    toSpawn: {fileID: 5484637606897395962, guid: 4040660534686414986da3c12446e026, type: 3}
-  _xp: 7
+    toSpawn: {fileID: 1596466538640747064, guid: 8c095be3712a05b459287d53b9f41e76, type: 3}
+  _xp: 5
 --- !u!61 &7378132463857387618
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -312,14 +308,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.48, y: 0.48}
-    newSize: {x: 0.48, y: 0.48}
+    oldSize: {x: 0.24, y: 0.21}
+    newSize: {x: 0.24, y: 0.21}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.3}
+  m_Size: {x: 0.22056043, y: 0.19222318}
   m_EdgeRadius: 0
 --- !u!114 &8780931907304266244
 MonoBehaviour:
@@ -407,14 +403,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.48, y: 0.48}
-    newSize: {x: 0.48, y: 0.48}
+    oldSize: {x: 0.24, y: 0.21}
+    newSize: {x: 0.24, y: 0.21}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.38, y: 0.38}
+  m_Size: {x: 0.26424432, y: 0.2307809}
   m_EdgeRadius: 0
 --- !u!95 &5310509977756388143
 Animator:
@@ -426,7 +422,7 @@ Animator:
   m_GameObject: {fileID: 5484637606897395962}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7368949a1f456414da2a6929a1e406ab, type: 2}
+  m_Controller: {fileID: 9100000, guid: 59a2b3f64b10d4142b7b75bf23069a09, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -450,7 +446,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 456733a6ce92e384a8cf1bdb527ac800, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.25
-  m_Pitch: 0.8
+  m_Pitch: 0.94
   Loop: 0
   Mute: 0
   Spatialize: 0

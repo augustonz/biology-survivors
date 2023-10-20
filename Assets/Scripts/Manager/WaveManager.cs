@@ -103,7 +103,7 @@ public class WaveManager : MonoBehaviour
         Vector3 spawnPoint = GetRandomSpawnPoint();
         for (int i = 0; i < enemySpawnOption.SpawnAmount; i++)
         {
-            enemies.Add(Instantiate(enemySpawnOption.EnemyToSpawn, spawnPoint, Quaternion.identity, _enemiesParent).GetComponent<Enemy>());
+            enemies.Add(Instantiate(enemySpawnOption.EnemyToSpawn, spawnPoint + Vector3.up * i, Quaternion.identity, _enemiesParent).GetComponent<Enemy>());
         }
         enemySpawnOption.SetSpawnTimer(enemySpawnOption.SpawnCooldown);
     }
@@ -133,7 +133,7 @@ public class Wave
 [Serializable]
 public class EnemySpawnOption
 {
-    public Enemy EnemyToSpawn;
+    public GameObject EnemyToSpawn;
     public int SpawnAmount;
     public float SpawnCooldown;
     float _spawnTimer;

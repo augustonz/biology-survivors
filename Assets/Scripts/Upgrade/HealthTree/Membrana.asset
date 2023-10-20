@@ -16,7 +16,7 @@ MonoBehaviour:
   statInfo:
   - stat: 0
     mod: 0
-    value: 10
+    value: 3
   icon: {fileID: -1084740509, guid: 191a56b5acb7d764e81d678f19994880, type: 3}
   tier: 0
   unlockedBy: {fileID: 0}

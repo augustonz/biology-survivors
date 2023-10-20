@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b48b8027eafebd459d52ad012a44a9e, type: 3}
   m_Name: PlayerBaseStats
   m_EditorClassIdentifier: 
-  maxHP: 3
+  maxHP: 5
   regenHP: 0
   power: 10
   fireRate: 2
   reloadSpeed: 1
   maxAmmo: 6
   penetration: 0
-  numberOfShots: 2
+  numberOfShots: 1
   bulletSize: 1
   bulletSpeed: 5
   bulletRange: 1
