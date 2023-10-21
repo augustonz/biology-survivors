@@ -56,7 +56,7 @@ public class BacteriophageMissile : MonoBehaviour
 
     void Attack()
     {
-        collidingWith.ForEach(collider => collider.onHit(damage));
+        collidingWith.ForEach(collider => collider.onHit(this));
         Die();
     }
 

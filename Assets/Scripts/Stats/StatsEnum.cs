@@ -14,6 +14,7 @@ public enum TypeStats
     PENETRATION,
     BULLET_SIZE,
     BULLET_SPEED,
+    BULLET_SPREAD,
     BULLET_RANGE,
     RELOAD_SPEED,
     ARMOR,
@@ -23,6 +24,7 @@ public enum TypeStats
     PICK_UP_RANGE,
     MISSILE_UNLOCKED,
     MISSILE_COOLDOWN,
+    BULLET_KNOCKBACK,
 
 }
 

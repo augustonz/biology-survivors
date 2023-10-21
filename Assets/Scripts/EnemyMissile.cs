@@ -136,9 +136,9 @@ public class EnemyMissile : MonoBehaviour, IHittable
         TakeDamage(bullet.getDamage());
         flashAnimation();
     }
-    public void onHit(float damage)
+    public void onHit(BacteriophageMissile missile)
     {
-        TakeDamage(damage);
+        TakeDamage(missile.damage);
         flashAnimation();
     }
 

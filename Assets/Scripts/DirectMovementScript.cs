@@ -11,16 +11,14 @@ public class DirectMovementScript : MonoBehaviour
     [SerializeField] float _moveSpeed;
     [SerializeField] float _maxDistance;
 
-    // Start is called before the first frame update
     void Start()
     {
         _movementDir = (Player.instance.transform.position - transform.position).normalized;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        transform.position = (transform.position + _movementDir * _moveSpeed * Time.fixedDeltaTime);
+        transform.position = (transform.position + _movementDir * _moveSpeed * Time.deltaTime);
 
         if(Vector3.Distance(transform.position, Player.instance.transform.position) > _maxDistance)
             Destroy(gameObject);

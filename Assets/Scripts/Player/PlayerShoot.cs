@@ -88,18 +88,33 @@ public class PlayerShoot : MonoBehaviour
 
         float bulletAirTime = _player.PlayerStatus.GetStat(TypeStats.BULLET_RANGE);
         float bulletSpeed = _player.PlayerStatus.GetStat(TypeStats.BULLET_SPEED);
+        float bulletSpread = _player.PlayerStatus.GetStat(TypeStats.BULLET_SPREAD);
         float bulletDamage = _player.PlayerStatus.GetStat(TypeStats.POWER);
         float bulletSize = _player.PlayerStatus.GetStat(TypeStats.BULLET_SIZE);
+        float bulletKnockBack = _player.PlayerStatus.GetStat(TypeStats.BULLET_KNOCKBACK);
 
         int bulletPenetration = (int)_player.PlayerStatus.GetStat(TypeStats.PENETRATION);
         int numberOfShots = (int)_player.PlayerStatus.GetStat(TypeStats.NUMBER_OF_SHOTS);
 
         for (int i = 0; i < numberOfShots; i++)
         {
-            Bullet.Create(gunPosition, bulletDirection, bulletSize, bulletAirTime, bulletSpeed, bulletDamage, bulletPenetration);
+            Vector3 newBulletDirection = BulletSpreadCalc(bulletDirection,bulletSpread,i,numberOfShots);
+
+            Bullet.Create(gunPosition, newBulletDirection, bulletSize, bulletAirTime, bulletSpeed, bulletDamage, bulletPenetration, bulletKnockBack);
         }
 
 
+    }
+
+    Vector3 BulletSpreadCalc(Vector3 oldDirection, float bulletSpread,int shotNum, int maxShots) {
+        float halfWay = (maxShots-1)/2f;
+        float distanceFromHalfWay = shotNum - halfWay;
+        float angle = distanceFromHalfWay * bulletSpread;
+        
+        float defaultAngle = Mathf.Atan2(oldDirection.y, oldDirection.x) * Mathf.Rad2Deg;
+        float newAngle = (defaultAngle + angle) * Mathf.Deg2Rad;
+
+        return new Vector3(Mathf.Cos(newAngle),Mathf.Sin(newAngle),0);
     }
 
     void ShootMissile()

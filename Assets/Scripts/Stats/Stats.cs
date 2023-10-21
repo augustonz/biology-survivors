@@ -15,13 +15,14 @@ public class Stats : ScriptableObject
     [SerializeField] private float power;
     [SerializeField] private float fireRate;
     [SerializeField] private float reloadSpeed;
-
     [SerializeField] private int maxAmmo;
     [SerializeField] private int penetration;
     [SerializeField] private int numberOfShots;
     [SerializeField] private float bulletSize;
     [SerializeField] private float bulletSpeed;
     [SerializeField] private float bulletRange;
+    [SerializeField] private float bulletSpread;
+    [SerializeField] private float bulletKnockBack;
 
     [Header("Missile Settings")]
     [SerializeField] private bool missileUnlocked;
@@ -104,9 +105,11 @@ public class Stats : ScriptableObject
         _baseStats.Add(TypeStats.PICK_UP_RANGE, pickUpRange);
         _baseStats.Add(TypeStats.RELOAD_SPEED, reloadSpeed);
         _baseStats.Add(TypeStats.BULLET_SPEED, bulletSpeed);
+        _baseStats.Add(TypeStats.BULLET_SPREAD, bulletSpread);
         _baseStats.Add(TypeStats.BULLET_RANGE, bulletRange);
         _baseStats.Add(TypeStats.MISSILE_UNLOCKED, missileUnlocked ? 1 : 0);
         _baseStats.Add(TypeStats.MISSILE_COOLDOWN, missileCooldown);
+        _baseStats.Add(TypeStats.BULLET_KNOCKBACK, bulletKnockBack);
 
 
         _statMultiplier.Add(TypeStats.MAX_HP, 1);
@@ -123,11 +126,11 @@ public class Stats : ScriptableObject
         _statMultiplier.Add(TypeStats.RELOAD_SPEED, 1);
         _statMultiplier.Add(TypeStats.BULLET_SIZE, 1);
         _statMultiplier.Add(TypeStats.BULLET_SPEED, 1);
+        _statMultiplier.Add(TypeStats.BULLET_SPREAD, 1);
         _statMultiplier.Add(TypeStats.BULLET_RANGE, 1);
         _statMultiplier.Add(TypeStats.MISSILE_UNLOCKED, 1);
         _statMultiplier.Add(TypeStats.MISSILE_COOLDOWN, 1);
         _statMultiplier.Add(TypeStats.MAX_AMMO, 1);
-
-
+        _statMultiplier.Add(TypeStats.BULLET_KNOCKBACK, 1);
     }
 }

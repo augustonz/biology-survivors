@@ -1,5 +1,5 @@
 using System;
-using System.Collections;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,10 +8,7 @@ public class Enemy : MonoBehaviour, IHittable
 {
     [SerializeField] AudioSource _deathSource;
     [SerializeField] AudioSource _hitSource;
-
     [Serializable] struct SpawnList { public float Chance; public GameObject toSpawn; }
-
-
     public Material flashMaterial;
     public float flashDuration;
     private Material originalMaterial;
@@ -24,7 +21,7 @@ public class Enemy : MonoBehaviour, IHittable
     public float delayBetweenAttacks;
     private float delayBetweenAttacksTimer;
     public EnemyAI goTarget;
-
+    bool _isKnockBack = false;
     Rigidbody2D rb;
     Vector3 moveDirection;
 
@@ -75,7 +72,12 @@ public class Enemy : MonoBehaviour, IHittable
     {
         if (target == null) target = transform;
         moveDirection = (target.position - transform.position).normalized;
-        rb.MovePosition(transform.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
+
+        rb.AddForce(moveDirection * 6f);
+
+        if (!_isKnockBack && rb.velocity.magnitude > moveSpeed) {
+            rb.velocity = rb.velocity.normalized * moveSpeed;
+        }
     }
 
     public void TakeDamage(float damageAmount)
@@ -105,13 +107,25 @@ public class Enemy : MonoBehaviour, IHittable
 
     public void onHit(Bullet bullet)
     {
+        Vector2 hitDirection = (transform.position - target.transform.position).normalized;
+        ApplyKnockback(hitDirection * bullet.KnockBack);
         TakeDamage(bullet.getDamage());
         flashAnimation();
     }
-    public void onHit(float damage)
+    public void onHit(BacteriophageMissile missile)
     {
-        TakeDamage(damage);
+        Vector2 hitDirection = (transform.position - target.transform.position).normalized;
+        ApplyKnockback(hitDirection * 1);
+        TakeDamage(missile.damage);
         flashAnimation();
+    }
+
+    async void ApplyKnockback(Vector2 knockBackDirection) {
+        _isKnockBack = true;
+        rb.velocity = Vector2.zero;
+        rb.AddForce(knockBackDirection,ForceMode2D.Impulse);
+        await Task.Delay(250);
+        _isKnockBack = false;
     }
 
     public void OnTriggerEnter2D(Collider2D collider)
