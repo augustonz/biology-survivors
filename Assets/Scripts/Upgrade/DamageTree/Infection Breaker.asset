@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: dc190458-3ef3-4694-9765-e58c8e6a6b27
   statInfo: []
-  icon: {fileID: 1521250949, guid: 191a56b5acb7d764e81d678f19994880, type: 3}
+  icon: {fileID: -995756187, guid: 0fc883ea0be898f419eea1bb52f43d3b, type: 3}
   tier: 0
   unlockedBy: {fileID: 11400000, guid: 1f8d39c0cf34331498ad18479e57e719, type: 2}
   unlocks: []
   skillTree: {fileID: 11400000, guid: 6f545d48eccabbb478a5bdded4a0af8a, type: 2}
-  description: 
+  description: Bullets Will Pack a Punch.

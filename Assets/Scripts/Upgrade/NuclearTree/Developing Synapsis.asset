@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d8721efee5c7e54abffb7659074d3d2, type: 3}
+  m_Name: Developing Synapsis
+  m_EditorClassIdentifier: 
+  Id: ee6a4b0d-7234-43eb-940d-3550535f3c77
+  statInfo:
+  - stat: 0
+    mod: 1
+    value: 2
+  - stat: 11
+    mod: 1
+    value: 0.2
+  - stat: 2
+    mod: 1
+    value: 0.2
+  - stat: 13
+    mod: 1
+    value: 0.2
+  icon: {fileID: 1521250949, guid: 191a56b5acb7d764e81d678f19994880, type: 3}
+  tier: 0
+  unlockedBy: {fileID: 11400000, guid: 744b44646c869bc4e9012b53e0dc5daa, type: 2}
+  unlocks: []
+  skillTree: {fileID: 11400000, guid: 67191c1ae794c3a46a2c6b6b1b79b64d, type: 2}
+  description: +25% Reload Speed.

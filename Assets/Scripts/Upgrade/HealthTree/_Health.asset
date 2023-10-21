@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: _Health
   m_EditorClassIdentifier: 
   Head: {fileID: 11400000, guid: 4bf0f3a2cdd6a4b479ce2dcb4b531fdc, type: 2}
-  Left: []
-  Right: []
+  Left:
+  - {fileID: 11400000, guid: a2a5677fbab30824eac7d8c0d73173bd, type: 2}
+  - {fileID: 11400000, guid: 7dde2ece620e73145adc7c147074b989, type: 2}
+  Right:
+  - {fileID: 11400000, guid: 9c14e8ce4331dcb4391e91477a45bcd9, type: 2}
+  - {fileID: 11400000, guid: aa6adcc405098b243b13a5f2abbe10c9, type: 2}

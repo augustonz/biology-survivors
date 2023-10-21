@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: _Reload
   m_EditorClassIdentifier: 
   Head: {fileID: 11400000, guid: df44e3412c1e2864fa462bf23d996b6b, type: 2}
-  Left: []
+  Left:
+  - {fileID: 11400000, guid: 6764da7fe23422146a4b62fdf66b6f05, type: 2}
   Right: []

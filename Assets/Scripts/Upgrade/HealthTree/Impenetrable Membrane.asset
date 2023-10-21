@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d8721efee5c7e54abffb7659074d3d2, type: 3}
+  m_Name: Impenetrable Membrane
+  m_EditorClassIdentifier: 
+  Id: 1964ec1a-4fcc-4419-8254-94577304146e
+  statInfo:
+  - stat: 0
+    mod: 0
+    value: 3
+  - stat: 12
+    mod: 0
+    value: 35
+  icon: {fileID: 1019487127, guid: 857aba531f5fdad498e8cff19770b620, type: 3}
+  tier: 0
+  unlockedBy: {fileID: 11400000, guid: 9c14e8ce4331dcb4391e91477a45bcd9, type: 2}
+  unlocks: []
+  skillTree: {fileID: 11400000, guid: 53e0a2e58653ba64892fa788817fdddb, type: 2}
+  description: +3 HP. + 35% Enemy Damage Reduction

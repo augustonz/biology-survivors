@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: _MultiShot
   m_EditorClassIdentifier: 
   Head: {fileID: 11400000, guid: aee64749e9319d34594d8a6dd7b5dbc8, type: 2}
-  Left: []
-  Right: []
+  Left:
+  - {fileID: 11400000, guid: c81153e2b23975546b235269af877643, type: 2}
+  - {fileID: 11400000, guid: 93a19b41c9a8de94a93c352ffe46532b, type: 2}
+  Right:
+  - {fileID: 11400000, guid: 4ad74e55d58dc9549bc8f002cd75ea45, type: 2}
+  - {fileID: 11400000, guid: 3fca6f06e7e08a246968d58585a6ebdb, type: 2}

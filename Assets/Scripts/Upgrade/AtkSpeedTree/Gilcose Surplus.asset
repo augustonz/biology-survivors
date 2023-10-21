@@ -22,4 +22,4 @@ MonoBehaviour:
   unlockedBy: {fileID: 11400000, guid: c073d5494d90fd146bb03f61fcac0acb, type: 2}
   unlocks: []
   skillTree: {fileID: 11400000, guid: fd518849c6ab7d944a020f97fb7a0b2d, type: 2}
-  description: 
+  description: A Lot of Firespeed.

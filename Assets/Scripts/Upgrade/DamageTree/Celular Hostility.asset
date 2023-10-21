@@ -17,10 +17,10 @@ MonoBehaviour:
   - stat: 2
     mod: 1
     value: 0.25
-  icon: {fileID: 1521250949, guid: 191a56b5acb7d764e81d678f19994880, type: 3}
+  icon: {fileID: 566979466, guid: 0fc883ea0be898f419eea1bb52f43d3b, type: 3}
   tier: 0
   unlockedBy: {fileID: 11400000, guid: fb4f7217f00bb70468999fdb4a64aef9, type: 2}
   unlocks:
   - {fileID: 11400000, guid: 2c4b66f0ff3227f4a82520892f57546d, type: 2}
   skillTree: {fileID: 11400000, guid: 6f545d48eccabbb478a5bdded4a0af8a, type: 2}
-  description: Greater Damage
+  description: Greater Damage.

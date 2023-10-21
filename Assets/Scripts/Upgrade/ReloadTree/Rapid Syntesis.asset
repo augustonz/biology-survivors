@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: ee6a4b0d-7234-43eb-940d-3550535f3c77
   statInfo:
-  - stat: 8
+  - stat: 11
     mod: 1
     value: 0.25
   icon: {fileID: 1521250949, guid: 191a56b5acb7d764e81d678f19994880, type: 3}
   tier: 0
   unlockedBy: {fileID: 0}
-  unlocks: []
+  unlocks:
+  - {fileID: 11400000, guid: 6764da7fe23422146a4b62fdf66b6f05, type: 2}
   skillTree: {fileID: 11400000, guid: e2f91e94f947aec41bb4d99bed7180fb, type: 2}
-  description: 
+  description: +25% Reload Speed.
