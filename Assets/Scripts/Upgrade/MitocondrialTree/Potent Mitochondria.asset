@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d8721efee5c7e54abffb7659074d3d2, type: 3}
+  m_Name: Potent Mitochondria
+  m_EditorClassIdentifier: 
+  Id: 1964ec1a-4fcc-4419-8254-94577304146e
+  statInfo:
+  - stat: 13
+    mod: 1
+    value: 0.2
+  icon: {fileID: 1019487127, guid: 857aba531f5fdad498e8cff19770b620, type: 3}
+  tier: 0
+  unlockedBy: {fileID: 0}
+  unlocks:
+  - {fileID: 11400000, guid: 6684486a47e7f4d43ac086c2e4fefec5, type: 2}
+  - {fileID: 11400000, guid: 5d9d9408f8057174085e0dbac16f8105, type: 2}
+  skillTree: {fileID: 11400000, guid: d6484b8f88322c64f846a479c02cb0e8, type: 2}
+  description: +20% Speed.

@@ -23,4 +23,4 @@ MonoBehaviour:
   unlocks:
   - {fileID: 11400000, guid: a8c85531ebd012a4bbc646fdcf18f2fc, type: 2}
   skillTree: {fileID: 11400000, guid: 9df8ff2dd2899034e895ed87c5e9ef74, type: 2}
-  description: 
+  description: + 2 Penetration.

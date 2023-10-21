@@ -17,7 +17,7 @@ MonoBehaviour:
   power: 10
   fireRate: 2
   reloadSpeed: 1
-  maxAmmo: 6
+  maxAmmo: 7
   penetration: 0
   numberOfShots: 1
   bulletSize: 1

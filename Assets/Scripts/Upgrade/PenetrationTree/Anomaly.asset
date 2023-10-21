@@ -19,4 +19,4 @@ MonoBehaviour:
   unlockedBy: {fileID: 11400000, guid: 9c66d75d1d7682b4ca421229926e1600, type: 2}
   unlocks: []
   skillTree: {fileID: 11400000, guid: 9df8ff2dd2899034e895ed87c5e9ef74, type: 2}
-  description: 
+  description: A small chance of a REALLY BIG bullet comming out.

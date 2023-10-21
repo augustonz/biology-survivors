@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d8721efee5c7e54abffb7659074d3d2, type: 3}
+  m_Name: Really Hard Membrane
+  m_EditorClassIdentifier: 
+  Id: 1964ec1a-4fcc-4419-8254-94577304146e
+  statInfo:
+  - stat: 0
+    mod: 0
+    value: 5
+  icon: {fileID: 1019487127, guid: 857aba531f5fdad498e8cff19770b620, type: 3}
+  tier: 0
+  unlockedBy: {fileID: 11400000, guid: 4bf0f3a2cdd6a4b479ce2dcb4b531fdc, type: 2}
+  unlocks:
+  - {fileID: 11400000, guid: aa6adcc405098b243b13a5f2abbe10c9, type: 2}
+  skillTree: {fileID: 11400000, guid: 53e0a2e58653ba64892fa788817fdddb, type: 2}
+  description: +5 HP.

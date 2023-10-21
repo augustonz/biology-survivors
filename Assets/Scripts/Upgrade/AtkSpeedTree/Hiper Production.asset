@@ -23,4 +23,4 @@ MonoBehaviour:
   unlocks:
   - {fileID: 11400000, guid: 2e8534d88040b3546abb816debd47def, type: 2}
   skillTree: {fileID: 11400000, guid: fd518849c6ab7d944a020f97fb7a0b2d, type: 2}
-  description: Greater Rate of Fire
+  description: Greater Firespeed.

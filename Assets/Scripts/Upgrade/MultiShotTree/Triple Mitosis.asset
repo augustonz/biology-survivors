@@ -16,7 +16,7 @@ MonoBehaviour:
   statInfo:
   - stat: 4
     mod: 0
-    value: 1
+    value: 2
   - stat: 2
     mod: 1
     value: -0.2

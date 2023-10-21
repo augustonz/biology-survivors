@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d8e9d899909c2f4c84757d242706094, type: 3}
+  m_Name: _Mitochondria
+  m_EditorClassIdentifier: 
+  Head: {fileID: 11400000, guid: e30e692d9ecb8fb408476074b57d8427, type: 2}
+  Left:
+  - {fileID: 11400000, guid: 6684486a47e7f4d43ac086c2e4fefec5, type: 2}
+  - {fileID: 11400000, guid: efdc11d9bab9c35418d161e6a299ad37, type: 2}
+  Right:
+  - {fileID: 11400000, guid: 5d9d9408f8057174085e0dbac16f8105, type: 2}
+  - {fileID: 11400000, guid: 3ad1adf737d6b8949af7abb3f82f630c, type: 2}
