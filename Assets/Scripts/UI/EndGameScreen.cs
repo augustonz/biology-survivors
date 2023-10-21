@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 public class EndGameScreen : MonoBehaviour
 {
     [SerializeField] TMP_Text _gameTime;
+    [SerializeField] TMP_Text _title;
     [SerializeField] TMP_Text _enemiesKilled;
     [SerializeField] TMP_Text _level;
     [SerializeField] TMP_Text _finalScore;
@@ -46,6 +47,11 @@ public class EndGameScreen : MonoBehaviour
             PlayerPrefs.SetInt("maxScore",score);
             _currentMaxScore = score;
         }
+    }
+
+    public void UpdateTitle() {
+        _title.text = "You Died";
+        _title.color = Color.red;
     }
 
     void UpdateScoreText(int level, int finalScore, int enemiesKilled) {

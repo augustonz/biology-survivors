@@ -790,6 +790,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2353900591158291543, guid: fbafbd5db12951d4a9852c3e94372717, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353900591158291543, guid: fbafbd5db12951d4a9852c3e94372717, type: 3}
       propertyPath: OnGetDamaged.m_PersistentCalls.m_Calls.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -799,6 +803,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2353900591158291543, guid: fbafbd5db12951d4a9852c3e94372717, type: 3}
       propertyPath: OnHeal.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353900591158291543, guid: fbafbd5db12951d4a9852c3e94372717, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[7].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2353900591158291543, guid: fbafbd5db12951d4a9852c3e94372717, type: 3}
@@ -830,11 +838,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 334530314}
     - target: {fileID: 2353900591158291543, guid: fbafbd5db12951d4a9852c3e94372717, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[7].m_Target
+      value: 
+      objectReference: {fileID: 924655932}
+    - target: {fileID: 2353900591158291543, guid: fbafbd5db12951d4a9852c3e94372717, type: 3}
       propertyPath: OnHeal.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2353900591158291543, guid: fbafbd5db12951d4a9852c3e94372717, type: 3}
       propertyPath: OnHeal.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353900591158291543, guid: fbafbd5db12951d4a9852c3e94372717, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[7].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2353900591158291543, guid: fbafbd5db12951d4a9852c3e94372717, type: 3}
@@ -852,6 +868,10 @@ PrefabInstance:
     - target: {fileID: 2353900591158291543, guid: fbafbd5db12951d4a9852c3e94372717, type: 3}
       propertyPath: OnHeal.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: UpdateHealth
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353900591158291543, guid: fbafbd5db12951d4a9852c3e94372717, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[7].m_MethodName
+      value: UpdateTitle
       objectReference: {fileID: 0}
     - target: {fileID: 2353900591158291543, guid: fbafbd5db12951d4a9852c3e94372717, type: 3}
       propertyPath: OnGetDamaged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -898,6 +918,10 @@ PrefabInstance:
       value: PlayerHealthBar, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2353900591158291543, guid: fbafbd5db12951d4a9852c3e94372717, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[7].m_TargetAssemblyTypeName
+      value: EndGameScreen, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353900591158291543, guid: fbafbd5db12951d4a9852c3e94372717, type: 3}
       propertyPath: OnGetDamaged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: CharacterAudioManager, Assembly-CSharp
       objectReference: {fileID: 0}
@@ -911,6 +935,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2353900591158291543, guid: fbafbd5db12951d4a9852c3e94372717, type: 3}
       propertyPath: OnHeal.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353900591158291543, guid: fbafbd5db12951d4a9852c3e94372717, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[7].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2353900591158291543, guid: fbafbd5db12951d4a9852c3e94372717, type: 3}
@@ -1757,13 +1785,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8739d9b79956dc04e9b7d769335d18b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnRange: 5
+  _spawnRange: 10
   _enemiesParent: {fileID: 745143462}
   enemies: []
-  _spawnCooldown: 1
-  enemy1: {fileID: 3798988839708952623, guid: 4040660534686414986da3c12446e026, type: 3}
-  enemy2: {fileID: 3798988839708952623, guid: 3ec19cf7b3f64aa43b8d4ff8546de2d0, type: 3}
-  enemy3: {fileID: 0}
   _waves:
   - StartWaveTime: 0
     EndWaveTime: 20
@@ -1771,90 +1795,165 @@ MonoBehaviour:
     - EnemyToSpawn: {fileID: 5484637606897395962, guid: 4040660534686414986da3c12446e026, type: 3}
       SpawnAmount: 1
       SpawnCooldown: 1.5
+      SpawnPointType: 0
   - StartWaveTime: 20
     EndWaveTime: 40
     EnemySpawnOptions:
     - EnemyToSpawn: {fileID: 5484637606897395962, guid: 3ec19cf7b3f64aa43b8d4ff8546de2d0, type: 3}
       SpawnAmount: 1
       SpawnCooldown: 3
+      SpawnPointType: 0
     - EnemyToSpawn: {fileID: 5484637606897395962, guid: 4040660534686414986da3c12446e026, type: 3}
       SpawnAmount: 1
       SpawnCooldown: 2
+      SpawnPointType: 0
   - StartWaveTime: 40
     EndWaveTime: 60
     EnemySpawnOptions:
     - EnemyToSpawn: {fileID: 5484637606897395962, guid: 4040660534686414986da3c12446e026, type: 3}
       SpawnAmount: 1
       SpawnCooldown: 0.5
+      SpawnPointType: 0
   - StartWaveTime: 60
     EndWaveTime: 80
     EnemySpawnOptions:
     - EnemyToSpawn: {fileID: 5484637606897395962, guid: 4040660534686414986da3c12446e026, type: 3}
       SpawnAmount: 1
       SpawnCooldown: 1
+      SpawnPointType: 0
     - EnemyToSpawn: {fileID: 5484637606897395962, guid: 3ec19cf7b3f64aa43b8d4ff8546de2d0, type: 3}
       SpawnAmount: 1
       SpawnCooldown: 2
+      SpawnPointType: 0
     - EnemyToSpawn: {fileID: 1596466538640747064, guid: 8c095be3712a05b459287d53b9f41e76, type: 3}
       SpawnAmount: 1
       SpawnCooldown: 3
+      SpawnPointType: 0
   - StartWaveTime: 80
     EndWaveTime: 100
     EnemySpawnOptions:
     - EnemyToSpawn: {fileID: 5484637606897395962, guid: 4040660534686414986da3c12446e026, type: 3}
       SpawnAmount: 1
       SpawnCooldown: 1
+      SpawnPointType: 0
     - EnemyToSpawn: {fileID: 5484637606897395962, guid: 3ec19cf7b3f64aa43b8d4ff8546de2d0, type: 3}
       SpawnAmount: 1
       SpawnCooldown: 2
+      SpawnPointType: 0
     - EnemyToSpawn: {fileID: 6021807344413287322, guid: 07fda1138145b3644910bea2e156594b, type: 3}
       SpawnAmount: 1
       SpawnCooldown: 14
+      SpawnPointType: 0
     - EnemyToSpawn: {fileID: 6021807344413287322, guid: dd51fc0192927fa46b1d8333d71bebea, type: 3}
       SpawnAmount: 1
       SpawnCooldown: 12
+      SpawnPointType: 0
   - StartWaveTime: 100
     EndWaveTime: 120
     EnemySpawnOptions:
     - EnemyToSpawn: {fileID: 5484637606897395962, guid: 4040660534686414986da3c12446e026, type: 3}
       SpawnAmount: 1
       SpawnCooldown: 0.5
+      SpawnPointType: 0
     - EnemyToSpawn: {fileID: 5484637606897395962, guid: 3ec19cf7b3f64aa43b8d4ff8546de2d0, type: 3}
       SpawnAmount: 1
       SpawnCooldown: 1
+      SpawnPointType: 0
     - EnemyToSpawn: {fileID: 1596466538640747064, guid: 8c095be3712a05b459287d53b9f41e76, type: 3}
       SpawnAmount: 1
       SpawnCooldown: 3
+      SpawnPointType: 0
     - EnemyToSpawn: {fileID: 6021807344413287322, guid: 1194e12b942306444af8ec28752594ce, type: 3}
       SpawnAmount: 1
       SpawnCooldown: 10
+      SpawnPointType: 0
   - StartWaveTime: 120
     EndWaveTime: 140
     EnemySpawnOptions:
     - EnemyToSpawn: {fileID: 5484637606897395962, guid: 4040660534686414986da3c12446e026, type: 3}
       SpawnAmount: 1
       SpawnCooldown: 0.5
+      SpawnPointType: 0
     - EnemyToSpawn: {fileID: 5484637606897395962, guid: 3ec19cf7b3f64aa43b8d4ff8546de2d0, type: 3}
       SpawnAmount: 1
       SpawnCooldown: 1
+      SpawnPointType: 0
     - EnemyToSpawn: {fileID: 1596466538640747064, guid: 8c095be3712a05b459287d53b9f41e76, type: 3}
       SpawnAmount: 3
       SpawnCooldown: 2
+      SpawnPointType: 0
     - EnemyToSpawn: {fileID: 6021807344413287322, guid: 1194e12b942306444af8ec28752594ce, type: 3}
       SpawnAmount: 1
       SpawnCooldown: 10
+      SpawnPointType: 0
   - StartWaveTime: 140
     EndWaveTime: 160
     EnemySpawnOptions:
     - EnemyToSpawn: {fileID: 5484637606897395962, guid: 3dfcca9f5ede68f47bf067b35aa0885e, type: 3}
       SpawnAmount: 1
       SpawnCooldown: 0.5
+      SpawnPointType: 0
     - EnemyToSpawn: {fileID: 5484637606897395962, guid: 2b35887d4b4e5564da736539fd836697, type: 3}
       SpawnAmount: 6
       SpawnCooldown: 1
+      SpawnPointType: 0
     - EnemyToSpawn: {fileID: 6021807344413287322, guid: 1194e12b942306444af8ec28752594ce, type: 3}
       SpawnAmount: 1
       SpawnCooldown: 8
+      SpawnPointType: 0
+  _bossPrefab: {fileID: 5484637606897395962, guid: 6c247a1c25f219e4387a76ed9f107ae8, type: 3}
+  _startBossTime: 15
+  _killBoss:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 334530304}
+        m_TargetAssemblyTypeName: GameHandler, Assembly-CSharp
+        m_MethodName: ChangeToMenuState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 334530310}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OnDisable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 334530314}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 924655932}
+        m_TargetAssemblyTypeName: EndGameScreen, Assembly-CSharp
+        m_MethodName: ShowEndGameOnDelay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnEnemyKilled:
     m_PersistentCalls:
       m_Calls:
@@ -2195,7 +2294,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 390105899}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.00000013411045, y: -0.000000074505806, z: -10}
+  m_LocalPosition: {x: 0.00000013411045, y: 0.000000074505806, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2948,7 +3047,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.00000013411045, y: -0.000000074505806, z: -10}
+  m_LocalPosition: {x: 0.00000013411045, y: 0.000000074505806, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -4711,6 +4810,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameTime: {fileID: 1984473776}
+  _title: {fileID: 2127211663}
   _enemiesKilled: {fileID: 101362874}
   _level: {fileID: 1425504538}
   _finalScore: {fileID: 448562208}
@@ -4861,7 +4961,7 @@ MonoBehaviour:
   m_ScreenY: 0.5
   m_CameraDistance: 10
   m_DeadZoneWidth: 0.05
-  m_DeadZoneHeight: 0.05
+  m_DeadZoneHeight: 0.0462963
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
   m_SoftZoneWidth: 0.8
@@ -6218,7 +6318,6 @@ GameObject:
   - component: {fileID: 1624043020}
   - component: {fileID: 1624043019}
   - component: {fileID: 1624043018}
-  - component: {fileID: 1624043017}
   m_Layer: 0
   m_Name: AudioInterfaceManager
   m_TagString: Untagged
@@ -6226,14 +6325,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1624043017
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1624043016}
-  m_Enabled: 1
 --- !u!82 &1624043018
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8572,6 +8663,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2117903900}
   m_CullTransparentMesh: 1
+--- !u!114 &2127211663 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6128164025197451403, guid: 4fd8362577288264c8fc3c3435a1e5bb, type: 3}
+  m_PrefabInstance: {fileID: 6128164023598844255}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2130611611 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5191794617992441859, guid: fbafbd5db12951d4a9852c3e94372717, type: 3}
@@ -9582,6 +9684,26 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6128164025197451403, guid: 4fd8362577288264c8fc3c3435a1e5bb, type: 3}
+      propertyPath: m_text
+      value: You Won
+      objectReference: {fileID: 0}
+    - target: {fileID: 6128164025197451403, guid: 4fd8362577288264c8fc3c3435a1e5bb, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.007024432
+      objectReference: {fileID: 0}
+    - target: {fileID: 6128164025197451403, guid: 4fd8362577288264c8fc3c3435a1e5bb, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.7830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 6128164025197451403, guid: 4fd8362577288264c8fc3c3435a1e5bb, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.003693494
+      objectReference: {fileID: 0}
+    - target: {fileID: 6128164025197451403, guid: 4fd8362577288264c8fc3c3435a1e5bb, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278372353
+      objectReference: {fileID: 0}
     - target: {fileID: 6128164025197451404, guid: 4fd8362577288264c8fc3c3435a1e5bb, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -9597,6 +9719,10 @@ PrefabInstance:
     - target: {fileID: 6128164025197451404, guid: 4fd8362577288264c8fc3c3435a1e5bb, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6128164025197451405, guid: 4fd8362577288264c8fc3c3435a1e5bb, type: 3}
+      propertyPath: m_Name
+      value: Title
       objectReference: {fileID: 0}
     - target: {fileID: 6128164025224425013, guid: 4fd8362577288264c8fc3c3435a1e5bb, type: 3}
       propertyPath: m_LocalScale.x

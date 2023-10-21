@@ -8,7 +8,7 @@ public class CameraFollow : MonoBehaviour
     bool _enabled;
 
     void Start() {
-        _enabled=false;
+        _enabled=true;
     }
 
     public void OnChange(GameState gameState) {
