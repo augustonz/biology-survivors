@@ -17,7 +17,7 @@ MonoBehaviour:
   - stat: 11
     mod: 1
     value: 0.25
-  - stat: 13
+  - stat: 16
     mod: 1
     value: 0.1
   - stat: 3
