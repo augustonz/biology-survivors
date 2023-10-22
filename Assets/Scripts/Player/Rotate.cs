@@ -8,7 +8,6 @@ public class Rotate : MonoBehaviour
 
     [SerializeField] private Player _player;
     [SerializeField] private List<GameObject> killCells;
-    [SerializeField] float _speed;
 
     void Awake()
     {
@@ -30,6 +29,6 @@ public class Rotate : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.eulerAngles = new Vector3(0, 0, _speed * Time.time);
+        transform.eulerAngles = new Vector3(0, 0, _player.GetStat(TypeStats.SPEED) * Time.time);
     }
 }

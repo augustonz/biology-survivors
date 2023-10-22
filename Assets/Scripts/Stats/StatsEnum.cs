@@ -30,6 +30,7 @@ public enum TypeStats
     MISSILE_COUNT,
     BULLET_KNOCKBACK,
     KILL_CELL_COUNT,
+    KILL_CELL_SPEED,
 
 }
 
