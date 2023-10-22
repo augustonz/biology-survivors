@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 969204bf-bcb5-44ed-8bc1-5d44bcbfcffa
   statInfo:
-  - stat: 5
+  - stat: 6
     mod: 0
     value: 3
   icon: {fileID: -562873924, guid: 191a56b5acb7d764e81d678f19994880, type: 3}

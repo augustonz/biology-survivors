@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Celular Explosion
   m_EditorClassIdentifier: 
   Id: ca531f4c-a28e-4fb2-b38c-9ae3c45077cd
-  statInfo: []
+  statInfo:
+  - stat: 5
+    mod: 1
+    value: 0.1
   icon: {fileID: 1801408752, guid: 0fc883ea0be898f419eea1bb52f43d3b, type: 3}
   tier: 0
   unlockedBy: {fileID: 11400000, guid: fb4f7217f00bb70468999fdb4a64aef9, type: 2}
