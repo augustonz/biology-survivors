@@ -9,14 +9,14 @@ public class BacteriophageMissile : MonoBehaviour
 {
 
     [Serializable] struct SpawnList { public float Chance; public GameObject toSpawn; }
-    [SerializeField] AudioSource _deathSource;
-    [SerializeField] ParticleSystem _deathParticles;
+    [SerializeField] ExplosionEfetivation _explosion;
 
     private SpriteRenderer sr;
     [SerializeField] Transform target;
     public float moveSpeed;
     public float rotationSpeed;
     public float damage;
+    public float explosionScale;
     public EnemyAI goTarget;
 
     Rigidbody2D rb;
@@ -57,7 +57,6 @@ public class BacteriophageMissile : MonoBehaviour
 
     void Attack()
     {
-        collidingWith.ForEach(collider => collider.onHit(this));
         Die();
     }
 
@@ -91,10 +90,7 @@ public class BacteriophageMissile : MonoBehaviour
             if (UnityEngine.Random.Range(0, 100) <= x.Chance)
                 Instantiate(x.toSpawn, transform.position, transform.rotation);
 
-        _deathSource.Play();
-        _deathParticles.Play();
-        _deathSource.transform.SetParent(null);
-        Destroy(_deathSource.gameObject, 3);
+        Instantiate(_explosion, transform.position, _explosion.transform.rotation).ApplyDamage(explosionScale, damage);
 
         Destroy(gameObject);
     }

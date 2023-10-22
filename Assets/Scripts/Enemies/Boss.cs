@@ -144,11 +144,11 @@ public class Boss : MonoBehaviour, IHittable
         TakeDamage(bullet.getDamage());
         flashAnimation();
     }
-    public void onHit(BacteriophageMissile missile)
+    public void onHit(ExplosionEfetivation explosion)
     {
         Vector2 hitDirection = (transform.position - target.transform.position).normalized;
         //ApplyKnockback(hitDirection * 1);
-        TakeDamage(missile.damage);
+        TakeDamage(explosion.damage);
         flashAnimation();
     }
 
