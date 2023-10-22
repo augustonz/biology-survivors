@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -68,7 +69,8 @@ public class BacteriophageMissile : MonoBehaviour
     public void Target(Transform currentTarget)
     {
         target = currentTarget;
-        lastMoveDirection = (target.position - transform.position).normalized;
+
+        lastMoveDirection = Quaternion.AngleAxis(90, Vector3.forward) * (target.position - transform.position).normalized;
     }
 
     public void Move()
