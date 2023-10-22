@@ -136,7 +136,7 @@ public class EnemyMissile : MonoBehaviour, IHittable
         TakeDamage(bullet.getDamage());
         flashAnimation();
     }
-    public void onHit(ExplosionEfetivation explosion)
+    public void onHit(IDamage explosion)
     {
         TakeDamage(explosion.damage);
         flashAnimation();

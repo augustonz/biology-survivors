@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ExplosionEfetivation : MonoBehaviour
+public class ExplosionEfetivation : MonoBehaviour, IDamage
 {
     [SerializeField] float _baseScale;
-    public float damage;
+    float _damage;
+
+    public float damage => _damage;
 
     // Start is called before the first frame update
     void Start()
