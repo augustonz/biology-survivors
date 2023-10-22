@@ -75,7 +75,8 @@ public class Enemy : MonoBehaviour, IHittable
 
         rb.AddForce(moveDirection * 6f);
 
-        if (!_isKnockBack && rb.velocity.magnitude > moveSpeed) {
+        if (!_isKnockBack && rb.velocity.magnitude > moveSpeed)
+        {
             rb.velocity = rb.velocity.normalized * moveSpeed;
         }
     }
@@ -116,14 +117,15 @@ public class Enemy : MonoBehaviour, IHittable
     {
         Vector2 hitDirection = (transform.position - target.transform.position).normalized;
         ApplyKnockback(hitDirection * 1);
-        TakeDamage(missile.damage);
+        TakeDamage(missile.getDamage());
         flashAnimation();
     }
 
-    async void ApplyKnockback(Vector2 knockBackDirection) {
+    async void ApplyKnockback(Vector2 knockBackDirection)
+    {
         _isKnockBack = true;
         rb.velocity = Vector2.zero;
-        rb.AddForce(knockBackDirection,ForceMode2D.Impulse);
+        rb.AddForce(knockBackDirection, ForceMode2D.Impulse);
         await Task.Delay(250);
         _isKnockBack = false;
     }

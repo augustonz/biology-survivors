@@ -61,10 +61,11 @@ public class PlayerShoot : MonoBehaviour
         if (input.clickAction.IsPressed() && !hasNoAmmo() && !isReloading && canShoot)
         {
             shootBullet();
-            if (canMissile)
-            {
-                ShootMissile();
-            }
+        }
+
+        if (canMissile && _player.PlayerStatus.GetStat(TypeStats.MISSILE_COUNT) > 0)
+        {
+            ShootMissile();
         }
     }
 
@@ -98,7 +99,7 @@ public class PlayerShoot : MonoBehaviour
 
         for (int i = 0; i < numberOfShots; i++)
         {
-            Vector3 newBulletDirection = BulletSpreadCalc(bulletDirection,bulletSpread,i,numberOfShots);
+            Vector3 newBulletDirection = BulletSpreadCalc(bulletDirection, bulletSpread, i, numberOfShots);
 
             Bullet.Create(gunPosition, newBulletDirection, bulletSize, bulletAirTime, bulletSpeed, bulletDamage, bulletPenetration, bulletKnockBack);
         }
@@ -106,15 +107,16 @@ public class PlayerShoot : MonoBehaviour
 
     }
 
-    Vector3 BulletSpreadCalc(Vector3 oldDirection, float bulletSpread,int shotNum, int maxShots) {
-        float halfWay = (maxShots-1)/2f;
+    Vector3 BulletSpreadCalc(Vector3 oldDirection, float bulletSpread, int shotNum, int maxShots)
+    {
+        float halfWay = (maxShots - 1) / 2f;
         float distanceFromHalfWay = shotNum - halfWay;
         float angle = distanceFromHalfWay * bulletSpread;
-        
+
         float defaultAngle = Mathf.Atan2(oldDirection.y, oldDirection.x) * Mathf.Rad2Deg;
         float newAngle = (defaultAngle + angle) * Mathf.Deg2Rad;
 
-        return new Vector3(Mathf.Cos(newAngle),Mathf.Sin(newAngle),0);
+        return new Vector3(Mathf.Cos(newAngle), Mathf.Sin(newAngle), 0);
     }
 
     void ShootMissile()
@@ -122,16 +124,16 @@ public class PlayerShoot : MonoBehaviour
         Vector3 gunPosition = _instantiateBulletPosition.position;
 
         float missileDamage = (float)(_player.PlayerStatus.GetStat(TypeStats.POWER) * 0.85);
+        int missileCount = (int)(_player.PlayerStatus.GetStat(TypeStats.MISSILE_COUNT));
 
 
-        if (_player.PlayerStatus.GetStat(TypeStats.MISSILE_UNLOCKED) > 0)
+        canMissile = false;
+        float missileDelay = _player.PlayerStatus.GetStat(TypeStats.MISSILE_COOLDOWN);
+        Invoke("canMissileAgain", missileDelay);
+        for (int i = 0; i < missileCount; i++)
         {
-            canMissile = false;
-            float missileDelay = 1 / _player.PlayerStatus.GetStat(TypeStats.MISSILE_COOLDOWN);
-            Invoke("canMissileAgain", missileDelay);
             BacteriophageMissile.Create(gunPosition, WaveManager.instance.GetEnemy(), missileDamage);
         }
-
     }
 
     public void StartReload()
