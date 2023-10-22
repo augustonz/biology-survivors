@@ -131,7 +131,7 @@ public class Stats : ScriptableObject
         _statMultiplier.Add(TypeStats.REGEN_HP, 1);
         _statMultiplier.Add(TypeStats.POWER, 1);
         _statMultiplier.Add(TypeStats.FIRE_RATE, 1);
-        _statMultiplier.Add(TypeStats.ARMOR, 1);
+        _statMultiplier.Add(TypeStats.ARMOR, 0);
         _statMultiplier.Add(TypeStats.NUMBER_OF_SHOTS, 1);
         _statMultiplier.Add(TypeStats.PENETRATION, 1);
         _statMultiplier.Add(TypeStats.PASSIVE_DNA, 1);
