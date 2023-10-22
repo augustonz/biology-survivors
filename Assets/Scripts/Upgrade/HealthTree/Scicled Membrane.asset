@@ -13,10 +13,7 @@ MonoBehaviour:
   m_Name: Scicled Membrane
   m_EditorClassIdentifier: 
   Id: 1964ec1a-4fcc-4419-8254-94577304146e
-  statInfo:
-  - stat: 0
-    mod: 0
-    value: 5
+  statInfo: []
   icon: {fileID: 1019487127, guid: 857aba531f5fdad498e8cff19770b620, type: 3}
   tier: 0
   unlockedBy: {fileID: 11400000, guid: a2a5677fbab30824eac7d8c0d73173bd, type: 2}
