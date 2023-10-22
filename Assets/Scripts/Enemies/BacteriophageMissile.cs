@@ -99,8 +99,14 @@ public class BacteriophageMissile : MonoBehaviour
     {
         if (collider.isTrigger) return;
         IHittable go = collider.gameObject.GetComponent<IHittable>();
+        DamageValue.Instantiate(transform.position, (int)damage);
         if (go == null) return;
         collidingWith.Add(go);
+    }
+
+    public float getDamage()
+    {
+        return damage;
     }
 }
 

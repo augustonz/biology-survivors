@@ -22,13 +22,17 @@ public class Stats : ScriptableObject
     [SerializeField] private float bulletSpeed;
     [SerializeField] private float bulletRange;
     [SerializeField] private float bulletSpread;
+    [SerializeField] private float bulletExplosionChance;
+
     [SerializeField] private float bulletKnockBack;
 
     [Header("Missile Settings")]
-    [SerializeField] private bool missileUnlocked;
+    [SerializeField] private float missileCount;
     [SerializeField] private float missileCooldown;
 
-
+    [Header("Grenade Settings")]
+    [SerializeField] private float grenadeCount;
+    [SerializeField] private float grenadeArea;
 
     [Header("Defense Settings")]
     [SerializeField] private float armor;
@@ -40,6 +44,10 @@ public class Stats : ScriptableObject
 
     [Header("Other Settings")]
     [SerializeField] private float pickUpRange;
+
+    [Header("KillCell Settings")]
+    [SerializeField] private float killCellCount;
+    [SerializeField] private float killCellSpeed;
 
     public Dictionary<TypeStats, float> _baseStats = new();
     public Dictionary<TypeStats, float> _statMultiplier = new();
@@ -105,11 +113,18 @@ public class Stats : ScriptableObject
         _baseStats.Add(TypeStats.PICK_UP_RANGE, pickUpRange);
         _baseStats.Add(TypeStats.RELOAD_SPEED, reloadSpeed);
         _baseStats.Add(TypeStats.BULLET_SPEED, bulletSpeed);
+        _baseStats.Add(TypeStats.EXPLOSION_CHANCE, bulletExplosionChance);
         _baseStats.Add(TypeStats.BULLET_SPREAD, bulletSpread);
         _baseStats.Add(TypeStats.BULLET_RANGE, bulletRange);
-        _baseStats.Add(TypeStats.MISSILE_UNLOCKED, missileUnlocked ? 1 : 0);
+        _baseStats.Add(TypeStats.GRENADE_COUNT, grenadeCount);
+        _baseStats.Add(TypeStats.GRENADE_AREA, grenadeArea);
+
         _baseStats.Add(TypeStats.MISSILE_COOLDOWN, missileCooldown);
+        _baseStats.Add(TypeStats.MISSILE_COUNT, missileCooldown);
         _baseStats.Add(TypeStats.BULLET_KNOCKBACK, bulletKnockBack);
+        _baseStats.Add(TypeStats.KILL_CELL_COUNT, killCellCount);
+        _baseStats.Add(TypeStats.KILL_CELL_SPEED, killCellSpeed);
+
 
 
         _statMultiplier.Add(TypeStats.MAX_HP, 1);
@@ -125,12 +140,19 @@ public class Stats : ScriptableObject
         _statMultiplier.Add(TypeStats.PICK_UP_RANGE, 1);
         _statMultiplier.Add(TypeStats.RELOAD_SPEED, 1);
         _statMultiplier.Add(TypeStats.BULLET_SIZE, 1);
+        _statMultiplier.Add(TypeStats.EXPLOSION_CHANCE, 1);
         _statMultiplier.Add(TypeStats.BULLET_SPEED, 1);
         _statMultiplier.Add(TypeStats.BULLET_SPREAD, 1);
         _statMultiplier.Add(TypeStats.BULLET_RANGE, 1);
-        _statMultiplier.Add(TypeStats.MISSILE_UNLOCKED, 1);
         _statMultiplier.Add(TypeStats.MISSILE_COOLDOWN, 1);
+        _statMultiplier.Add(TypeStats.MISSILE_COUNT, 1);
         _statMultiplier.Add(TypeStats.MAX_AMMO, 1);
         _statMultiplier.Add(TypeStats.BULLET_KNOCKBACK, 1);
+        _statMultiplier.Add(TypeStats.GRENADE_COUNT, 1);
+        _statMultiplier.Add(TypeStats.GRENADE_AREA, 1);
+        _statMultiplier.Add(TypeStats.KILL_CELL_COUNT, 1);
+        _statMultiplier.Add(TypeStats.KILL_CELL_SPEED, 1);
+
+
     }
 }

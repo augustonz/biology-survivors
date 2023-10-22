@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class PlayerShoot : MonoBehaviour
 {
@@ -61,10 +63,11 @@ public class PlayerShoot : MonoBehaviour
         if (input.clickAction.IsPressed() && !hasNoAmmo() && !isReloading && canShoot)
         {
             shootBullet();
-            if (canMissile)
-            {
-                ShootMissile();
-            }
+        }
+
+        if (canMissile && _player.PlayerStatus.GetStat(TypeStats.MISSILE_COUNT) > 0)
+        {
+            ShootMissile();
         }
     }
 
@@ -86,35 +89,37 @@ public class PlayerShoot : MonoBehaviour
 
         Vector3 bulletDirection = ((Vector2)gunPosition - (Vector2)transform.position).normalized;
 
-        float bulletAirTime = _player.PlayerStatus.GetStat(TypeStats.BULLET_RANGE);
-        float bulletSpeed = _player.PlayerStatus.GetStat(TypeStats.BULLET_SPEED);
-        float bulletSpread = _player.PlayerStatus.GetStat(TypeStats.BULLET_SPREAD);
-        float bulletDamage = _player.PlayerStatus.GetStat(TypeStats.POWER);
-        float bulletSize = _player.PlayerStatus.GetStat(TypeStats.BULLET_SIZE);
-        float bulletKnockBack = _player.PlayerStatus.GetStat(TypeStats.BULLET_KNOCKBACK);
+        float bulletAirTime = _player.GetStat(TypeStats.BULLET_RANGE);
+        float bulletSpeed = _player.GetStat(TypeStats.BULLET_SPEED);
+        float bulletSpread = _player.GetStat(TypeStats.BULLET_SPREAD);
+        float bulletDamage = _player.GetStat(TypeStats.POWER);
+        float bulletSize = _player.GetStat(TypeStats.BULLET_SIZE);
+        float bulletKnockBack = _player.GetStat(TypeStats.BULLET_KNOCKBACK);
 
-        int bulletPenetration = (int)_player.PlayerStatus.GetStat(TypeStats.PENETRATION);
-        int numberOfShots = (int)_player.PlayerStatus.GetStat(TypeStats.NUMBER_OF_SHOTS);
+        int bulletPenetration = (int)_player.GetStat(TypeStats.PENETRATION);
+        int numberOfShots = (int)_player.GetStat(TypeStats.NUMBER_OF_SHOTS);
+        float chanceExploding = _player.GetStat(TypeStats.EXPLOSION_CHANCE);
 
         for (int i = 0; i < numberOfShots; i++)
         {
-            Vector3 newBulletDirection = BulletSpreadCalc(bulletDirection,bulletSpread,i,numberOfShots);
-
+            Vector3 newBulletDirection = BulletSpreadCalc(bulletDirection, bulletSpread, i, numberOfShots);
+            bool explode = Random.Range(0f, 1f) > 1 - chanceExploding;
             Bullet.Create(gunPosition, newBulletDirection, bulletSize, bulletAirTime, bulletSpeed, bulletDamage, bulletPenetration, bulletKnockBack);
         }
 
 
     }
 
-    Vector3 BulletSpreadCalc(Vector3 oldDirection, float bulletSpread,int shotNum, int maxShots) {
-        float halfWay = (maxShots-1)/2f;
+    Vector3 BulletSpreadCalc(Vector3 oldDirection, float bulletSpread, int shotNum, int maxShots)
+    {
+        float halfWay = (maxShots - 1) / 2f;
         float distanceFromHalfWay = shotNum - halfWay;
         float angle = distanceFromHalfWay * bulletSpread;
-        
+
         float defaultAngle = Mathf.Atan2(oldDirection.y, oldDirection.x) * Mathf.Rad2Deg;
         float newAngle = (defaultAngle + angle) * Mathf.Deg2Rad;
 
-        return new Vector3(Mathf.Cos(newAngle),Mathf.Sin(newAngle),0);
+        return new Vector3(Mathf.Cos(newAngle), Mathf.Sin(newAngle), 0);
     }
 
     void ShootMissile()
@@ -122,16 +127,16 @@ public class PlayerShoot : MonoBehaviour
         Vector3 gunPosition = _instantiateBulletPosition.position;
 
         float missileDamage = (float)(_player.PlayerStatus.GetStat(TypeStats.POWER) * 0.85);
+        int missileCount = (int)(_player.PlayerStatus.GetStat(TypeStats.MISSILE_COUNT));
 
 
-        if (_player.PlayerStatus.GetStat(TypeStats.MISSILE_UNLOCKED) > 0)
+        canMissile = false;
+        float missileDelay = _player.PlayerStatus.GetStat(TypeStats.MISSILE_COOLDOWN);
+        Invoke("canMissileAgain", missileDelay);
+        for (int i = 0; i < missileCount; i++)
         {
-            canMissile = false;
-            float missileDelay = 1 / _player.PlayerStatus.GetStat(TypeStats.MISSILE_COOLDOWN);
-            Invoke("canMissileAgain", missileDelay);
             BacteriophageMissile.Create(gunPosition, WaveManager.instance.GetEnemy(), missileDamage);
         }
-
     }
 
     public void StartReload()
@@ -143,7 +148,16 @@ public class PlayerShoot : MonoBehaviour
             float reloadTime = 1 / _player.PlayerStatus.GetStat(TypeStats.RELOAD_SPEED);
             Invoke("CompleteReload", reloadTime);
             UIManager.instance.setAmmoText(0, 0, true);
+            if (_player.GetStat(TypeStats.GRENADE_COUNT) > 0)
+            {
+                ShootGrenade();
+            }
         }
+    }
+
+    private void ShootGrenade()
+    {
+
     }
 
     void CompleteReload()
