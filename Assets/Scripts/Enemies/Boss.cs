@@ -144,7 +144,7 @@ public class Boss : MonoBehaviour, IHittable
         TakeDamage(bullet.getDamage());
         flashAnimation();
     }
-    public void onHit(ExplosionEfetivation explosion)
+    public void onHit(IDamage explosion)
     {
         Vector2 hitDirection = (transform.position - target.transform.position).normalized;
         //ApplyKnockback(hitDirection * 1);
