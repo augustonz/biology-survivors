@@ -89,13 +89,13 @@ public class PlayerStatus : MonoBehaviour
 
         StopInvincibility();
 
-        if (currHP - damage <= 0)
+        if (currHP - (damage - (damage * GetStat(TypeStats.ARMOR))) <= 0)
         {
             currHP = 0;
             OnDeath?.Invoke();
             return;
         }
-        currHP -= damage;
+        currHP -= damage - (damage * GetStat(TypeStats.ARMOR));
         OnGetDamaged?.Invoke();
     }
 
