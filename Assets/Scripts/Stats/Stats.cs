@@ -45,6 +45,10 @@ public class Stats : ScriptableObject
     [Header("Other Settings")]
     [SerializeField] private float pickUpRange;
 
+    [Header("KillCell Settings")]
+    [SerializeField] private float killCellCount;
+    [SerializeField] private float killCellCooldown;
+
     public Dictionary<TypeStats, float> _baseStats = new();
     public Dictionary<TypeStats, float> _statMultiplier = new();
 
@@ -118,6 +122,7 @@ public class Stats : ScriptableObject
         _baseStats.Add(TypeStats.MISSILE_COOLDOWN, missileCooldown);
         _baseStats.Add(TypeStats.MISSILE_COUNT, missileCooldown);
         _baseStats.Add(TypeStats.BULLET_KNOCKBACK, bulletKnockBack);
+        _baseStats.Add(TypeStats.KILL_CELL_COUNT, killCellCount);
 
 
         _statMultiplier.Add(TypeStats.MAX_HP, 1);
@@ -143,5 +148,7 @@ public class Stats : ScriptableObject
         _statMultiplier.Add(TypeStats.BULLET_KNOCKBACK, 1);
         _statMultiplier.Add(TypeStats.GRENADE_COUNT, 1);
         _statMultiplier.Add(TypeStats.GRENADE_AREA, 1);
+        _statMultiplier.Add(TypeStats.KILL_CELL_COUNT, 1);
+
     }
 }

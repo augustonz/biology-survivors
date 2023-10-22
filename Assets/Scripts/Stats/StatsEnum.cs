@@ -29,6 +29,7 @@ public enum TypeStats
     MISSILE_COOLDOWN,
     MISSILE_COUNT,
     BULLET_KNOCKBACK,
+    KILL_CELL_COUNT,
 
 }
 
