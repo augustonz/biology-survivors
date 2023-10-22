@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class PlayerShoot : MonoBehaviour
 {
@@ -87,20 +89,21 @@ public class PlayerShoot : MonoBehaviour
 
         Vector3 bulletDirection = ((Vector2)gunPosition - (Vector2)transform.position).normalized;
 
-        float bulletAirTime = _player.PlayerStatus.GetStat(TypeStats.BULLET_RANGE);
-        float bulletSpeed = _player.PlayerStatus.GetStat(TypeStats.BULLET_SPEED);
-        float bulletSpread = _player.PlayerStatus.GetStat(TypeStats.BULLET_SPREAD);
-        float bulletDamage = _player.PlayerStatus.GetStat(TypeStats.POWER);
-        float bulletSize = _player.PlayerStatus.GetStat(TypeStats.BULLET_SIZE);
-        float bulletKnockBack = _player.PlayerStatus.GetStat(TypeStats.BULLET_KNOCKBACK);
+        float bulletAirTime = _player.GetStat(TypeStats.BULLET_RANGE);
+        float bulletSpeed = _player.GetStat(TypeStats.BULLET_SPEED);
+        float bulletSpread = _player.GetStat(TypeStats.BULLET_SPREAD);
+        float bulletDamage = _player.GetStat(TypeStats.POWER);
+        float bulletSize = _player.GetStat(TypeStats.BULLET_SIZE);
+        float bulletKnockBack = _player.GetStat(TypeStats.BULLET_KNOCKBACK);
 
-        int bulletPenetration = (int)_player.PlayerStatus.GetStat(TypeStats.PENETRATION);
-        int numberOfShots = (int)_player.PlayerStatus.GetStat(TypeStats.NUMBER_OF_SHOTS);
+        int bulletPenetration = (int)_player.GetStat(TypeStats.PENETRATION);
+        int numberOfShots = (int)_player.GetStat(TypeStats.NUMBER_OF_SHOTS);
+        float chanceExploding = _player.GetStat(TypeStats.EXPLOSION_CHANCE);
 
         for (int i = 0; i < numberOfShots; i++)
         {
             Vector3 newBulletDirection = BulletSpreadCalc(bulletDirection, bulletSpread, i, numberOfShots);
-
+            bool explode = Random.Range(0f, 1f) > 1 - chanceExploding;
             Bullet.Create(gunPosition, newBulletDirection, bulletSize, bulletAirTime, bulletSpeed, bulletDamage, bulletPenetration, bulletKnockBack);
         }
 
@@ -145,7 +148,16 @@ public class PlayerShoot : MonoBehaviour
             float reloadTime = 1 / _player.PlayerStatus.GetStat(TypeStats.RELOAD_SPEED);
             Invoke("CompleteReload", reloadTime);
             UIManager.instance.setAmmoText(0, 0, true);
+            if (_player.GetStat(TypeStats.GRENADE_COUNT) > 0)
+            {
+                ShootGrenade();
+            }
         }
+    }
+
+    private void ShootGrenade()
+    {
+
     }
 
     void CompleteReload()

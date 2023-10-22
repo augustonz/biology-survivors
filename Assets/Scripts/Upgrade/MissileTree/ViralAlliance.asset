@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: ViralAlliance
   m_EditorClassIdentifier: 
   Id: 1964ec1a-4fcc-4419-8254-94577304146e
-  statInfo: []
+  statInfo:
+  - stat: 18
+    mod: 0
+    value: -1
   icon: {fileID: -743479824, guid: 191a56b5acb7d764e81d678f19994880, type: 3}
   tier: 0
   unlockedBy: {fileID: 11400000, guid: 42c734825e36cb0448ca00e91d7dacc3, type: 2}

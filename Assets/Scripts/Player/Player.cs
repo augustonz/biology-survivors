@@ -93,4 +93,9 @@ public class Player : EnemyDamagable
             _playerPickUpRange.SetPickUpRange(_playerStatus.GetStat(TypeStats.PICK_UP_RANGE));
         }
     }
+
+    public float GetStat(TypeStats stat)
+    {
+        return _playerStatus.GetStat(stat);
+    }
 }

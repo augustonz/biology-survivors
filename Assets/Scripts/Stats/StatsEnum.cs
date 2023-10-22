@@ -18,6 +18,8 @@ public enum TypeStats
     BULLET_SPREAD,
     BULLET_RANGE,
     RELOAD_SPEED,
+    GRENADE_COUNT,
+    GRENADE_AREA,
     ARMOR,
     SPEED,
     BONUS_DNA,

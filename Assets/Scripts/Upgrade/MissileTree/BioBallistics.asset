@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: BioBallistics
   m_EditorClassIdentifier: 
   Id: 1964ec1a-4fcc-4419-8254-94577304146e
-  statInfo: []
+  statInfo:
+  - stat: 19
+    mod: 0
+    value: 2
   icon: {fileID: 694287990, guid: 191a56b5acb7d764e81d678f19994880, type: 3}
   tier: 0
   unlockedBy: {fileID: 11400000, guid: 2fa0236edfba1e64c9bd551477ff775d, type: 2}
   unlocks:
   - {fileID: 11400000, guid: c28b512ee41807b449d11a81c76d731d, type: 2}
   skillTree: {fileID: 11400000, guid: 629354c78c14fdc4d823fdaa33db572c, type: 2}
-  description: Has a chance of sending extra 2 missiles every 4 seconds.
+  description: Sends +2 missiles every 4 seconds.
