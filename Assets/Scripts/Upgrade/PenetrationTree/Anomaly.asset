@@ -13,10 +13,25 @@ MonoBehaviour:
   m_Name: Anomaly
   m_EditorClassIdentifier: 
   Id: 4bec33d9-a976-49f1-a70e-a12cd91c47af
-  statInfo: []
+  statInfo:
+  - stat: 8
+    mod: 1
+    value: 3.5
+  - stat: 7
+    mod: 0
+    value: 5
+  - stat: 9
+    mod: 1
+    value: -0.5
+  - stat: 3
+    mod: 1
+    value: -0.5
+  - stat: 11
+    mod: 0
+    value: 5
   icon: {fileID: 1307015625, guid: 191a56b5acb7d764e81d678f19994880, type: 3}
   tier: 0
   unlockedBy: {fileID: 11400000, guid: 9c66d75d1d7682b4ca421229926e1600, type: 2}
   unlocks: []
   skillTree: {fileID: 11400000, guid: 9df8ff2dd2899034e895ed87c5e9ef74, type: 2}
-  description: A small chance of a REALLY BIG bullet comming out.
+  description: "WOW! \nThats MASSIVE! \nThat's normal, right?"

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0955b889-309c-4ab1-9e99-3e167c672507
   statInfo:
-  - stat: 6
+  - stat: 7
     mod: 0
     value: 1
   - stat: 8
@@ -28,4 +28,4 @@ MonoBehaviour:
   unlockedBy: {fileID: 11400000, guid: 06d9112f90e4b9a4f8958a6de014ac27, type: 2}
   unlocks: []
   skillTree: {fileID: 11400000, guid: 9df8ff2dd2899034e895ed87c5e9ef74, type: 2}
-  description: + 1 penetration, + 25% bullet speed, + 0.15 damage.
+  description: + 1 penetration, + 25% bullet speed, + 15% damage.

@@ -14,12 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 43d17353-118e-42f7-ba5e-de0ebfe1d9a7
   statInfo:
-  - stat: 6
+  - stat: 7
     mod: 0
     value: 1
-  - stat: 7
+  - stat: 8
     mod: 1
-    value: 0.5
+    value: 2
+  - stat: 3
+    mod: 1
+    value: -0.2
+  - stat: 9
+    mod: 1
+    value: -0.2
   icon: {fileID: 2105715705, guid: 191a56b5acb7d764e81d678f19994880, type: 3}
   tier: 0
   unlockedBy: {fileID: 11400000, guid: ac47104ae46d1ce4dbd30ce620fb8b22, type: 2}
