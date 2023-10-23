@@ -46,7 +46,7 @@ public class PlayerShoot : MonoBehaviour
 
     bool hasNoAmmo() { return currentAmmo <= 0; }
 
-    void handlePlayerShoot()
+    public void handlePlayerShoot()
     {
         if (input.GetClickInput())
         {

@@ -10,6 +10,10 @@ public class PlayerAnimation : MonoBehaviour
     [SerializeField] Material _getHitMaterial;
     [SerializeField] Material _invincibleMaterial;
     [SerializeField] int _invincibilityBlinkInterval;
+
+    Vector2 _weaponPosition;
+
+    [SerializeField]public UIVirtualJoystick moveJoystick;
     Animator _playerAnim;
     Vector3 _pupilOriginalPos;
     SpriteRenderer _playerSprite;
@@ -89,7 +93,11 @@ public class PlayerAnimation : MonoBehaviour
 
     void UpdatePlayerGunDirection()
     {
-        Vector2 mousePos = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)_gunRotationPoint.position;
+        Vector2 mousePos;
+        if (moveJoystick.gameObject.activeInHierarchy)
+            mousePos = _weaponPosition;
+        else
+            mousePos = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)_gunRotationPoint.position;
 
         float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
         
@@ -125,5 +133,10 @@ public class PlayerAnimation : MonoBehaviour
         }
 
         _pupil.transform.localPosition = pupilPosition;
+    }
+
+    public void SetMoveDir(Vector2 moveDir)
+    {
+        _weaponPosition = moveDir.normalized;
     }
 }

@@ -8,13 +8,17 @@ public class InputManager : MonoBehaviour
 
     public static InputManager instance;
 
+
     void Awake()
     {
         if (instance != null && instance != this) Destroy(this);
         else instance = this;
     }
 
+    public UIVirtualJoystick moveJoystick;
+
     public InputAction moveAction;
+    Vector2 _moveDir;
 
     public InputAction clickAction;
 
@@ -50,9 +54,16 @@ public class InputManager : MonoBehaviour
         reloadAction.Disable();
     }
 
+    public void SetMoveDir(Vector2 moveDir)
+    {
+        _moveDir = moveDir.normalized;
+    }
     public Vector2 GetMovementInput()
     {
-        return moveAction.ReadValue<Vector2>();
+        if (moveJoystick.gameObject.activeInHierarchy)
+            return _moveDir;
+        else
+            return moveAction.ReadValue<Vector2>();
     }
 
     public bool GetClickInput()
