@@ -94,6 +94,11 @@ public class Player : EnemyDamagable
         }
     }
 
+    public void SpeedBurst(float timer)
+    {
+        _playerMovement.SpeedBurst(timer);
+    }
+
     public float GetStat(TypeStats stat)
     {
         return _playerStatus.GetStat(stat);

@@ -24,13 +24,11 @@ MonoBehaviour:
   bulletSpeed: 5
   bulletRange: 1
   bulletSpread: 20
-  bulletExplosionChance: 0
   bulletKnockBack: 1
   missileCount: 0
   missileCooldown: 0
   grenadeCount: 0
   grenadeArea: 0
-  armor: 0
   speed: 1.5
   expBonus: 1
   passiveExp: 10

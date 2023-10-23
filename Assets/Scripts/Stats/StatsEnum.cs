@@ -31,7 +31,7 @@ public enum TypeStats
     BULLET_KNOCKBACK,
     KILL_CELL_COUNT,
     KILL_CELL_SPEED,
-
+    SPEED_BURST,
 }
 
 [System.Serializable]

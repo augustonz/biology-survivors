@@ -1,4 +1,5 @@
-public interface IHittable {
+public interface IHittable
+{
     void onHit(Bullet bullet);
 
     void onHit(IDamage explosion);

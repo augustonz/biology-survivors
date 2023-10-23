@@ -22,7 +22,6 @@ public class Stats : ScriptableObject
     [SerializeField] private float bulletSpeed;
     [SerializeField] private float bulletRange;
     [SerializeField] private float bulletSpread;
-    [SerializeField] private float bulletExplosionChance;
 
     [SerializeField] private float bulletKnockBack;
 
@@ -35,8 +34,9 @@ public class Stats : ScriptableObject
     [SerializeField] private float grenadeArea;
 
     [Header("Defense Settings")]
-    [SerializeField] private float armor;
     [SerializeField] private float speed;
+    [SerializeField] private float speedBurst;
+
 
     [Header("Level Settings")]
     [SerializeField] private float expBonus;
@@ -48,6 +48,10 @@ public class Stats : ScriptableObject
     [Header("KillCell Settings")]
     [SerializeField] private float killCellCount;
     [SerializeField] private float killCellSpeed;
+
+    private float armor = 1;
+    private float bulletExplosionChance = 1;
+
 
     public Dictionary<TypeStats, float> _baseStats = new();
     public Dictionary<TypeStats, float> _statMultiplier = new();
@@ -109,6 +113,8 @@ public class Stats : ScriptableObject
         _baseStats.Add(TypeStats.PENETRATION, penetration);
         _baseStats.Add(TypeStats.PASSIVE_DNA, passiveExp);
         _baseStats.Add(TypeStats.SPEED, speed);
+        _baseStats.Add(TypeStats.SPEED_BURST, speedBurst);
+
         _baseStats.Add(TypeStats.BONUS_DNA, expBonus);
         _baseStats.Add(TypeStats.PICK_UP_RANGE, pickUpRange);
         _baseStats.Add(TypeStats.RELOAD_SPEED, reloadSpeed);
@@ -136,11 +142,12 @@ public class Stats : ScriptableObject
         _statMultiplier.Add(TypeStats.PENETRATION, 1);
         _statMultiplier.Add(TypeStats.PASSIVE_DNA, 1);
         _statMultiplier.Add(TypeStats.SPEED, 1);
+        _statMultiplier.Add(TypeStats.SPEED_BURST, 1);
         _statMultiplier.Add(TypeStats.BONUS_DNA, 1);
         _statMultiplier.Add(TypeStats.PICK_UP_RANGE, 1);
         _statMultiplier.Add(TypeStats.RELOAD_SPEED, 1);
         _statMultiplier.Add(TypeStats.BULLET_SIZE, 1);
-        _statMultiplier.Add(TypeStats.EXPLOSION_CHANCE, 1);
+        _statMultiplier.Add(TypeStats.EXPLOSION_CHANCE, 0);
         _statMultiplier.Add(TypeStats.BULLET_SPEED, 1);
         _statMultiplier.Add(TypeStats.BULLET_SPREAD, 1);
         _statMultiplier.Add(TypeStats.BULLET_RANGE, 1);
