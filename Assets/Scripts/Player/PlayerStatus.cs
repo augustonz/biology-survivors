@@ -81,7 +81,7 @@ public class PlayerStatus : MonoBehaviour
         OnChangeCurrExp?.Invoke();
     }
 
-    public void GetHit(int damage)
+    public void GetHit(int damage, IHittable target)
     {
         if (_isInvincible) return;
 
@@ -97,6 +97,8 @@ public class PlayerStatus : MonoBehaviour
         }
         currHP -= damage - (damage * GetStat(TypeStats.ARMOR));
         OnGetDamaged?.Invoke();
+
+        target.onHit(GetStat(TypeStats.RETALIATION_DAMAGE));
     }
 
     async void StopInvincibility()

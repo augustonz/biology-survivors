@@ -122,6 +122,8 @@ public class PlayerShoot : MonoBehaviour
         return new Vector3(Mathf.Cos(newAngle), Mathf.Sin(newAngle), 0);
     }
 
+
+
     void ShootMissile()
     {
         Vector3 gunPosition = _instantiateBulletPosition.position;
@@ -148,16 +150,32 @@ public class PlayerShoot : MonoBehaviour
             float reloadTime = 1 / _player.PlayerStatus.GetStat(TypeStats.RELOAD_SPEED);
             Invoke("CompleteReload", reloadTime);
             UIManager.instance.setAmmoText(0, 0, true);
-            if (_player.GetStat(TypeStats.GRENADE_COUNT) > 0)
+            if (_player.GetStat(TypeStats.GRENADE_COUNT) > 0 && currentAmmo == 0)
             {
                 ShootGrenade();
+            }
+            if (_player.GetStat(TypeStats.SPEED_BURST) > 0 && currentAmmo == 0)
+            {
+                _player.SpeedBurst(3);
             }
         }
     }
 
-    private void ShootGrenade()
+    void ShootGrenade()
     {
+        Vector3 gunPosition = _instantiateBulletPosition.position;
 
+        float grenadeDamage = (float)(_player.PlayerStatus.GetStat(TypeStats.POWER) * 0.65);
+        float grenadeArea = (int)_player.PlayerStatus.GetStat(TypeStats.GRENADE_AREA);
+        int grenadeCount = (int)_player.PlayerStatus.GetStat(TypeStats.GRENADE_COUNT);
+
+
+        Vector3 grenadeDirection = ((Vector2)gunPosition - (Vector2)transform.position).normalized;
+
+        for (int i = 0; i < grenadeCount; i++)
+        {
+            Grenade.Create(gunPosition, grenadeDirection, 3, grenadeArea, 5, grenadeDamage);
+        }
     }
 
     void CompleteReload()

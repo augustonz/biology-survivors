@@ -59,7 +59,7 @@ public class Enemy : MonoBehaviour, IHittable
 
     void Attack()
     {
-        collidingWith.ForEach(collider => collider.OnHit(damage));
+        collidingWith.ForEach(collider => collider.OnHit(damage, this));
         delayBetweenAttacksTimer = delayBetweenAttacks;
     }
 
@@ -112,6 +112,16 @@ public class Enemy : MonoBehaviour, IHittable
         ApplyKnockback(hitDirection * bullet.KnockBack);
         TakeDamage(bullet.getDamage());
         flashAnimation();
+    }
+    public void onHit(float damage)
+    {
+        if (damage > 0)
+        {
+            Vector2 hitDirection = (transform.position - target.transform.position).normalized;
+            ApplyKnockback(hitDirection * 3);
+            TakeDamage(damage);
+            flashAnimation();
+        }
     }
     public void onHit(IDamage explosion)
     {

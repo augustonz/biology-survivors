@@ -11,15 +11,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool canMove = true;
 
     private Vector3 moveDirection;
-    public Vector3 MoveDirection { get=> moveDirection; }
+    public Vector3 MoveDirection { get => moveDirection; }
     private Vector3 refVal = Vector3.zero;
 
     private InputManager input;
     private Rigidbody2D rb;
 
+    private float _timerBurst;
+    private float refBurst;
+
+    private Player _player;
 
     void Awake()
     {
+        _player = GetComponentInParent<Player>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -30,6 +35,19 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (_timerBurst > 0)
+        {
+            _timerBurst -= Time.deltaTime;
+            if (_timerBurst < 0)
+            {
+                playerSpeed = _player.GetStat(TypeStats.SPEED);
+            }
+            else
+            {
+                playerSpeed = Mathf.SmoothDamp(playerSpeed, _player.GetStat(TypeStats.SPEED), ref refBurst, _timerBurst);
+            }
+        }
+
         if (!canMove) return;
 
         handlePlayerUpdate();
@@ -64,5 +82,11 @@ public class PlayerMovement : MonoBehaviour
     public void SetSpeed(float sp)
     {
         playerSpeed = sp;
+    }
+
+    public void SpeedBurst(float timerBurst)
+    {
+        _timerBurst = timerBurst;
+        playerSpeed = _player.GetStat(TypeStats.SPEED_BURST);
     }
 }

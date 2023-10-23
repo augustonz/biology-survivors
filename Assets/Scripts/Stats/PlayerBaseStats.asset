@@ -24,16 +24,16 @@ MonoBehaviour:
   bulletSpeed: 5
   bulletRange: 1
   bulletSpread: 20
-  bulletExplosionChance: 0
   bulletKnockBack: 1
   missileCount: 0
   missileCooldown: 0
-  grenadeCount: 0
-  grenadeArea: 0
-  armor: 0
+  grenadeCount: 1
+  grenadeArea: 2
   speed: 1.5
+  speedBurst: 0
+  retaliationDamage: 0
   expBonus: 1
-  passiveExp: 10
+  passiveExp: 0
   pickUpRange: 0.4
   killCellCount: 0
   killCellSpeed: 30

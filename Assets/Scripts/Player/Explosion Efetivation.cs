@@ -7,13 +7,13 @@ public class ExplosionEfetivation : MonoBehaviour, IDamage
 {
     [SerializeField] float _baseScale;
     float _damage;
-
     public float damage => _damage;
 
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(this.gameObject, 3);   
+
+        Destroy(this.gameObject, 3);
     }
 
     public void ApplyDamage(float scale, float damage)
@@ -27,6 +27,8 @@ public class ExplosionEfetivation : MonoBehaviour, IDamage
             if (hit2.TryGetComponent(out IHittable value))
             {
                 value.onHit(this);
+
+                DamageValue.Instantiate(hit2.transform.position, (int)damage);
             }
         }
     }
