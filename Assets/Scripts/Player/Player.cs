@@ -64,9 +64,9 @@ public class Player : EnemyDamagable
         UIManager.instance.SetPlayerLevelText(_playerStatus.currLevel);
     }
 
-    public override void OnHit(int damage)
+    public override void OnHit(int damage, IHittable target)
     {
-        _playerStatus.GetHit(damage);
+        _playerStatus.GetHit(damage, target);
         UIManager.instance.SetPlayerHealth((int)_playerStatus.currHP, (int)_playerStatus.GetStat(TypeStats.MAX_HP));
     }
 
@@ -103,4 +103,6 @@ public class Player : EnemyDamagable
     {
         return _playerStatus.GetStat(stat);
     }
+
+
 }

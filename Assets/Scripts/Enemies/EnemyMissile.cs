@@ -66,7 +66,7 @@ public class EnemyMissile : MonoBehaviour, IHittable
 
     void Attack()
     {
-        collidingWith.ForEach(collider => collider.OnHit(damage));
+        collidingWith.ForEach(collider => collider.OnHit(damage, this));
         Die();
     }
 
@@ -167,5 +167,11 @@ public class EnemyMissile : MonoBehaviour, IHittable
     public void resetSpriteMaterial()
     {
         sr.material = originalMaterial;
+    }
+
+    public void onHit(float damage)
+    {
+        TakeDamage(damage);
+        flashAnimation();
     }
 }

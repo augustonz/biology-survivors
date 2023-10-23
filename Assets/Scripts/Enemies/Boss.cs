@@ -46,31 +46,33 @@ public class Boss : MonoBehaviour, IHittable
 
         target = FindObjectOfType<Player>().transform;
         if (target == null) target = gameObject.transform;
-        _anim.SetFloat("PreSpeed",_preSpeed);
+        _anim.SetFloat("PreSpeed", _preSpeed);
     }
 
     void Update()
     {
         if (IsIdle()) sr.flipX = target.transform.position.x > transform.position.x;
 
-        if (delayBetweenAttacksTimer <= 0 && collidingWith.Count>0)
+        if (delayBetweenAttacksTimer <= 0 && collidingWith.Count > 0)
         {
             Attack(collidingWith[0]);
         }
         delayBetweenAttacksTimer -= Time.deltaTime;
 
-        if (IsIdle() && Vector2.Distance(target.transform.position,transform.position) <= _detectPlayerRange) {
+        if (IsIdle() && Vector2.Distance(target.transform.position, transform.position) <= _detectPlayerRange)
+        {
             StartChargingAttack();
         }
     }
 
-    bool IsIdle() {
+    bool IsIdle()
+    {
         return !_isChargingAttack && !_isAttacking;
-    } 
+    }
 
     void Attack(EnemyDamagable target)
     {
-        target.OnHit(_damage);
+        target.OnHit(_damage, this);
         delayBetweenAttacksTimer = delayBetweenAttacks;
     }
 
@@ -86,16 +88,22 @@ public class Boss : MonoBehaviour, IHittable
 
         rb.velocity = rb.velocity + (Vector2)(moveDirection * 6f);
 
-        if (_isChargingAttack) {
+        if (_isChargingAttack)
+        {
             rb.velocity = Vector2.zero;
-        } else if (_isAttacking) {
+        }
+        else if (_isAttacking)
+        {
             rb.velocity = GetAttackingDirection() * _dashSpeed;
-        } else if (!_isKnockBack && rb.velocity.magnitude > moveSpeed) {
+        }
+        else if (!_isKnockBack && rb.velocity.magnitude > moveSpeed)
+        {
             rb.velocity = rb.velocity.normalized * moveSpeed;
         }
     }
 
-    Vector2 GetAttackingDirection() {
+    Vector2 GetAttackingDirection()
+    {
         return (_chargeTarget - _chargeInitialPosition).normalized;
     }
 
@@ -109,29 +117,33 @@ public class Boss : MonoBehaviour, IHittable
         }
     }
 
-    public void StartChargingAttack() {
-        _isChargingAttack=true;
+    public void StartChargingAttack()
+    {
+        _isChargingAttack = true;
         _chargeTarget = target.transform.position;
         _chargeInitialPosition = transform.position;
         _anim.SetTrigger("Pre");
     }
 
-    public void StartAttaking() {
-        _isChargingAttack=false;
+    public void StartAttaking()
+    {
+        _isChargingAttack = false;
         _isAttacking = true;
-        Invoke("StopAttaking",_dashDuration);
+        Invoke("StopAttaking", _dashDuration);
     }
 
-    public void StopAttaking() {
+    public void StopAttaking()
+    {
         _isAttacking = false;
         _anim.SetTrigger("Idle");
     }
 
-    void Die() {
+    void Die()
+    {
         _deathSource.Play();
         _deathSource.transform.SetParent(null);
         Destroy(_deathSource.gameObject, 3);
-        
+
         WaveManager.instance.OnEnemyKilled.Invoke();
 
         Destroy(gameObject);
@@ -144,6 +156,13 @@ public class Boss : MonoBehaviour, IHittable
         TakeDamage(bullet.getDamage());
         flashAnimation();
     }
+    public void onHit(float damage)
+    {
+        Vector2 hitDirection = (transform.position - target.transform.position).normalized;
+        ApplyKnockback(hitDirection * 3);
+        TakeDamage(damage);
+        flashAnimation();
+    }
     public void onHit(IDamage explosion)
     {
         Vector2 hitDirection = (transform.position - target.transform.position).normalized;
@@ -152,10 +171,11 @@ public class Boss : MonoBehaviour, IHittable
         flashAnimation();
     }
 
-    async void ApplyKnockback(Vector2 knockBackDirection) {
+    async void ApplyKnockback(Vector2 knockBackDirection)
+    {
         _isKnockBack = true;
         rb.velocity = Vector2.zero;
-        rb.AddForce(knockBackDirection,ForceMode2D.Impulse);
+        rb.AddForce(knockBackDirection, ForceMode2D.Impulse);
         await Task.Delay(250);
         _isKnockBack = false;
     }
@@ -190,8 +210,9 @@ public class Boss : MonoBehaviour, IHittable
         sr.material = originalMaterial;
     }
 
-    void OnDrawGizmos() {
+    void OnDrawGizmos()
+    {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position,_detectPlayerRange);
+        Gizmos.DrawWireSphere(transform.position, _detectPlayerRange);
     }
 }

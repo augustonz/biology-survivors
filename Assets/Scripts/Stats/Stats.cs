@@ -36,6 +36,7 @@ public class Stats : ScriptableObject
     [Header("Defense Settings")]
     [SerializeField] private float speed;
     [SerializeField] private float speedBurst;
+    [SerializeField] private float retaliationDamage;
 
 
     [Header("Level Settings")]
@@ -48,6 +49,8 @@ public class Stats : ScriptableObject
     [Header("KillCell Settings")]
     [SerializeField] private float killCellCount;
     [SerializeField] private float killCellSpeed;
+
+
 
     private float armor = 1;
     private float bulletExplosionChance = 1;
@@ -114,6 +117,8 @@ public class Stats : ScriptableObject
         _baseStats.Add(TypeStats.PASSIVE_DNA, passiveExp);
         _baseStats.Add(TypeStats.SPEED, speed);
         _baseStats.Add(TypeStats.SPEED_BURST, speedBurst);
+        _baseStats.Add(TypeStats.RETALIATION_DAMAGE, retaliationDamage);
+
 
         _baseStats.Add(TypeStats.BONUS_DNA, expBonus);
         _baseStats.Add(TypeStats.PICK_UP_RANGE, pickUpRange);
@@ -143,6 +148,8 @@ public class Stats : ScriptableObject
         _statMultiplier.Add(TypeStats.PASSIVE_DNA, 1);
         _statMultiplier.Add(TypeStats.SPEED, 1);
         _statMultiplier.Add(TypeStats.SPEED_BURST, 1);
+        _statMultiplier.Add(TypeStats.RETALIATION_DAMAGE, 1);
+
         _statMultiplier.Add(TypeStats.BONUS_DNA, 1);
         _statMultiplier.Add(TypeStats.PICK_UP_RANGE, 1);
         _statMultiplier.Add(TypeStats.RELOAD_SPEED, 1);
