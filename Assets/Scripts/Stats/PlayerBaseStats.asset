@@ -27,11 +27,13 @@ MonoBehaviour:
   bulletKnockBack: 1
   missileCount: 0
   missileCooldown: 0
-  grenadeCount: 0
-  grenadeArea: 0
+  grenadeCount: 1
+  grenadeArea: 2
   speed: 1.5
+  speedBurst: 0
+  retaliationDamage: 0
   expBonus: 1
-  passiveExp: 10
+  passiveExp: 0
   pickUpRange: 0.4
   killCellCount: 0
   killCellSpeed: 30
